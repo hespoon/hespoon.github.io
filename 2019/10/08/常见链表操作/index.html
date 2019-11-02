@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="链表节点定义12345struct ListNode &amp;#123;    int val;    ListNode *next;    ListNode(int x) : val(x), next(NULL) &amp;#123;&amp;#125;&amp;#125;;  反转链表 递推法   反转链表的迭代方式需要3个指针，pre，now，next 更新指针时先更新 next 指针，用 now!=NULL 来控制循">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-10-08T15:42:33.919Z">
+<meta property="og:updated_time" content="2019-10-08T15:45:21.820Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见链表操作">
 <meta name="twitter:description" content="链表节点定义12345struct ListNode &amp;#123;    int val;    ListNode *next;    ListNode(int x) : val(x), next(NULL) &amp;#123;&amp;#125;&amp;#125;;  反转链表 递推法   反转链表的迭代方式需要3个指针，pre，now，next 更新指针时先更新 next 指针，用 now!=NULL 来控制循">
@@ -332,7 +332,7 @@
                 
               
 
-              <time title="Erstellt: 2019-10-08 11:19:35 / Geändert am: 23:42:33" itemprop="dateCreated datePublished" datetime="2019-10-08T11:19:35+08:00">2019-10-08</time>
+              <time title="Erstellt: 2019-10-08 11:19:35 / Geändert am: 23:45:21" itemprop="dateCreated datePublished" datetime="2019-10-08T11:19:35+08:00">2019-10-08</time>
             
 
             
@@ -425,14 +425,14 @@
 </ul>
 <h1 id="删除链表倒数第n个节点"><a href="#删除链表倒数第n个节点" class="headerlink" title="删除链表倒数第n个节点"></a>删除链表倒数第n个节点</h1><ol>
 <li><p>双指针</p>
-<p> 使用两个指针，初始化是使两个指针相距为 n，然后同步移动，后面的指针指到链表尾时，前面的指针指向要删除的节点的前一个节点</p>
+<p> 使用两个指针，初始化时使两个指针相距为 n，然后同步移动，后面的指针指到链表尾时，前面的指针指向要删除的节点的前一个节点</p>
 </li>
 </ol>
 <ul>
-<li><p>不使用哨兵节点</p>
+<li><p>不使用哨兵节点，此时如果要删除第一个节点要特判</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ListNode* <span class="title">removeNthFromEnd</span><span class="params">(ListNode* head, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    ListNode *left,*right;</span><br><span class="line">    left=right=head;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        right=right-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(right==<span class="literal">NULL</span>)&#123; <span class="comment">// 此时删除第一个节点</span></span><br><span class="line">        <span class="keyword">return</span> head-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(right-&gt;next!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">        right=right-&gt;next;</span><br><span class="line">        left=left-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    left-&gt;next=left-&gt;next-&gt;next;</span><br><span class="line">    <span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>使用哨兵节点</p>
+<li><p>使用哨兵节点，此时删除第一个节点不需要特判，哨兵使得链表中的所有节点地位相同</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ListNode* <span class="title">removeNthFromEnd</span><span class="params">(ListNode* head, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    ListNode *preHead=<span class="keyword">new</span> ListNode(<span class="number">0</span>); <span class="comment">// 哨兵节点</span></span><br><span class="line">    preHead-&gt;next=head;</span><br><span class="line">    ListNode *left,*right;</span><br><span class="line">    left=right=preHead;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        right=right-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(right-&gt;next!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">        right=right-&gt;next;</span><br><span class="line">        left=left-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    left-&gt;next=left-&gt;next-&gt;next;</span><br><span class="line">    <span class="keyword">return</span> preHead-&gt;next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 
@@ -474,6 +474,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/10/简单计算器/" rel="prev" title="简单计算器">
+                简单计算器 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -542,7 +546,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">Artikel</span>
                   </a>
                 </div>

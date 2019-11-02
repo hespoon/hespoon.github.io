@@ -96,14 +96,17 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="转正申请书">
-<meta property="og:url" content="http://hespoon.github.io/转正申请书/index.html">
+  <meta name="description" content="123int c[10];int *a = (int *)malloc(10 * sizeof(int));cout &amp;lt;&amp;lt; sizeof(a) &amp;lt;&amp;lt; &quot;  &quot; &amp;lt;&amp;lt; sizeof(c) &amp;lt;&amp;lt; endl; 输出为 4  40int 指针 a 的大小为 4 字节，虽然它指向了一个包含 40 字节的数组！！数组名 c 的大小为 40 字节！！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sizeof() 函数">
+<meta property="og:url" content="http://hespoon.github.io/2019/11/02/sizeof-函数/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="123int c[10];int *a = (int *)malloc(10 * sizeof(int));cout &amp;lt;&amp;lt; sizeof(a) &amp;lt;&amp;lt; &quot;  &quot; &amp;lt;&amp;lt; sizeof(c) &amp;lt;&amp;lt; endl; 输出为 4  40int 指针 a 的大小为 4 字节，虽然它指向了一个包含 40 字节的数组！！数组名 c 的大小为 40 字节！！">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-22T10:07:54.344Z">
+<meta property="og:updated_time" content="2019-11-02T10:11:57.473Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="转正申请书">
+<meta name="twitter:title" content="sizeof() 函数">
+<meta name="twitter:description" content="123int c[10];int *a = (int *)malloc(10 * sizeof(int));cout &amp;lt;&amp;lt; sizeof(a) &amp;lt;&amp;lt; &quot;  &quot; &amp;lt;&amp;lt; sizeof(c) &amp;lt;&amp;lt; endl; 输出为 4  40int 指针 a 的大小为 4 字节，虽然它指向了一个包含 40 字节的数组！！数组名 c 的大小为 40 字节！！">
 
 
 
@@ -111,7 +114,7 @@
 
   
   
-  <link rel="canonical" href="http://hespoon.github.io/转正申请书/">
+  <link rel="canonical" href="http://hespoon.github.io/2019/11/02/sizeof-函数/">
 
 
 
@@ -121,7 +124,7 @@
   };
 </script>
 
-  <title>转正申请书 | Hexo</title>
+  <title>sizeof() 函数 | Hexo</title>
   
 
 
@@ -246,19 +249,6 @@
   
     
 
-    
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
   
 
   
@@ -285,45 +275,158 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hespoon.github.io/2019/11/02/sizeof-函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">转正申请书
-
-</h1>
-
-<div class="post-meta">
-  
-  
-
-
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
+          <h1 class="post-title" itemprop="name headline">sizeof() 函数
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Erstellt: 2019-11-02 18:09:33 / Geändert am: 18:11:57" itemprop="dateCreated datePublished" datetime="2019-11-02T18:09:33+08:00">2019-11-02</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
           
-        
-      </div>
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> c[<span class="number">10</span>];</span><br><span class="line"><span class="keyword">int</span> *a = (<span class="keyword">int</span> *)<span class="built_in">malloc</span>(<span class="number">10</span> * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="keyword">sizeof</span>(a) &lt;&lt; <span class="string">"  "</span> &lt;&lt; <span class="keyword">sizeof</span>(c) &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+<p>输出为 4  40<br>int 指针 a 的大小为 4 字节，虽然它指向了一个包含 40 字节的数组！！<br>数组名 c 的大小为 40 字节！！</p>
+
       
     </div>
-    
-
-
 
     
+
     
     
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/19/2-3查找树/" rel="next" title="2-3查找树">
+                <i class="fa fa-chevron-left"></i> 2-3查找树
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
