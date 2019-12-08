@@ -96,17 +96,17 @@
 
 
 
-  <meta name="description" content="无向图中，非树边只会以返祖边的形式存在。 割点分为两种情况 DFS 树的根节点有多于一个的子节点，那么根节点就是割点 对于非根节点 u，它至少有一颗子树没有返祖边可以到达 u 的祖先，则 u 是割点   对于第二种情况，可以这样理解。假设非根节点 u 的某棵子树中有一个结点 x 具有返祖边可以到达 u 的祖先结点。由于图是连通的，那么节点 x 便可以到达 u 上方的所有节点。同时，由于 x 在">
+  <meta name="description" content="坏字符规则模式串匹配主串时，按照模式串下标从大到小的顺序匹配。当发现主串中的某个字符无法与模式串匹配时，称该字符为坏字符。坏字符是主串中的字符。当发生不匹配时，把坏字符对应的模式串中的字符的下标记作 si。如果坏字符在模式串中存在，便把坏字符在模式串中的下标记作 xi。如果坏字符在模式串中多处出现，则计算 xi 时，选择最靠后的那个。如果不存在，我们把 xi 记作 -1。模式串向后移动的位数等于">
 <meta property="og:type" content="article">
-<meta property="og:title" content="连通无向图与割点">
-<meta property="og:url" content="http://hespoon.github.io/2019/09/23/连通无向图与割点/index.html">
+<meta property="og:title" content="Boyer-Moore算法">
+<meta property="og:url" content="http://hespoon.github.io/2019/11/28/Boyer-Moore算法/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="无向图中，非树边只会以返祖边的形式存在。 割点分为两种情况 DFS 树的根节点有多于一个的子节点，那么根节点就是割点 对于非根节点 u，它至少有一颗子树没有返祖边可以到达 u 的祖先，则 u 是割点   对于第二种情况，可以这样理解。假设非根节点 u 的某棵子树中有一个结点 x 具有返祖边可以到达 u 的祖先结点。由于图是连通的，那么节点 x 便可以到达 u 上方的所有节点。同时，由于 x 在">
+<meta property="og:description" content="坏字符规则模式串匹配主串时，按照模式串下标从大到小的顺序匹配。当发现主串中的某个字符无法与模式串匹配时，称该字符为坏字符。坏字符是主串中的字符。当发生不匹配时，把坏字符对应的模式串中的字符的下标记作 si。如果坏字符在模式串中存在，便把坏字符在模式串中的下标记作 xi。如果坏字符在模式串中多处出现，则计算 xi 时，选择最靠后的那个。如果不存在，我们把 xi 记作 -1。模式串向后移动的位数等于">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-25T15:52:29.996Z">
+<meta property="og:updated_time" content="2019-11-28T16:03:50.914Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="连通无向图与割点">
-<meta name="twitter:description" content="无向图中，非树边只会以返祖边的形式存在。 割点分为两种情况 DFS 树的根节点有多于一个的子节点，那么根节点就是割点 对于非根节点 u，它至少有一颗子树没有返祖边可以到达 u 的祖先，则 u 是割点   对于第二种情况，可以这样理解。假设非根节点 u 的某棵子树中有一个结点 x 具有返祖边可以到达 u 的祖先结点。由于图是连通的，那么节点 x 便可以到达 u 上方的所有节点。同时，由于 x 在">
+<meta name="twitter:title" content="Boyer-Moore算法">
+<meta name="twitter:description" content="坏字符规则模式串匹配主串时，按照模式串下标从大到小的顺序匹配。当发现主串中的某个字符无法与模式串匹配时，称该字符为坏字符。坏字符是主串中的字符。当发生不匹配时，把坏字符对应的模式串中的字符的下标记作 si。如果坏字符在模式串中存在，便把坏字符在模式串中的下标记作 xi。如果坏字符在模式串中多处出现，则计算 xi 时，选择最靠后的那个。如果不存在，我们把 xi 记作 -1。模式串向后移动的位数等于">
 
 
 
@@ -114,7 +114,7 @@
 
   
   
-  <link rel="canonical" href="http://hespoon.github.io/2019/09/23/连通无向图与割点/">
+  <link rel="canonical" href="http://hespoon.github.io/2019/11/28/Boyer-Moore算法/">
 
 
 
@@ -124,7 +124,7 @@
   };
 </script>
 
-  <title>连通无向图与割点 | Hexo</title>
+  <title>Boyer-Moore算法 | Hexo</title>
   
 
 
@@ -289,7 +289,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hespoon.github.io/2019/09/23/连通无向图与割点/">
+    <link itemprop="mainEntityOfPage" href="http://hespoon.github.io/2019/11/28/Boyer-Moore算法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -306,7 +306,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">连通无向图与割点
+          <h1 class="post-title" itemprop="name headline">Boyer-Moore算法
 
               
             
@@ -332,7 +332,7 @@
                 
               
 
-              <time title="Created: 2019-09-23 21:49:26" itemprop="dateCreated datePublished" datetime="2019-09-23T21:49:26+08:00">2019-09-23</time>
+              <time title="Created: 2019-11-28 11:45:28" itemprop="dateCreated datePublished" datetime="2019-11-28T11:45:28+08:00">2019-11-28</time>
             
 
             
@@ -349,7 +349,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-09-25 23:52:29" itemprop="dateModified" datetime="2019-09-25T23:52:29+08:00">2019-09-25</time>
+                <time title="Modified: 2019-11-29 00:03:50" itemprop="dateModified" datetime="2019-11-29T00:03:50+08:00">2019-11-29</time>
               
             
           </span>
@@ -383,22 +383,11 @@
       
 
       
-        <ul>
-<li>无向图中，非树边只会以返祖边的形式存在。</li>
-<li>割点分为两种情况<ol>
-<li>DFS 树的根节点有多于一个的子节点，那么根节点就是割点</li>
-<li>对于非根节点 u，它至少有一颗子树没有返祖边可以到达 u 的祖先，则 u 是割点</li>
+        <ol>
+<li>坏字符规则<br>模式串匹配主串时，按照模式串下标从大到小的顺序匹配。当发现主串中的某个字符无法与模式串匹配时，称该字符为坏字符。坏字符是主串中的字符。<br>当发生不匹配时，把坏字符对应的模式串中的字符的下标记作 si。如果坏字符在模式串中存在，便把坏字符在模式串中的下标记作 xi。如果坏字符在模式串中多处出现，则计算 xi 时，选择最靠后的那个。如果不存在，我们把 xi 记作 -1。模式串向后移动的位数等于 si-xi。这里的下标都是字符在模式串中的下标。<br>单纯使用坏字符规则是不够的，比如主串为 aaaaaaaaaaaaaa，模式串为 baaa。此时应用坏字符规则，不但不会向后滑动模式串，反而会向前滑动。</li>
+<li>好后缀规则<br>与坏字符规则相同，模式串匹配主串时，同样是按照模式串的下标从小到大的顺序匹配。假如此时模式串与主串有2个字符是匹配的，倒数第三个字符发生了不匹配的情况。我们把已匹配的字符叫做好后缀，记作{u}。显然，主串和模式串中各有一个{u}。在模式串中查找另一个与{u}相匹配的子串{u<em>}，与坏字符规则相同，如果模式串中存在多个{u}，则选择最靠后的那个。如果{u</em>}存在，则将模式串滑动到{u*}与{u}对齐的位置。<br>当字符串中不存在另一个等于{u}的子串时，不可以直接将模式串滑动到主串中{u}的后面，因为这样可能会漏解。<br>后缀子串：字符串 s 的后缀子串，是指最后一个字符与 s 对齐的子串，不包括 s 本身。比如 abc 的后缀子串包括 c，bc，不包括 abc 本身。<br>前缀子串：字符串 s 的前缀子串，是指起始字符跟 s 对齐的子串，不包含 s 本身。比如 abc 的前缀子串包括 a，ab，不包括 abc 本身。<br>我们从好后缀子串中，找一个最长的并且能跟模式串的前缀子串匹配的子串，假设是{v}，然后移动模式串，使模式串的前缀{v}与主串中{u}的后缀{v}匹配的位置。这便是好后缀原则。</li>
+<li>如何选择使用好后缀规则还是坏字符规则<br>当失配时，分别计算两种规则下字符串向后滑动的位数，然后取两数中的最大值，作为模式串的往后滑动的位数。这样可以避免坏字符规则，计算得到的往后滑动的位数可能是负数的情况。</li>
 </ol>
-</li>
-<li>对于第二种情况，可以这样理解。假设非根节点 u 的某棵子树中有一个结点 x 具有返祖边可以到达 u 的祖先结点。由于图是连通的，那么节点 x 便可以到达 u 上方的所有节点。同时，由于 x 在 u 的子树中，所以 x 可以到达该子树中的所有节点，所以删除节点 u 后，u 上方的所有节点仍可以通过节点 x 与包含 x 的 u 的子树相连。如果 u 的所有子树中都有这样的 x 节点，那么删除 u 节点后，整张图还是连通的，u 不是割点。如果 u 有一颗或多棵子树，这些子树中没有这样的 x 节点，那么删除 u 后，这些子树就不在与图中剩余的部分连通，那么 u 是一个割点。</li>
-<li>求解割点时，每个节点需要维护下面几个信息<ol>
-<li>NUM(x) 表示节点 x 是在 DFS 中第几个被遍历到的点。维护这一信息十分有用，因为如果点 a 是点 b 的祖先，那么 NUM(a)&lt;NUM(b)。</li>
-<li>low(x) 表示节点 x 能通过返祖边到达的 NUM 值最小的祖先的 NUM 的值。初始值为 NUM(x)。</li>
-<li>fa(x) 表示 x 的父节点。在求割边时，fa(x) 记录 x 与其祖先之间的边的编号。</li>
-</ol>
-</li>
-<li>在 DFS 遍历时维护上面提到的那几个信息，回溯时进行判断。如果 low(v)&gt;NUM(x)（v 是 x 的儿子）说明 x 是割点</li>
-</ul>
 
       
     </div>
@@ -429,8 +418,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/16/使用-Hexo-和-Git-Page-搭建博客/" rel="next" title="使用 Hexo 和 Git Page 搭建博客">
-                <i class="fa fa-chevron-left"></i> 使用 Hexo 和 Git Page 搭建博客
+              <a href="/2019/11/24/VSCode文档翻译/" rel="next" title="VSCode文档翻译">
+                <i class="fa fa-chevron-left"></i> VSCode文档翻译
               </a>
             
           </div>
@@ -439,8 +428,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/10/03/C-双端队列/" rel="prev" title="C++双端队列">
-                C++双端队列 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/12/08/C-vector-用法/" rel="prev" title="C++ vector 用法">
+                C++ vector 用法 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

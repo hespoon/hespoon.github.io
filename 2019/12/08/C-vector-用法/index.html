@@ -96,17 +96,17 @@
 
 
 
-  <meta name="description" content="无向图中，非树边只会以返祖边的形式存在。 割点分为两种情况 DFS 树的根节点有多于一个的子节点，那么根节点就是割点 对于非根节点 u，它至少有一颗子树没有返祖边可以到达 u 的祖先，则 u 是割点   对于第二种情况，可以这样理解。假设非根节点 u 的某棵子树中有一个结点 x 具有返祖边可以到达 u 的祖先结点。由于图是连通的，那么节点 x 便可以到达 u 上方的所有节点。同时，由于 x 在">
+  <meta name="description" content="声明以及初始化 1234567891011vector&amp;lt;int&amp;gt; a; // 声明一个int型的向量avector&amp;lt;int&amp;gt; a(10); // 声明一个初始大小为10的向量int n=10;vector&amp;lt;int&amp;gt; a(n); // 声明一个初始大小为n的向量vector&amp;lt;int&amp;gt; a(n,1); // 声明一个初始大小为n且初值都为1的向量vec">
 <meta property="og:type" content="article">
-<meta property="og:title" content="连通无向图与割点">
-<meta property="og:url" content="http://hespoon.github.io/2019/09/23/连通无向图与割点/index.html">
+<meta property="og:title" content="C++ vector 用法">
+<meta property="og:url" content="http://hespoon.github.io/2019/12/08/C-vector-用法/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="无向图中，非树边只会以返祖边的形式存在。 割点分为两种情况 DFS 树的根节点有多于一个的子节点，那么根节点就是割点 对于非根节点 u，它至少有一颗子树没有返祖边可以到达 u 的祖先，则 u 是割点   对于第二种情况，可以这样理解。假设非根节点 u 的某棵子树中有一个结点 x 具有返祖边可以到达 u 的祖先结点。由于图是连通的，那么节点 x 便可以到达 u 上方的所有节点。同时，由于 x 在">
+<meta property="og:description" content="声明以及初始化 1234567891011vector&amp;lt;int&amp;gt; a; // 声明一个int型的向量avector&amp;lt;int&amp;gt; a(10); // 声明一个初始大小为10的向量int n=10;vector&amp;lt;int&amp;gt; a(n); // 声明一个初始大小为n的向量vector&amp;lt;int&amp;gt; a(n,1); // 声明一个初始大小为n且初值都为1的向量vec">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-25T15:52:29.996Z">
+<meta property="og:updated_time" content="2019-12-08T08:35:46.748Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="连通无向图与割点">
-<meta name="twitter:description" content="无向图中，非树边只会以返祖边的形式存在。 割点分为两种情况 DFS 树的根节点有多于一个的子节点，那么根节点就是割点 对于非根节点 u，它至少有一颗子树没有返祖边可以到达 u 的祖先，则 u 是割点   对于第二种情况，可以这样理解。假设非根节点 u 的某棵子树中有一个结点 x 具有返祖边可以到达 u 的祖先结点。由于图是连通的，那么节点 x 便可以到达 u 上方的所有节点。同时，由于 x 在">
+<meta name="twitter:title" content="C++ vector 用法">
+<meta name="twitter:description" content="声明以及初始化 1234567891011vector&amp;lt;int&amp;gt; a; // 声明一个int型的向量avector&amp;lt;int&amp;gt; a(10); // 声明一个初始大小为10的向量int n=10;vector&amp;lt;int&amp;gt; a(n); // 声明一个初始大小为n的向量vector&amp;lt;int&amp;gt; a(n,1); // 声明一个初始大小为n且初值都为1的向量vec">
 
 
 
@@ -114,7 +114,7 @@
 
   
   
-  <link rel="canonical" href="http://hespoon.github.io/2019/09/23/连通无向图与割点/">
+  <link rel="canonical" href="http://hespoon.github.io/2019/12/08/C-vector-用法/">
 
 
 
@@ -124,7 +124,7 @@
   };
 </script>
 
-  <title>连通无向图与割点 | Hexo</title>
+  <title>C++ vector 用法 | Hexo</title>
   
 
 
@@ -289,7 +289,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hespoon.github.io/2019/09/23/连通无向图与割点/">
+    <link itemprop="mainEntityOfPage" href="http://hespoon.github.io/2019/12/08/C-vector-用法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -306,7 +306,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">连通无向图与割点
+          <h1 class="post-title" itemprop="name headline">C++ vector 用法
 
               
             
@@ -332,24 +332,12 @@
                 
               
 
-              <time title="Created: 2019-09-23 21:49:26" itemprop="dateCreated datePublished" datetime="2019-09-23T21:49:26+08:00">2019-09-23</time>
+              <time title="Created: 2019-12-08 16:11:14 / Modified: 16:35:46" itemprop="dateCreated datePublished" datetime="2019-12-08T16:11:14+08:00">2019-12-08</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-09-25 23:52:29" itemprop="dateModified" datetime="2019-09-25T23:52:29+08:00">2019-09-25</time>
               
             
           </span>
@@ -383,22 +371,13 @@
       
 
       
-        <ul>
-<li>无向图中，非树边只会以返祖边的形式存在。</li>
-<li>割点分为两种情况<ol>
-<li>DFS 树的根节点有多于一个的子节点，那么根节点就是割点</li>
-<li>对于非根节点 u，它至少有一颗子树没有返祖边可以到达 u 的祖先，则 u 是割点</li>
-</ol>
+        <ol>
+<li><p>声明以及初始化</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; a; <span class="comment">// 声明一个int型的向量a</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; a(<span class="number">10</span>); <span class="comment">// 声明一个初始大小为10的向量</span></span><br><span class="line"><span class="keyword">int</span> n=<span class="number">10</span>;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; a(n); <span class="comment">// 声明一个初始大小为n的向量</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; a(n,<span class="number">1</span>); <span class="comment">// 声明一个初始大小为n且初值都为1的向量</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; b(a); <span class="comment">// 声明并用向量a初始化向量b</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; b(a.begin(),a.begin()+<span class="number">3</span>); <span class="comment">// 将向量a中的第0个到第2个作为向量b的初始值</span></span><br><span class="line"><span class="keyword">int</span> m[]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; a(n,n+<span class="number">5</span>); <span class="comment">// 将数组n的前5个元素作为向量a的初始值</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; a(&amp;n[<span class="number">1</span>],&amp;n[<span class="number">4</span>]); <span class="comment">// 将n[1]~n[4]范围内的元素作为向量a的初始值</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; b(<span class="number">10</span>,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(<span class="number">5</span>)); <span class="comment">// 创建一个10*5的int型二维向量</span></span><br></pre></td></tr></table></figure>
 </li>
-<li>对于第二种情况，可以这样理解。假设非根节点 u 的某棵子树中有一个结点 x 具有返祖边可以到达 u 的祖先结点。由于图是连通的，那么节点 x 便可以到达 u 上方的所有节点。同时，由于 x 在 u 的子树中，所以 x 可以到达该子树中的所有节点，所以删除节点 u 后，u 上方的所有节点仍可以通过节点 x 与包含 x 的 u 的子树相连。如果 u 的所有子树中都有这样的 x 节点，那么删除 u 节点后，整张图还是连通的，u 不是割点。如果 u 有一颗或多棵子树，这些子树中没有这样的 x 节点，那么删除 u 后，这些子树就不在与图中剩余的部分连通，那么 u 是一个割点。</li>
-<li>求解割点时，每个节点需要维护下面几个信息<ol>
-<li>NUM(x) 表示节点 x 是在 DFS 中第几个被遍历到的点。维护这一信息十分有用，因为如果点 a 是点 b 的祖先，那么 NUM(a)&lt;NUM(b)。</li>
-<li>low(x) 表示节点 x 能通过返祖边到达的 NUM 值最小的祖先的 NUM 的值。初始值为 NUM(x)。</li>
-<li>fa(x) 表示 x 的父节点。在求割边时，fa(x) 记录 x 与其祖先之间的边的编号。</li>
-</ol>
+<li><p>size 与 capacity 的区别<br>size 是指当前向量中所包含的元素的个数，取决于你向向量中添加了多少元素。resize() 函数可以改变 size 的大小。<br>capacity 是指向量当前使用的空间量，表示当前分配给了该向量多少空间，它总是大于或等于 size。reserve() 函数可以改变 capacity 的大小。</p>
 </li>
-<li>在 DFS 遍历时维护上面提到的那几个信息，回溯时进行判断。如果 low(v)&gt;NUM(x)（v 是 x 的儿子）说明 x 是割点</li>
-</ul>
+</ol>
 
       
     </div>
@@ -429,8 +408,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/16/使用-Hexo-和-Git-Page-搭建博客/" rel="next" title="使用 Hexo 和 Git Page 搭建博客">
-                <i class="fa fa-chevron-left"></i> 使用 Hexo 和 Git Page 搭建博客
+              <a href="/2019/11/28/Boyer-Moore算法/" rel="next" title="Boyer-Moore算法">
+                <i class="fa fa-chevron-left"></i> Boyer-Moore算法
               </a>
             
           </div>
@@ -438,10 +417,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/10/03/C-双端队列/" rel="prev" title="C++双端队列">
-                C++双端队列 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

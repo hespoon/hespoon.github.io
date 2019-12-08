@@ -98,7 +98,7 @@
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://hespoon.github.io/archives/2019/11/index.html">
+<meta property="og:url" content="http://hespoon.github.io/page/2/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
@@ -110,7 +110,7 @@
 
   
   
-  <link rel="canonical" href="http://hespoon.github.io/archives/2019/11/">
+  <link rel="canonical" href="http://hespoon.github.io/page/2/">
 
 
 
@@ -120,7 +120,7 @@
   };
 </script>
 
-  <title>Archive | Hexo</title>
+  <title>Hexo</title>
   
 
 
@@ -168,7 +168,8 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -223,7 +224,7 @@
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
 
     
     
@@ -244,19 +245,6 @@
 
   
     
-
-    
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
 
   
 
@@ -281,179 +269,177 @@
           
           <div id="content" class="content">
             
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
 
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hespoon.github.io/2019/04/16/使用-Hexo-和-Git-Page-搭建博客/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/16/使用-Hexo-和-Git-Page-搭建博客/" class="post-title-link" itemprop="url">使用 Hexo 和 Git Page 搭建博客</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-16 19:40:42" itemprop="dateCreated datePublished" datetime="2019-04-16T19:40:42+08:00">2019-04-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-09-22 18:06:22" itemprop="dateModified" datetime="2019-09-22T18:06:22+08:00">2019-09-22</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-      <span class="archive-page-counter">
-        
-        
+      
+
+      
         
           
-        
-        Um..! 11 posts in total. Keep on posting.
-      </span>
-      
+            <ul>
+<li>Hexo 的教程在官方文档中写的很详细，这里不再赘述。（实际上是内容太多了，官方文档写的详细，去看官方文档比较好）</li>
+<li>利用 GitHub 提供的 Git Page 搭建自己的博客，免费的 .github.io 域名，不用购买服务器。</li>
+<li>遇到的最大问题是 Hexo 主题在本地成功显示但是部署以后无法获取 .css 文件，浏览器报错 404。问题的原因是 Hexo 项目的 <code>_config.yml</code> 文件中的 <code>url</code> 和 <code>root</code> 配置出错。</li>
+</ul>
+<ol>
+<li>如果博客的链接是 <code>https://yoursite.com/child</code>，则 <code>url</code> 设置为 <code>https://yoursite.com</code>，<code>root</code> 设置为 <code>/child</code>。</li>
+<li>如果博客的的链接是 <code>https://yoursite.com</code>，则 <code>url</code> 设置为 <code>https://yoursite.com</code>，<code>root</code> 设置为 <code>/</code>。</li>
+</ol>
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
         
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/11/28/Boyer-Moore算法/" itemprop="url">
-            
-              <span itemprop="name">Boyer-Moore算法</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-11-28T11:45:28+08:00" content="2019-11-28">
-          11-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/11/24/VSCode文档翻译/" itemprop="url">
-            
-              <span itemprop="name">VSCode文档翻译</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-11-24T22:46:19+08:00" content="2019-11-24">
-          11-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/11/23/CMake/" itemprop="url">
-            
-              <span itemprop="name">CMake</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-11-23T12:38:58+08:00" content="2019-11-23">
-          11-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/11/02/sizeof-函数/" itemprop="url">
-            
-              <span itemprop="name">sizeof() 函数</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-11-02T18:09:33+08:00" content="2019-11-02">
-          11-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
   </div>
   
   
   
+  </article>
+
+
+    
+  </section>
 
   
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
 
 
 
