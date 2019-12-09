@@ -96,17 +96,17 @@
 
 
 
-  <meta name="description" content="坏字符规则模式串匹配主串时，按照模式串下标从大到小的顺序匹配。当发现主串中的某个字符无法与模式串匹配时，称该字符为坏字符。坏字符是主串中的字符。当发生不匹配时，把坏字符对应的模式串中的字符的下标记作 si。如果坏字符在模式串中存在，便把坏字符在模式串中的下标记作 xi。如果坏字符在模式串中多处出现，则计算 xi 时，选择最靠后的那个。如果不存在，我们把 xi 记作 -1。模式串向后移动的位数等于">
+  <meta name="description" content="后缀子串：字符串 s 的后缀子串，是指最后一个字符与 s 对齐的子串，不包括 s 本身。比如 abc 的后缀子串包括 c，bc，不包括 abc 本身。 前缀子串：字符串 s 的前缀子串，是指起始字符跟 s 对齐的子串，不包含 s 本身。比如 abc 的前缀子串包括 a，ab，不包括 abc 本身。   坏字符规则模式串匹配主串时，按照模式串下标从大到小的顺序匹配。当发现主串中的某个字符无法与模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Boyer-Moore算法">
 <meta property="og:url" content="http://hespoon.github.io/2019/11/28/Boyer-Moore算法/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="坏字符规则模式串匹配主串时，按照模式串下标从大到小的顺序匹配。当发现主串中的某个字符无法与模式串匹配时，称该字符为坏字符。坏字符是主串中的字符。当发生不匹配时，把坏字符对应的模式串中的字符的下标记作 si。如果坏字符在模式串中存在，便把坏字符在模式串中的下标记作 xi。如果坏字符在模式串中多处出现，则计算 xi 时，选择最靠后的那个。如果不存在，我们把 xi 记作 -1。模式串向后移动的位数等于">
+<meta property="og:description" content="后缀子串：字符串 s 的后缀子串，是指最后一个字符与 s 对齐的子串，不包括 s 本身。比如 abc 的后缀子串包括 c，bc，不包括 abc 本身。 前缀子串：字符串 s 的前缀子串，是指起始字符跟 s 对齐的子串，不包含 s 本身。比如 abc 的前缀子串包括 a，ab，不包括 abc 本身。   坏字符规则模式串匹配主串时，按照模式串下标从大到小的顺序匹配。当发现主串中的某个字符无法与模式">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-11-28T16:03:50.914Z">
+<meta property="og:updated_time" content="2019-12-09T08:09:04.519Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Boyer-Moore算法">
-<meta name="twitter:description" content="坏字符规则模式串匹配主串时，按照模式串下标从大到小的顺序匹配。当发现主串中的某个字符无法与模式串匹配时，称该字符为坏字符。坏字符是主串中的字符。当发生不匹配时，把坏字符对应的模式串中的字符的下标记作 si。如果坏字符在模式串中存在，便把坏字符在模式串中的下标记作 xi。如果坏字符在模式串中多处出现，则计算 xi 时，选择最靠后的那个。如果不存在，我们把 xi 记作 -1。模式串向后移动的位数等于">
+<meta name="twitter:description" content="后缀子串：字符串 s 的后缀子串，是指最后一个字符与 s 对齐的子串，不包括 s 本身。比如 abc 的后缀子串包括 c，bc，不包括 abc 本身。 前缀子串：字符串 s 的前缀子串，是指起始字符跟 s 对齐的子串，不包含 s 本身。比如 abc 的前缀子串包括 a，ab，不包括 abc 本身。   坏字符规则模式串匹配主串时，按照模式串下标从大到小的顺序匹配。当发现主串中的某个字符无法与模式">
 
 
 
@@ -192,7 +192,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
+    <button aria-label="Navigationsleiste an/ausschalten">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -220,7 +220,7 @@
 
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
 
   </li>
         
@@ -237,7 +237,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
 
   </li>
 
@@ -325,14 +325,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="Created: 2019-11-28 11:45:28" itemprop="dateCreated datePublished" datetime="2019-11-28T11:45:28+08:00">2019-11-28</time>
+              <time title="Erstellt: 2019-11-28 11:45:28" itemprop="dateCreated datePublished" datetime="2019-11-28T11:45:28+08:00">2019-11-28</time>
             
 
             
@@ -347,9 +347,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">Bearbeitet am</span>
                 
-                <time title="Modified: 2019-11-29 00:03:50" itemprop="dateModified" datetime="2019-11-29T00:03:50+08:00">2019-11-29</time>
+                <time title="Geändert am: 2019-12-09 16:09:04" itemprop="dateModified" datetime="2019-12-09T16:09:04+08:00">2019-12-09</time>
               
             
           </span>
@@ -383,11 +383,29 @@
       
 
       
-        <ol>
-<li>坏字符规则<br>模式串匹配主串时，按照模式串下标从大到小的顺序匹配。当发现主串中的某个字符无法与模式串匹配时，称该字符为坏字符。坏字符是主串中的字符。<br>当发生不匹配时，把坏字符对应的模式串中的字符的下标记作 si。如果坏字符在模式串中存在，便把坏字符在模式串中的下标记作 xi。如果坏字符在模式串中多处出现，则计算 xi 时，选择最靠后的那个。如果不存在，我们把 xi 记作 -1。模式串向后移动的位数等于 si-xi。这里的下标都是字符在模式串中的下标。<br>单纯使用坏字符规则是不够的，比如主串为 aaaaaaaaaaaaaa，模式串为 baaa。此时应用坏字符规则，不但不会向后滑动模式串，反而会向前滑动。</li>
-<li>好后缀规则<br>与坏字符规则相同，模式串匹配主串时，同样是按照模式串的下标从小到大的顺序匹配。假如此时模式串与主串有2个字符是匹配的，倒数第三个字符发生了不匹配的情况。我们把已匹配的字符叫做好后缀，记作{u}。显然，主串和模式串中各有一个{u}。在模式串中查找另一个与{u}相匹配的子串{u<em>}，与坏字符规则相同，如果模式串中存在多个{u}，则选择最靠后的那个。如果{u</em>}存在，则将模式串滑动到{u*}与{u}对齐的位置。<br>当字符串中不存在另一个等于{u}的子串时，不可以直接将模式串滑动到主串中{u}的后面，因为这样可能会漏解。<br>后缀子串：字符串 s 的后缀子串，是指最后一个字符与 s 对齐的子串，不包括 s 本身。比如 abc 的后缀子串包括 c，bc，不包括 abc 本身。<br>前缀子串：字符串 s 的前缀子串，是指起始字符跟 s 对齐的子串，不包含 s 本身。比如 abc 的前缀子串包括 a，ab，不包括 abc 本身。<br>我们从好后缀子串中，找一个最长的并且能跟模式串的前缀子串匹配的子串，假设是{v}，然后移动模式串，使模式串的前缀{v}与主串中{u}的后缀{v}匹配的位置。这便是好后缀原则。</li>
-<li>如何选择使用好后缀规则还是坏字符规则<br>当失配时，分别计算两种规则下字符串向后滑动的位数，然后取两数中的最大值，作为模式串的往后滑动的位数。这样可以避免坏字符规则，计算得到的往后滑动的位数可能是负数的情况。</li>
+        <ul>
+<li>后缀子串：字符串 s 的后缀子串，是指最后一个字符与 s 对齐的子串，不包括 s 本身。比如 abc 的后缀子串包括 c，bc，不包括 abc 本身。</li>
+<li>前缀子串：字符串 s 的前缀子串，是指起始字符跟 s 对齐的子串，不包含 s 本身。比如 abc 的前缀子串包括 a，ab，不包括 abc 本身。</li>
+</ul>
+<ol>
+<li>坏字符规则<br>模式串匹配主串时，按照模式串下标从大到小的顺序匹配。当发现主串中的某个字符无法与模式串匹配时，称该字符为坏字符。坏字符是主串中的字符。<br>当发生不匹配时，把坏字符对应的模式串中的字符的下标记作 si。如果坏字符在模式串中存在，便把坏字符在模式串中的下标记作 xi。如果坏字符在模式串中多处出现，则计算 xi 时，选择最靠后的那个，即下标最大的。如果不存在，我们把 xi 记作 -1。模式串向后移动的位数等于 si-xi。这里的下标 si 和 xi 都是字符在模式串中的下标。<br>单纯使用坏字符规则是不够的，比如主串为 aaaaaaaaaaaaaa，模式串为 baaa。此时应用坏字符规则，不但不会向后滑动模式串，反而会向前滑动。</li>
+<li>好后缀规则<br>与坏字符规则相同，模式串匹配主串时，同样是按照模式串的下标从大到小的顺序匹配。假如此时模式串与主串有2个字符是匹配的，倒数第三个字符发生了不匹配的情况。我们把已匹配的字符叫做好后缀，记作{u}。显然，主串和模式串中各有一个{u}。在模式串中查找另一个与{u}相匹配的子串{u<em>}，与坏字符规则相同，如果模式串中存在多个{u}，则选择最靠后的那个。如果{u</em>}存在，则将模式串滑动到{u*}与{u}对齐的位置。<br>当字符串中不存在另一个等于{u}的子串时，不可以直接将模式串滑动到主串中{u}的后面，因为这样可能会漏解。此时，我们在好后缀中，找一个最长的并且能跟模式串的前缀子串匹配的后缀子串，假设是{v}。然后移动模式串，使模式串的前缀{v}与主串中{u}的后缀{v}对齐。这便是好后缀原则。<ul>
+<li>核心内容</li>
+</ul>
+<ol>
+<li>在模式串中，查找跟好后缀匹配的另一个子串</li>
+<li>在好后缀的后缀子串中，查找最长的、能跟模式串前缀子串匹配的后缀子串</li>
 </ol>
+</li>
+<li>如何选择使用好后缀规则还是坏字符规则<br>当失配时，分别计算两种规则下字符串向后滑动的位数，然后取两数中的最大值，作为模式串的往后滑动的位数。这样可以避免使用坏字符规则时，计算得到的往后滑动的位数是负数，导致模式串向前滑动的情况。</li>
+<li>高效实现坏字符规则<br>使用散列表计算 xi，加快查找速度</li>
+<li>高效实现好后缀规则</li>
+</ol>
+<ul>
+<li>如何表示模式串中不同的后缀子串？假设模式串长度为 m<br>因为后缀子串的最后一个字符的位置是固定的，下标为 m-1，因此可以通过记录后缀子串的长度，来唯一的确定后缀子串。<br>5.1. 实现核心内容一<br>好后缀也是模式串本身的后缀。因此，可以通过预处理模式串，预先计算好模式串的每个后缀子串，对应的另一个可匹配子串的位置。</li>
+<li>引入 suffix 数组<br>suffix 数组的下标 k，表示模式串后缀子串的长度。下标对应的数组值存储的是，在模式串中跟长度为 k 的后缀子串相匹配的子串的起始下标的值。当模式串中有多个子串与该后缀子串匹配时，suffix 存储最靠后的那个子串的起始位置。<br>5.2. 实现核心内容二</li>
+<li>引入 boolean 型的 prefix 数组，数组下标 k 同样表示模式串后缀子串的长度。prefix[k]=true 表示该后缀子串可以与模式串的前缀子串相匹配，否则表示该后缀子串不能与模式串的前缀子串相匹配。<br>5.3. 计算并填充 suffix 和 prefix 数组的值<br>拿下标从 0 到 i 的子串（i∈[0,m-2]）与整个模式串求公共后缀子串。如果公共后缀子串的长度为 k，则令 suffix[k]=j（j 表示公共后缀子串的起始下标）。如果 j==0 则说明公共后缀子串也是模式串的前缀子串，此时令 prefix[k]=true。<br>5.4. 模式串与主串失配时，利用好后缀规则计算模式串向后滑动的位数<br>假设失配时，好后缀的长度是 k。首先在 suffix 数组中查找。如果 suffix[k] 不等于 -1（-1 表示模式串中不存在其他与好后缀匹配的子串），那么将模式串向后移动 j-suffix[k]+1 位（j 表示坏字符对应的模式串中字符的下标）。如果 suffix[k] 等于 -1，则利用下面规则来处理。<br>好后缀的下标从 r 至 m-1 的后缀子串（r∈[j+2,m-1]）的长度 k=m-r，如果 prefix[k] 等于 true，表示长度为 k 的后缀子串，有可匹配的前缀子串。此时，将模式串向后移动 r 位。如果 prefix[k] 等于 false，则将模式串后移 m 位。</li>
+</ul>
 
       
     </div>
@@ -491,7 +509,7 @@
                   <a href="/archives/">
                 
                     <span class="site-state-item-count">11</span>
-                    <span class="site-state-item-name">posts</span>
+                    <span class="site-state-item-name">Artikel</span>
                   </a>
                 </div>
               
@@ -548,7 +566,7 @@
 </div>
 
 
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
 
 
 
@@ -556,7 +574,7 @@
 
 
 
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.1.0</div>
+  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.1.0</div>
 
 
 
