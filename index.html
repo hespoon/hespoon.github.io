@@ -189,7 +189,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Navigationsleiste an/ausschalten">
+    <button aria-label="Cambiar a barra de navegación">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -217,7 +217,7 @@
 
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Inicio</a>
 
   </li>
         
@@ -234,7 +234,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archivo</a>
 
   </li>
 
@@ -270,6 +270,188 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hespoon.github.io/2019/12/19/KMP-算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/12/19/KMP-算法/" class="post-title-link" itemprop="url">KMP 算法</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Publicado el</span>
+              
+
+              
+                
+              
+
+              <time title="Creado por: 2019-12-19 22:05:25" itemprop="dateCreated datePublished" datetime="2019-12-19T22:05:25+08:00">2019-12-19</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Editado el</span>
+                
+                <time title="Modificado por: 2019-12-20 20:06:30" itemprop="dateModified" datetime="2019-12-20T20:06:30+08:00">2019-12-20</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>后缀子串：字符串 s 的后缀子串，是指最后一个字符与 s 对齐的子串，不包括 s 本身。比如 abc 的后缀子串包括 c，bc，不包括 abc 本身。</li>
+<li>前缀子串：字符串 s 的前缀子串，是指起始字符跟 s 对齐的子串，不包含 s 本身。比如 abc 的前缀子串包括 a，ab，不包括 abc 本身。</li>
+<li>最长相等前后缀：字符串 s 的最长相等前后缀是指，s 的相等的前缀子串和后缀子串中长度最长的那一个。</li>
+<li>最长可匹配后缀子串（最长可匹配后缀）：最长相等前后缀对应的那个后缀子串。</li>
+<li>最长可匹配前缀子串（最长可匹配前缀）：最长相等前后缀对应的那个前缀子串。<blockquote>
+<p>以字符串 ababa 为例<br>其前缀子串为：a、ab、aba、abab<br>其后缀子串为：a、ba、aba、baba<br>最长相等前后缀为 aba ，长度为 3。<br>最长可匹配前缀子串为 aba。<br>最长可匹配后缀子串为 aba。<br>明显最长可匹配前缀子串和最长可匹配后缀子串两者是相同的，前者是前缀，后者是后缀。<br>字符串 s 的最长相等前后缀即，字符串 s 的后缀子串中，与 s 的某个前缀子串相同且长度最长的那个。同理，s 的最长相等前后缀也即，字符串 s 的前缀子串中，与 s 的某个后缀子串相同且长度最长的那个。</p>
+</blockquote>
+</li>
+</ul>
+<ol>
+<li>KMP 算法中，模式串从左向右与文本串进行匹配。类比于 BM 算法的说法，模式串从前向后与文本串进行匹配。</li>
+<li>KMP 算法就是在试图寻找一种规律：在模式串和主串的匹配过程中，当遇到不匹配的字符后，如何利用模式串中已经与文本串匹配的那部分字符串（即模式串中位于不匹配字符的左边的字符串），将模式串一次性滑动很多位？</li>
+<li>坏字符：在模式串与文本串匹配的过程中，把不能匹配的那个字符称为坏字符，坏字符是文本串中的字符。<br>好前缀：在模式串与文本串匹配的过程中，将失配字符左边的模式串中已经匹配的那段字符串称为好前缀。</li>
+<li>当模式串与文本串失配时，假设坏字符对应的模式串字符在模式串中的下标为 j。在好前缀中，查找好前缀的最长相等前后缀，设为{v}，长度为 k，此时将模式串向后滑动 j-k 位。<br>即 j=j-(j-k) → j=k，将 j 更新为 k </li>
+<li>如何求解好前缀的最长相等前后缀？我们发现这个问题不涉及文本串，只与模式串有关，因为好前缀一定是模式串的前缀。因此可以事先预处理模式串，在模式串与文本串的匹配过程中，直接使用预处理的结果。通过5可知，我们希望得到好前缀的最长相等前后缀。并且，模式串的每个前缀都可能是好前缀。当模式串本身就是好前缀时，表示模式串与文本串匹配成功。因此，我们希望通过预处理得到模式串的每个前缀的最长相等前后缀的长度，设为 len（对应 7 中的定义一）。或者得到模式串的每个前缀子串的最长可匹配前缀子串的结尾字符的下标，设为 index（对应 7 中的定义二）。明显，len=index+1。</li>
+<li>定义 next 数组。设模式串为 m。<br>next 数组定义一：next 数组的下标 i 表示模式串的前缀 m[0,i]。下标对应的数组值 next[i] 表示前缀 m[0,i] 的最长可匹配前后缀的长度。<blockquote>
+<p>以 m=ababacd 为例。<br>next[0]=0;<br>next[1]=0;<br>next[2]=1;<br>next[3]=2;<br>next[4]=3;<br>next[5]=0;<br>next 数组定义二：next 数组的下标 i 表示模式串的前缀 m[0,i]。下标对应的数组值 next[i]   表示前缀 m[0,i] 的最长可匹配前缀的结尾字符的下标。<br>以 m=ababacd 为例。<br>next[0]=-1;<br>next[1]=-1;<br>next[2]=0;<br>next[3]=1;<br>next[4]=2;<br>next[5]=-1;<br>明显，正如 5 中所说，定义一的 next 数组的值比定义二的 next 数组中对应的值大一。并且，next[5] 是没有用的，因为这时文本串与模式串已经完全匹配。</p>
+</blockquote>
+</li>
+<li>求解 next 数组<br>由于定义一的 next 数组与定义二的 next 数组没有本质区别，下文只求解定义二的 next 数组<br>首先，next 数组的长度与模式串的长度相同。计算时按照下标从小到大依次计算 next 数组的值。利用动态规划的思想，当计算 next[i] 时，要利用前面计算出的 next[0]，next[1]，… next[i-1]。next[0]=-1 是明显成立的。计算 next 数组时下标从 1 开始。<br>计算 next[i] 时分为两种情况。假设 next[i-1]=k，即子串 m[0,i-1] 的最长可匹配前缀为 m[0,k]<ol>
+<li>如果 m[i]==m[k+1]，说明子串 m[0,i] 的最长可匹配前缀为 m[0,k+1]。此时，令 next[i]=k+1 即可。</li>
+<li>如果 m[i]!=m[k+1]，说明子串 m[0,i] 的最长可匹配前缀不是 m[0,k+1]。此时，应寻找前缀 m[0,i-1] 的次长可匹配前缀，即令 k=next[k]，直到 k=-1 或 m[i]=m[k+1] 为止。<br> 2.1. 若 k=-1，则令 next[i]=-1<br> 2.2. 若 m[i]=m[k+1]，则令 next[i]=k+1</li>
+</ol>
+</li>
+<li>上述计算 next 数组的过程中，最令人费解的步骤莫过于 <code>k=next[k]</code>。下面重点解释该步骤的原理，最好自己画个图。<br>触发该步骤的条件为 m[i]!=m[k+1]，表示 m[0,i-1] 的最长可匹配前缀子串的下一个字符不等于 m[i]。现在，我们考察 m[0,i-1] 的次长可匹配前缀子串 m[0,x]（x 为未知量） 的下一个字符是否等于 m[i]。如果等于，则 m[0,x+1] 就是 m[0,i] 的最长可匹配后缀子串。<br>问题转换为如何求得 m[0,i-1] 的次长可匹配前缀子串。现已知 m[0,i-1] 的最长可匹配前缀子串为 m[0,k]，而次长可匹配前缀子串一定包含在最长可匹配前缀子串中。所以 m[0,i-1] 的次长可匹配前缀子串就是前缀 m[0,k] 的最长可匹配前缀子串！而 m[0,k] 的最长可匹配前缀子串是 m[0,next[k]]，即令 k=next[k]!</li>
+<li>KMP 算法结束，代码如下<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">求解定义二的 Next 数组</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">// 简化版</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getNext</span><span class="params">(<span class="keyword">int</span> *Next, <span class="built_in">string</span> P)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  Next[<span class="number">0</span>] = <span class="number">-1</span>;                        <span class="comment">// 明显恒成立</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; P.length(); i++) <span class="comment">// 求解 Next[1]~Next[P.length-1]</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">int</span> k = Next[i - <span class="number">1</span>];  <span class="comment">// P[0,k] 是 P[0,i-1] 的最长可匹配前缀</span></span><br><span class="line">    <span class="keyword">if</span> (P[k + <span class="number">1</span>] == P[i]) <span class="comment">// P[k+1]=P[i]，这种情况下最简单，说明 P[0,i] 的最长可匹配前缀为 P[0,k+1]</span></span><br><span class="line">    &#123;</span><br><span class="line">      Next[i] = k + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="comment">// P[k+1]!=P[i]，说明 P[0,i] 的最长可匹配前缀不是 P[0,k+1]，此时寻找 P[0,i-1] 的次长可匹配前缀</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">while</span> (k != <span class="number">-1</span> &amp;&amp; P[i] != P[k + <span class="number">1</span>])</span><br><span class="line">      &#123;</span><br><span class="line">        k = Next[k]; <span class="comment">// 不断寻找 P[0,i-1] 的次长可匹配前缀</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (P[i] == P[k + <span class="number">1</span>])</span><br><span class="line">      &#123;</span><br><span class="line">        Next[i] = k + <span class="number">1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span> <span class="keyword">if</span> (k == <span class="number">-1</span>)</span><br><span class="line">      &#123;</span><br><span class="line">        Next[i] = <span class="number">-1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 精华版</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getNext2_2</span><span class="params">(<span class="keyword">int</span> *Next, <span class="built_in">string</span> P)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> j = <span class="number">-1</span>;</span><br><span class="line">  Next[<span class="number">0</span>] = <span class="number">-1</span>; <span class="comment">// 初始化 Next 数组</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; P.length(); i++)</span><br><span class="line">  &#123; <span class="comment">// 求解 Next[1]~Next[P.length()-1]</span></span><br><span class="line">    <span class="keyword">while</span> (j != <span class="number">-1</span> &amp;&amp; P[i] != P[j + <span class="number">1</span>])</span><br><span class="line">    &#123;              <span class="comment">// 试图用 P[j+1] 匹配 P[i]</span></span><br><span class="line">      j = Next[j]; <span class="comment">// 不断后退，直到 j==-1 或 P[i]==P[j+1]</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (P[i] == P[j + <span class="number">1</span>])</span><br><span class="line">    &#123;</span><br><span class="line">      j++; <span class="comment">// 先令 j 指向这个新匹配的位置</span></span><br><span class="line">    &#125;</span><br><span class="line">    Next[i] = j;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// KMP 算法，使用定义二的 next 数组，判断 P 是否是 T 的子串</span></span><br><span class="line"><span class="comment">// 若是，则返回 P 首次在 T 中出现的位置；否则，返回-1</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">KMP</span><span class="params">(<span class="built_in">string</span> T, <span class="built_in">string</span> P)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> tLen = T.length(); <span class="comment">// 文本串的长度</span></span><br><span class="line">  <span class="keyword">int</span> pLen = P.length(); <span class="comment">// 模式串的长度</span></span><br><span class="line">  <span class="keyword">int</span> *Next = <span class="keyword">new</span> <span class="keyword">int</span>[pLen];</span><br><span class="line">  getNext(Next, P); <span class="comment">// 计算模式串的 Next 数组</span></span><br><span class="line">  <span class="keyword">int</span> j = <span class="number">0</span>;        <span class="comment">// 初始化 j=0 表示从模式串的左边第一个字符开始匹配</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; tLen; i++)</span><br><span class="line">  &#123; <span class="comment">// 试图用 P[j] 匹配 T[i]</span></span><br><span class="line">    <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; T[i] != P[j])</span><br><span class="line">    &#123;</span><br><span class="line">      j = Next[j] + <span class="number">1</span>; <span class="comment">// 不断回退，直到 j==0 或者 T[i]==P[j]</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (T[i] == P[j])</span><br><span class="line">    &#123;</span><br><span class="line">      j++; <span class="comment">// T[i] 与 P[j] 匹配成功，令 j+1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (j == pLen)</span><br><span class="line">    &#123;                      <span class="comment">// P 完全匹配，说明 P 是 T 的子串</span></span><br><span class="line">      <span class="keyword">return</span> i + <span class="number">1</span> - pLen; <span class="comment">// 返回首次出现时的位置</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>; <span class="comment">// 执行完 T 都没匹配成功，匹配失败，返回 -1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -324,14 +506,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Publicado el</span>
               
 
               
                 
               
 
-              <time title="Erstellt: 2019-12-08 16:11:14 / Geändert am: 16:35:46" itemprop="dateCreated datePublished" datetime="2019-12-08T16:11:14+08:00">2019-12-08</time>
+              <time title="Creado por: 2019-12-08 16:11:14 / Modificado por: 16:35:46" itemprop="dateCreated datePublished" datetime="2019-12-08T16:11:14+08:00">2019-12-08</time>
             
 
             
@@ -473,14 +655,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Publicado el</span>
               
 
               
                 
               
 
-              <time title="Erstellt: 2019-11-28 11:45:28" itemprop="dateCreated datePublished" datetime="2019-11-28T11:45:28+08:00">2019-11-28</time>
+              <time title="Creado por: 2019-11-28 11:45:28" itemprop="dateCreated datePublished" datetime="2019-11-28T11:45:28+08:00">2019-11-28</time>
             
 
             
@@ -495,9 +677,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Bearbeitet am</span>
+                  <span class="post-meta-item-text">Editado el</span>
                 
-                <time title="Geändert am: 2019-12-09 16:09:04" itemprop="dateModified" datetime="2019-12-09T16:09:04+08:00">2019-12-09</time>
+                <time title="Modificado por: 2019-12-19 22:04:21" itemprop="dateModified" datetime="2019-12-19T22:04:21+08:00">2019-12-19</time>
               
             
           </span>
@@ -538,7 +720,7 @@
 <li>前缀子串：字符串 s 的前缀子串，是指起始字符跟 s 对齐的子串，不包含 s 本身。比如 abc 的前缀子串包括 a，ab，不包括 abc 本身。</li>
 </ul>
 <ol>
-<li>坏字符规则<br>模式串匹配主串时，按照模式串下标从大到小的顺序匹配。当发现主串中的某个字符无法与模式串匹配时，称该字符为坏字符。坏字符是主串中的字符。<br>当发生不匹配时，把坏字符对应的模式串中的字符的下标记作 si。如果坏字符在模式串中存在，便把坏字符在模式串中的下标记作 xi。如果坏字符在模式串中多处出现，则计算 xi 时，选择最靠后的那个，即下标最大的。如果不存在，我们把 xi 记作 -1。模式串向后移动的位数等于 si-xi。这里的下标 si 和 xi 都是字符在模式串中的下标。<br>单纯使用坏字符规则是不够的，比如主串为 aaaaaaaaaaaaaa，模式串为 baaa。此时应用坏字符规则，不但不会向后滑动模式串，反而会向前滑动。</li>
+<li>坏字符规则<br>模式串匹配主串时，按照模式串下标从大到小的顺序匹配。当发现主串中的某个字符无法与模式串匹配时，称该字符为坏字符。坏字符是主串中的字符。<br>当发生不匹配时，把坏字符对应的模式串中的字符的下标记作 si。如果坏字符在模式串中存在，便把坏字符在模式串中的下标记作 xi。如果坏字符在模式串中多处出现，则计算 xi 时，选择最靠后的那个，即下标最大的。如果不存在，我们把 xi 记作 -1。模式串向后移动的位数等于 si-xi。这里的下标 si 和 xi 都是字符在模式串中的下标。<br>单纯使用坏字符规则是不够的，比如主串为 aaaaaaaaaaaaaa，模式串为 baaa。此时应用坏字符规则，模式串不会滑动。由于查找字符在模式串中的下标时使用了散列表，散列表中记录的是字符最后出现的位置的下标，因此会出现 xi 大于 si 的情况，从而导致 si-xi 是负值。</li>
 <li>好后缀规则<br>与坏字符规则相同，模式串匹配主串时，同样是按照模式串的下标从大到小的顺序匹配。假如此时模式串与主串有2个字符是匹配的，倒数第三个字符发生了不匹配的情况。我们把已匹配的字符叫做好后缀，记作{u}。显然，主串和模式串中各有一个{u}。在模式串中查找另一个与{u}相匹配的子串{u<em>}，与坏字符规则相同，如果模式串中存在多个{u}，则选择最靠后的那个。如果{u</em>}存在，则将模式串滑动到{u*}与{u}对齐的位置。<br>当字符串中不存在另一个等于{u}的子串时，不可以直接将模式串滑动到主串中{u}的后面，因为这样可能会漏解。此时，我们在好后缀中，找一个最长的并且能跟模式串的前缀子串匹配的后缀子串，假设是{v}。然后移动模式串，使模式串的前缀{v}与主串中{u}的后缀{v}对齐。这便是好后缀原则。<ul>
 <li>核心内容</li>
 </ul>
@@ -548,7 +730,7 @@
 </ol>
 </li>
 <li>如何选择使用好后缀规则还是坏字符规则<br>当失配时，分别计算两种规则下字符串向后滑动的位数，然后取两数中的最大值，作为模式串的往后滑动的位数。这样可以避免使用坏字符规则时，计算得到的往后滑动的位数是负数，导致模式串向前滑动的情况。</li>
-<li>高效实现坏字符规则<br>使用散列表计算 xi，加快查找速度</li>
+<li>高效实现坏字符规则<br>使用散列表计算 xi，加快查找速度。散列表中记录字符在模式串中最后出现的位置。</li>
 <li>高效实现好后缀规则</li>
 </ol>
 <ul>
@@ -650,14 +832,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Publicado el</span>
               
 
               
                 
               
 
-              <time title="Erstellt: 2019-11-24 22:46:19" itemprop="dateCreated datePublished" datetime="2019-11-24T22:46:19+08:00">2019-11-24</time>
+              <time title="Creado por: 2019-11-24 22:46:19" itemprop="dateCreated datePublished" datetime="2019-11-24T22:46:19+08:00">2019-11-24</time>
             
 
             
@@ -672,9 +854,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Bearbeitet am</span>
+                  <span class="post-meta-item-text">Editado el</span>
                 
-                <time title="Geändert am: 2019-11-26 12:37:01" itemprop="dateModified" datetime="2019-11-26T12:37:01+08:00">2019-11-26</time>
+                <time title="Modificado por: 2019-11-26 12:37:01" itemprop="dateModified" datetime="2019-11-26T12:37:01+08:00">2019-11-26</time>
               
             
           </span>
@@ -809,14 +991,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Publicado el</span>
               
 
               
                 
               
 
-              <time title="Erstellt: 2019-11-23 12:38:58 / Geändert am: 13:24:56" itemprop="dateCreated datePublished" datetime="2019-11-23T12:38:58+08:00">2019-11-23</time>
+              <time title="Creado por: 2019-11-23 12:38:58 / Modificado por: 13:24:56" itemprop="dateCreated datePublished" datetime="2019-11-23T12:38:58+08:00">2019-11-23</time>
             
 
             
@@ -969,14 +1151,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Publicado el</span>
               
 
               
                 
               
 
-              <time title="Erstellt: 2019-11-02 18:09:33 / Geändert am: 18:11:57" itemprop="dateCreated datePublished" datetime="2019-11-02T18:09:33+08:00">2019-11-02</time>
+              <time title="Creado por: 2019-11-02 18:09:33 / Modificado por: 18:11:57" itemprop="dateCreated datePublished" datetime="2019-11-02T18:09:33+08:00">2019-11-02</time>
             
 
             
@@ -1113,14 +1295,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Publicado el</span>
               
 
               
                 
               
 
-              <time title="Erstellt: 2019-10-19 22:44:21" itemprop="dateCreated datePublished" datetime="2019-10-19T22:44:21+08:00">2019-10-19</time>
+              <time title="Creado por: 2019-10-19 22:44:21" itemprop="dateCreated datePublished" datetime="2019-10-19T22:44:21+08:00">2019-10-19</time>
             
 
             
@@ -1135,9 +1317,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Bearbeitet am</span>
+                  <span class="post-meta-item-text">Editado el</span>
                 
-                <time title="Geändert am: 2019-10-20 07:45:10" itemprop="dateModified" datetime="2019-10-20T07:45:10+08:00">2019-10-20</time>
+                <time title="Modificado por: 2019-10-20 07:45:10" itemprop="dateModified" datetime="2019-10-20T07:45:10+08:00">2019-10-20</time>
               
             
           </span>
@@ -1267,14 +1449,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Publicado el</span>
               
 
               
                 
               
 
-              <time title="Erstellt: 2019-10-10 12:44:11" itemprop="dateCreated datePublished" datetime="2019-10-10T12:44:11+08:00">2019-10-10</time>
+              <time title="Creado por: 2019-10-10 12:44:11" itemprop="dateCreated datePublished" datetime="2019-10-10T12:44:11+08:00">2019-10-10</time>
             
 
             
@@ -1289,9 +1471,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Bearbeitet am</span>
+                  <span class="post-meta-item-text">Editado el</span>
                 
-                <time title="Geändert am: 2019-10-12 12:11:03" itemprop="dateModified" datetime="2019-10-12T12:11:03+08:00">2019-10-12</time>
+                <time title="Modificado por: 2019-10-12 12:11:03" itemprop="dateModified" datetime="2019-10-12T12:11:03+08:00">2019-10-12</time>
               
             
           </span>
@@ -1425,14 +1607,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Publicado el</span>
               
 
               
                 
               
 
-              <time title="Erstellt: 2019-10-08 11:19:35 / Geändert am: 23:45:21" itemprop="dateCreated datePublished" datetime="2019-10-08T11:19:35+08:00">2019-10-08</time>
+              <time title="Creado por: 2019-10-08 11:19:35 / Modificado por: 23:45:21" itemprop="dateCreated datePublished" datetime="2019-10-08T11:19:35+08:00">2019-10-08</time>
             
 
             
@@ -1631,14 +1813,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Publicado el</span>
               
 
               
                 
               
 
-              <time title="Erstellt: 2019-10-03 11:12:48" itemprop="dateCreated datePublished" datetime="2019-10-03T11:12:48+08:00">2019-10-03</time>
+              <time title="Creado por: 2019-10-03 11:12:48" itemprop="dateCreated datePublished" datetime="2019-10-03T11:12:48+08:00">2019-10-03</time>
             
 
             
@@ -1653,9 +1835,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Bearbeitet am</span>
+                  <span class="post-meta-item-text">Editado el</span>
                 
-                <time title="Geändert am: 2019-11-24 21:46:22" itemprop="dateModified" datetime="2019-11-24T21:46:22+08:00">2019-11-24</time>
+                <time title="Modificado por: 2019-11-24 21:46:22" itemprop="dateModified" datetime="2019-11-24T21:46:22+08:00">2019-11-24</time>
               
             
           </span>
@@ -1744,181 +1926,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hespoon.github.io/2019/09/23/连通无向图与割点/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/09/23/连通无向图与割点/" class="post-title-link" itemprop="url">连通无向图与割点</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-
-              
-                
-              
-
-              <time title="Erstellt: 2019-09-23 21:49:26" itemprop="dateCreated datePublished" datetime="2019-09-23T21:49:26+08:00">2019-09-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Bearbeitet am</span>
-                
-                <time title="Geändert am: 2019-09-25 23:52:29" itemprop="dateModified" datetime="2019-09-25T23:52:29+08:00">2019-09-25</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li>无向图中，非树边只会以返祖边的形式存在。</li>
-<li>割点分为两种情况<ol>
-<li>DFS 树的根节点有多于一个的子节点，那么根节点就是割点</li>
-<li>对于非根节点 u，它至少有一颗子树没有返祖边可以到达 u 的祖先，则 u 是割点</li>
-</ol>
-</li>
-<li>对于第二种情况，可以这样理解。假设非根节点 u 的某棵子树中有一个结点 x 具有返祖边可以到达 u 的祖先结点。由于图是连通的，那么节点 x 便可以到达 u 上方的所有节点。同时，由于 x 在 u 的子树中，所以 x 可以到达该子树中的所有节点，所以删除节点 u 后，u 上方的所有节点仍可以通过节点 x 与包含 x 的 u 的子树相连。如果 u 的所有子树中都有这样的 x 节点，那么删除 u 节点后，整张图还是连通的，u 不是割点。如果 u 有一颗或多棵子树，这些子树中没有这样的 x 节点，那么删除 u 后，这些子树就不在与图中剩余的部分连通，那么 u 是一个割点。</li>
-<li>求解割点时，每个节点需要维护下面几个信息<ol>
-<li>NUM(x) 表示节点 x 是在 DFS 中第几个被遍历到的点。维护这一信息十分有用，因为如果点 a 是点 b 的祖先，那么 NUM(a)&lt;NUM(b)。</li>
-<li>low(x) 表示节点 x 能通过返祖边到达的 NUM 值最小的祖先的 NUM 的值。初始值为 NUM(x)。</li>
-<li>fa(x) 表示 x 的父节点。在求割边时，fa(x) 记录 x 与其祖先之间的边的编号。</li>
-</ol>
-</li>
-<li>在 DFS 遍历时维护上面提到的那几个信息，回溯时进行判断。如果 low(v)&gt;NUM(x)（v 是 x 的儿子）说明 x 是割点</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Nächste Seite"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Página siguiente"></i></a>
   </nav>
 
 
@@ -1960,8 +1972,8 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">11</span>
-                    <span class="site-state-item-name">Artikel</span>
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">entradas</span>
                   </a>
                 </div>
               
@@ -2018,7 +2030,7 @@
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Creado mediante <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
 
 
 
@@ -2026,7 +2038,7 @@
 
 
 
-  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.1.0</div>
+  <div class="theme-info">Tema – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.1.0</div>
 
 
 

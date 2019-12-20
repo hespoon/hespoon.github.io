@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="后缀子串：字符串 s 的后缀子串，是指最后一个字符与 s 对齐的子串，不包括 s 本身。比如 abc 的后缀子串包括 c，bc，不包括 abc 本身。 前缀子串：字符串 s 的前缀子串，是指起始字符跟 s 对齐的子串，不包含 s 本身。比如 abc 的前缀子串包括 a，ab，不包括 abc 本身。   坏字符规则模式串匹配主串时，按照模式串下标从大到小的顺序匹配。当发现主串中的某个字符无法与模式">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-12-09T08:09:04.519Z">
+<meta property="og:updated_time" content="2019-12-19T14:04:21.945Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Boyer-Moore算法">
 <meta name="twitter:description" content="后缀子串：字符串 s 的后缀子串，是指最后一个字符与 s 对齐的子串，不包括 s 本身。比如 abc 的后缀子串包括 c，bc，不包括 abc 本身。 前缀子串：字符串 s 的前缀子串，是指起始字符跟 s 对齐的子串，不包含 s 本身。比如 abc 的前缀子串包括 a，ab，不包括 abc 本身。   坏字符规则模式串匹配主串时，按照模式串下标从大到小的顺序匹配。当发现主串中的某个字符无法与模式">
@@ -192,7 +192,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Navigationsleiste an/ausschalten">
+    <button aria-label="Cambiar a barra de navegación">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -220,7 +220,7 @@
 
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Inicio</a>
 
   </li>
         
@@ -237,7 +237,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archivo</a>
 
   </li>
 
@@ -325,14 +325,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Publicado el</span>
               
 
               
                 
               
 
-              <time title="Erstellt: 2019-11-28 11:45:28" itemprop="dateCreated datePublished" datetime="2019-11-28T11:45:28+08:00">2019-11-28</time>
+              <time title="Creado por: 2019-11-28 11:45:28" itemprop="dateCreated datePublished" datetime="2019-11-28T11:45:28+08:00">2019-11-28</time>
             
 
             
@@ -347,9 +347,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Bearbeitet am</span>
+                  <span class="post-meta-item-text">Editado el</span>
                 
-                <time title="Geändert am: 2019-12-09 16:09:04" itemprop="dateModified" datetime="2019-12-09T16:09:04+08:00">2019-12-09</time>
+                <time title="Modificado por: 2019-12-19 22:04:21" itemprop="dateModified" datetime="2019-12-19T22:04:21+08:00">2019-12-19</time>
               
             
           </span>
@@ -388,7 +388,7 @@
 <li>前缀子串：字符串 s 的前缀子串，是指起始字符跟 s 对齐的子串，不包含 s 本身。比如 abc 的前缀子串包括 a，ab，不包括 abc 本身。</li>
 </ul>
 <ol>
-<li>坏字符规则<br>模式串匹配主串时，按照模式串下标从大到小的顺序匹配。当发现主串中的某个字符无法与模式串匹配时，称该字符为坏字符。坏字符是主串中的字符。<br>当发生不匹配时，把坏字符对应的模式串中的字符的下标记作 si。如果坏字符在模式串中存在，便把坏字符在模式串中的下标记作 xi。如果坏字符在模式串中多处出现，则计算 xi 时，选择最靠后的那个，即下标最大的。如果不存在，我们把 xi 记作 -1。模式串向后移动的位数等于 si-xi。这里的下标 si 和 xi 都是字符在模式串中的下标。<br>单纯使用坏字符规则是不够的，比如主串为 aaaaaaaaaaaaaa，模式串为 baaa。此时应用坏字符规则，不但不会向后滑动模式串，反而会向前滑动。</li>
+<li>坏字符规则<br>模式串匹配主串时，按照模式串下标从大到小的顺序匹配。当发现主串中的某个字符无法与模式串匹配时，称该字符为坏字符。坏字符是主串中的字符。<br>当发生不匹配时，把坏字符对应的模式串中的字符的下标记作 si。如果坏字符在模式串中存在，便把坏字符在模式串中的下标记作 xi。如果坏字符在模式串中多处出现，则计算 xi 时，选择最靠后的那个，即下标最大的。如果不存在，我们把 xi 记作 -1。模式串向后移动的位数等于 si-xi。这里的下标 si 和 xi 都是字符在模式串中的下标。<br>单纯使用坏字符规则是不够的，比如主串为 aaaaaaaaaaaaaa，模式串为 baaa。此时应用坏字符规则，模式串不会滑动。由于查找字符在模式串中的下标时使用了散列表，散列表中记录的是字符最后出现的位置的下标，因此会出现 xi 大于 si 的情况，从而导致 si-xi 是负值。</li>
 <li>好后缀规则<br>与坏字符规则相同，模式串匹配主串时，同样是按照模式串的下标从大到小的顺序匹配。假如此时模式串与主串有2个字符是匹配的，倒数第三个字符发生了不匹配的情况。我们把已匹配的字符叫做好后缀，记作{u}。显然，主串和模式串中各有一个{u}。在模式串中查找另一个与{u}相匹配的子串{u<em>}，与坏字符规则相同，如果模式串中存在多个{u}，则选择最靠后的那个。如果{u</em>}存在，则将模式串滑动到{u*}与{u}对齐的位置。<br>当字符串中不存在另一个等于{u}的子串时，不可以直接将模式串滑动到主串中{u}的后面，因为这样可能会漏解。此时，我们在好后缀中，找一个最长的并且能跟模式串的前缀子串匹配的后缀子串，假设是{v}。然后移动模式串，使模式串的前缀{v}与主串中{u}的后缀{v}对齐。这便是好后缀原则。<ul>
 <li>核心内容</li>
 </ul>
@@ -398,7 +398,7 @@
 </ol>
 </li>
 <li>如何选择使用好后缀规则还是坏字符规则<br>当失配时，分别计算两种规则下字符串向后滑动的位数，然后取两数中的最大值，作为模式串的往后滑动的位数。这样可以避免使用坏字符规则时，计算得到的往后滑动的位数是负数，导致模式串向前滑动的情况。</li>
-<li>高效实现坏字符规则<br>使用散列表计算 xi，加快查找速度</li>
+<li>高效实现坏字符规则<br>使用散列表计算 xi，加快查找速度。散列表中记录字符在模式串中最后出现的位置。</li>
 <li>高效实现好后缀规则</li>
 </ol>
 <ul>
@@ -508,8 +508,8 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">11</span>
-                    <span class="site-state-item-name">Artikel</span>
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">entradas</span>
                   </a>
                 </div>
               
@@ -566,7 +566,7 @@
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Creado mediante <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
 
 
 
@@ -574,7 +574,7 @@
 
 
 
-  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.1.0</div>
+  <div class="theme-info">Tema – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.1.0</div>
 
 
 
