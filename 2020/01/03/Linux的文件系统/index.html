@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+<meta charset="utf-8">
+<title>Linux的文件系统 - Hexo</title>
+<base href="/">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<link rel="canonical" href="http://hespoon.github.io/2020/01/03/Linux的文件系统/">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+<meta name="description" content="Linux 中打开文件表分两种，两者之间个有分工，合力对文件操作提供必要的数据支持。  系统打开文件表系统打开文件表记录系统已打开的文件，主要用于文件的读写操作。整个系统运行期间只维护一张系统打开文件表。系统打开文件表中的每一个条目对应一个已经打开的文件。该条目称为打开文件句柄。一个打开文件句柄存储了与被打开文件有关的全部信息。内容包含了此文件的 inode、操作函数、打开模式、引用计数等，以及其">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Linux的文件系统">
+<meta property="og:url" content="http://hespoon.github.io/2020/01/03/Linux的文件系统/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Linux 中打开文件表分两种，两者之间个有分工，合力对文件操作提供必要的数据支持。  系统打开文件表系统打开文件表记录系统已打开的文件，主要用于文件的读写操作。整个系统运行期间只维护一张系统打开文件表。系统打开文件表中的每一个条目对应一个已经打开的文件。该条目称为打开文件句柄。一个打开文件句柄存储了与被打开文件有关的全部信息。内容包含了此文件的 inode、操作函数、打开模式、引用计数等，以及其">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e?s=160">
+<meta property="og:updated_time" content="2020-01-03T11:52:59.175Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux的文件系统">
+<meta name="twitter:description" content="Linux 中打开文件表分两种，两者之间个有分工，合力对文件操作提供必要的数据支持。  系统打开文件表系统打开文件表记录系统已打开的文件，主要用于文件的读写操作。整个系统运行期间只维护一张系统打开文件表。系统打开文件表中的每一个条目对应一个已经打开的文件。该条目称为打开文件句柄。一个打开文件句柄存储了与被打开文件有关的全部信息。内容包含了此文件的 inode、操作函数、打开模式、引用计数等，以及其">
+<meta name="twitter:image" content="https://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e?s=160">
+
+
+<link href="//fonts.googleapis.com/css?family=Baloo+Bhaijaan|Inconsolata|Josefin+Sans|Montserrat" rel="stylesheet">
+<link href="/styles.f6e745592a9a46992ff6.css" rel="stylesheet">
+<link rel="stylesheet" href="/theme.804a85dad91e4dba2a2a.css">
+<script src="/config.b6e8287503240229fe95.js"></script>
+
+</head>
+<body lang="en">
+<is-a></is-a>
+<script src="/runtime.ee6f73bc31187f12810a.js"></script>
+<script src="/polyfills.14df1390f4da8e838f05.js"></script>
+<script src="/main.0c926d87f8cb6ab96db0.js"></script>
+</body>
+</html>
