@@ -1,40 +1,517 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<title>常见链表操作 - Spirit</title>
-<base href="/">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-<link rel="canonical" href="http://hespoon.github.io/2019/10/08/%E5%B8%B8%E8%A7%81%E9%93%BE%E8%A1%A8%E6%93%8D%E4%BD%9C/">
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-hespoon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-hespoon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-hespoon.png">
+  <link rel="mask-icon" href="/images/hespoon.svg" color="#222">
 
-<meta property="og:type" content="website">
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hespoon.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":"//cdn.jsdelivr.net/gh/user/repo@version/file","lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="链表节点定义  12345struct ListNode &amp;#123;    int val;    ListNode *next;    ListNode(int x) : val(x), next(NULL) &amp;#123;&amp;#125;&amp;#125;;  反转链表  递推法   反转链表的迭代方式需要3个指针，pre，now，next 更新指针时先更新 next 指针，用 now!&#x3D;NULL 来">
+<meta property="og:type" content="article">
 <meta property="og:title" content="常见链表操作">
 <meta property="og:url" content="http://hespoon.github.io/2019/10/08/%E5%B8%B8%E8%A7%81%E9%93%BE%E8%A1%A8%E6%93%8D%E4%BD%9C/index.html">
 <meta property="og:site_name" content="Spirit">
-<meta property="og:image" content="https://www.gravatar.com/avatar/36781fa58a4623bf1dc895e3fe637916?s=160">
+<meta property="og:description" content="链表节点定义  12345struct ListNode &amp;#123;    int val;    ListNode *next;    ListNode(int x) : val(x), next(NULL) &amp;#123;&amp;#125;&amp;#125;;  反转链表  递推法   反转链表的迭代方式需要3个指针，pre，now，next 更新指针时先更新 next 指针，用 now!&#x3D;NULL 来">
+<meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-10-08T03:19:35.000Z">
 <meta property="article:modified_time" content="2020-01-17T10:42:17.822Z">
-<meta property="article:author" content="Hespoon">
+<meta property="article:author" content="hespoon">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.gravatar.com/avatar/36781fa58a4623bf1dc895e3fe637916?s=160">
+
+<link rel="canonical" href="http://hespoon.github.io/2019/10/08/%E5%B8%B8%E8%A7%81%E9%93%BE%E8%A1%A8%E6%93%8D%E4%BD%9C/">
 
 
-<link href="//fonts.googleapis.com/css?family=Baloo+Bhaijaan|Inconsolata|Josefin+Sans|Montserrat" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" disable="false" rel="stylesheet">
-<link href="/styles.f6e745592a9a46992ff6.css" rel="stylesheet">
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
 
-<link rel="stylesheet" href="/theme.483e1012ccf59ec51ee2.css">
+  <title>常见链表操作 | Spirit</title>
+  
 
 
-<script src="/config.e061af50bc9d1d67e736.js"></script>
 
 
-<meta name="generator" content="Hexo 4.2.0"></head>
-<body lang="en">
-<is-a></is-a>
-<script src="/runtime.ee6f73bc31187f12810a.js"></script>
-<script src="/polyfills.14df1390f4da8e838f05.js"></script>
-<script src="/main.0c926d87f8cb6ab96db0.js"></script>
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Spirit</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>Commonweal 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/hespoon" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://hespoon.github.io/2019/10/08/%E5%B8%B8%E8%A7%81%E9%93%BE%E8%A1%A8%E6%93%8D%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hespoon">
+      <meta itemprop="description" content="全心全意的投入生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Spirit">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          常见链表操作<a href="https://github.com/hespoon/my-blog/tree/master/source/_posts/%E5%B8%B8%E8%A7%81%E9%93%BE%E8%A1%A8%E6%93%8D%E4%BD%9C.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pencil-alt"></i></a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-10-08 11:19:35" itemprop="dateCreated datePublished" datetime="2019-10-08T11:19:35+08:00">2019-10-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-01-17 18:42:17" itemprop="dateModified" datetime="2020-01-17T18:42:17+08:00">2020-01-17</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>链表节点定义</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    ListNode *next;</span><br><span class="line">    ListNode(<span class="keyword">int</span> x) : val(x), next(<span class="literal">NULL</span>) &#123;&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="反转链表"><a class="markdownIt-Anchor" href="#反转链表"></a> 反转链表</h1>
+<ol>
+<li>递推法</li>
+</ol>
+<ul>
+<li>反转链表的迭代方式需要3个指针，pre，now，next</li>
+<li>更新指针时先更新 next 指针，用 now!=NULL 来控制循环，最后返回 pre 指针</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ListNode* <span class="title">reverseList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 如果是空链表或者单链表，直接返回</span></span><br><span class="line">    <span class="keyword">if</span>(head==<span class="literal">NULL</span>||head-&gt;next==<span class="literal">NULL</span>) <span class="keyword">return</span> head;</span><br><span class="line">    ListNode *pre,*now,*next;</span><br><span class="line">    pre=<span class="literal">NULL</span>;</span><br><span class="line">    now=head;</span><br><span class="line">    <span class="keyword">while</span>(now!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">        next=now-&gt;next;</span><br><span class="line">        now-&gt;next=pre;</span><br><span class="line">        pre=now;</span><br><span class="line">        now=next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> pre;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>递归法</li>
+</ol>
+<ul>
+<li>递归函数返回值：反转后链表的头结点</li>
+<li>递归边界：当链表是空链表或只有一个节点时，不用翻转，直接返回当前节点。此条件同时是递归终止条件</li>
+<li>递归式：当反转 head 指针指向的的链表时，先递归反转 head-&gt;next 指向的链表，然后反转 head-&gt;next 节点，令 <code>head-&gt;next-&gt;next=head，head-&gt;next=NULL</code></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ListNode* <span class="title">reverseList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(head==<span class="literal">NULL</span>||head-&gt;next==<span class="literal">NULL</span>) <span class="keyword">return</span> head;</span><br><span class="line">    ListNode *newHead=reverseList(head-&gt;next);</span><br><span class="line">    head-&gt;next-&gt;next=head;</span><br><span class="line">    head-&gt;next=<span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">return</span> newHead;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="判断链表中是否有环"><a class="markdownIt-Anchor" href="#判断链表中是否有环"></a> 判断链表中是否有环</h1>
+<ol>
+<li>双指针，一个快指针，一个慢指针</li>
+</ol>
+<ul>
+<li>试想，两个人在环形操场上跑步，一个跑的快，一个跑的慢，两着一定会在某一时刻相遇</li>
+<li>快指针一次向后移动两个位置，慢指针一次向后移动一个位置。两者进入链表的环形区域后，一定会相遇</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">hasCycle</span><span class="params">(ListNode *head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(head==<span class="literal">NULL</span>||head-&gt;next==<span class="literal">NULL</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    ListNode *low,*fast;</span><br><span class="line">    low=head;</span><br><span class="line">    fast=head-&gt;next;</span><br><span class="line">    <span class="keyword">while</span>(fast!=low)&#123;</span><br><span class="line">        <span class="keyword">if</span>(fast==<span class="literal">NULL</span>||fast-&gt;next==<span class="literal">NULL</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        low=low-&gt;next;</span><br><span class="line">        fast=fast-&gt;next-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>哈希表</li>
+</ol>
+<ul>
+<li>用一个set容器，存放每个节点的地址，遍历链表的过程中检测当前节点的地址是否出现过</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">hasCycle</span><span class="params">(ListNode *head)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">set</span>&lt;ListNode*&gt; vis;</span><br><span class="line">    <span class="keyword">while</span>(head!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">        vis.insert(head);</span><br><span class="line">        head=head-&gt;next;</span><br><span class="line">        <span class="keyword">if</span>(vis.count(head))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="合并两个有序链表"><a class="markdownIt-Anchor" href="#合并两个有序链表"></a> 合并两个有序链表</h1>
+<ol>
+<li>递推法</li>
+</ol>
+<ul>
+<li>将两个链表合并成一个带头链表，结点指针 head 指向带头链表的头结点。该头结点相当于一个哨兵节点。</li>
+<li>声明节点指针 pre 指向新添加到带头结点中的节点</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ListNode* <span class="title">mergeTwoLists</span><span class="params">(ListNode* l1, ListNode* l2)</span> </span>&#123;</span><br><span class="line">    ListNode *head=<span class="keyword">new</span> ListNode(<span class="number">0</span>); <span class="comment">// 哨兵节点</span></span><br><span class="line">    ListNode *pre;</span><br><span class="line">    pre=head;</span><br><span class="line">    <span class="keyword">while</span>(l1!=<span class="literal">NULL</span>&amp;&amp;l2!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(l1-&gt;val&lt;=l2-&gt;val)&#123;</span><br><span class="line">            pre-&gt;next=l1;</span><br><span class="line">            l1=l1-&gt;next;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            pre-&gt;next=l2;</span><br><span class="line">            l2=l2-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        pre=pre-&gt;next;</span><br><span class="line">    &#125;   </span><br><span class="line">    pre-&gt;next=l1!=<span class="literal">NULL</span>?l1:l2;</span><br><span class="line">    <span class="keyword">return</span> head-&gt;next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>递归法</li>
+</ol>
+<ul>
+<li>递归函数返回值：合并后链表的头指针</li>
+<li>递归边界：如果某一链表是空链表，则返回另一链表的头指针</li>
+<li>递归式：两个链表头部较小的一个与剩下的元素合并</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ListNode* <span class="title">mergeTwoLists</span><span class="params">(ListNode* l1, ListNode* l2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l1==<span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> l2;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(l2==<span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> l1;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(l1-&gt;val&lt;=l2-&gt;val)&#123;</span><br><span class="line">        l1-&gt;next=mergeTwoLists(l1-&gt;next,l2);</span><br><span class="line">        <span class="keyword">return</span> l1;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        l2-&gt;next=mergeTwoLists(l1,l2-&gt;next);</span><br><span class="line">        <span class="keyword">return</span> l2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="删除链表倒数第n个节点"><a class="markdownIt-Anchor" href="#删除链表倒数第n个节点"></a> 删除链表倒数第n个节点</h1>
+<ol>
+<li>
+<p>双指针</p>
+<p>使用两个指针，初始化时使两个指针相距为 n，然后同步移动，后面的指针指到链表尾时，前面的指针指向要删除的节点的前一个节点</p>
+</li>
+</ol>
+<ul>
+<li>不使用哨兵节点，此时如果要删除第一个节点要特判</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ListNode* <span class="title">removeNthFromEnd</span><span class="params">(ListNode* head, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    ListNode *left,*right;</span><br><span class="line">    left=right=head;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        right=right-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(right==<span class="literal">NULL</span>)&#123; <span class="comment">// 此时删除第一个节点</span></span><br><span class="line">        <span class="keyword">return</span> head-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(right-&gt;next!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">        right=right-&gt;next;</span><br><span class="line">        left=left-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    left-&gt;next=left-&gt;next-&gt;next;</span><br><span class="line">    <span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用哨兵节点，此时删除第一个节点不需要特判，哨兵使得链表中的所有节点地位相同</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ListNode* <span class="title">removeNthFromEnd</span><span class="params">(ListNode* head, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    ListNode *preHead=<span class="keyword">new</span> ListNode(<span class="number">0</span>); <span class="comment">// 哨兵节点</span></span><br><span class="line">    preHead-&gt;next=head;</span><br><span class="line">    ListNode *left,*right;</span><br><span class="line">    left=right=preHead;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        right=right-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(right-&gt;next!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">        right=right-&gt;next;</span><br><span class="line">        left=left-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    left-&gt;next=left-&gt;next-&gt;next;</span><br><span class="line">    <span class="keyword">return</span> preHead-&gt;next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="断链操作"><a class="markdownIt-Anchor" href="#断链操作"></a> 断链操作</h1>
+<ul>
+<li>cut(l,n) 将链表 l 切掉前 n 个结点，并返回后半部分的链表头。如果链表元素个数小于 n，则返回 NULL。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ListNode* <span class="title">cut</span><span class="params">(ListNode *head,<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    ListNode *temp=head;</span><br><span class="line">    <span class="keyword">while</span>(--n&amp;&amp;p)&#123;</span><br><span class="line">        temp=temp-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(!temp) <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    ListNode *ans=temp-&gt;next;</span><br><span class="line">    temp-&gt;next=<span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">return</span> temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="归并排序单链表-好神奇"><a class="markdownIt-Anchor" href="#归并排序单链表-好神奇"></a> 归并排序单链表 好神奇</h1>
+<ul>
+<li>排序一个链表，要求算法的事件复杂度为 O(logn) 空间复杂度为 O(1)</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ListNode* <span class="title">margeSortList</span><span class="params">(ListNode *head)</span></span>&#123;</span><br><span class="line">    ListNode* dummyHead=<span class="keyword">new</span> ListNode(<span class="number">0</span>); <span class="comment">// 一个临时头结点</span></span><br><span class="line">    dummyHead-&gt;next=head;</span><br><span class="line">    <span class="keyword">int</span> len=<span class="number">0</span>; <span class="comment">// 记录排序链表的长度</span></span><br><span class="line">    <span class="keyword">while</span>(head)&#123;</span><br><span class="line">        len++;</span><br><span class="line">        head=head-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// step 代表归并操作的步长，从 1 开始，每次都翻倍。step 就是部分有序链表的长度！step == n 时，代表整个链表都有序了</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> <span class="built_in">step</span>=<span class="number">1</span>;<span class="built_in">step</span>&lt;=n;<span class="built_in">step</span>*=<span class="number">2</span>)&#123;</span><br><span class="line">        ListNode *curr=dummyHead-&gt;next;</span><br><span class="line">        ListNode *tail=dummyHead; <span class="comment">// 记录部分有序链表的尾结点，初始时无部分有序链表</span></span><br><span class="line">        <span class="keyword">while</span>(curr)&#123; <span class="comment">// 按照步长开始合并，直到没有元素可合并为止</span></span><br><span class="line">            ListNode *firstList=curr; <span class="comment">// 指向第一个有序链表的指针</span></span><br><span class="line">            ListNode *secondList=cut(curr,<span class="built_in">step</span>); <span class="comment">// 指向第二个部分有序链表的指针。同时将第一个部分有序链表切割出来。</span></span><br><span class="line">            curr=cut(secondList,<span class="built_in">step</span>); <span class="comment">// 使 curr 指向剩余链表的第一个结点。同时将第二个部分有序链表切割出来。</span></span><br><span class="line">            tail-&gt;next=mergeTwoLists(firstList,secondList); <span class="comment">// 合并两个部分有序链表，将合并后的链表接在之前的部分有序链表的尾部。</span></span><br><span class="line">            <span class="keyword">while</span>(tail-&gt;next) tail=tail-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dummyHead-&gt;next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>时间复杂度分析<br />
+获取链表长度时间复杂度为 O(n)。<br />
+外层 for 循环共循环 logn 次，里层的 while 循环时间复杂度为 O(n)。<br />
+整个程序的时间复杂度为 O(nlogn)。</li>
+<li>空间复杂度分析<br />
+整个算法使用了 5 个 ListNode 指针，因此空间复杂度为常数 O(1)。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>a cup of salt</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="hespoon WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="hespoon Alipay">
+        <p>Alipay</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/10/03/C-%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97/" rel="prev" title="C++双端队列">
+      <i class="fa fa-chevron-left"></i> C++双端队列
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/10/10/%E7%AE%80%E5%8D%95%E8%AE%A1%E7%AE%97%E5%99%A8/" rel="next" title="简单计算器">
+      简单计算器 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#反转链表"><span class="nav-number">1.</span> <span class="nav-text"> 反转链表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#判断链表中是否有环"><span class="nav-number">2.</span> <span class="nav-text"> 判断链表中是否有环</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#合并两个有序链表"><span class="nav-number">3.</span> <span class="nav-text"> 合并两个有序链表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#删除链表倒数第n个节点"><span class="nav-number">4.</span> <span class="nav-text"> 删除链表倒数第n个节点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#断链操作"><span class="nav-number">5.</span> <span class="nav-text"> 断链操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#归并排序单链表-好神奇"><span class="nav-number">6.</span> <span class="nav-text"> 归并排序单链表 好神奇</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="hespoon"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">hespoon</p>
+  <div class="site-description" itemprop="description">全心全意的投入生活</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hespoon" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hespoon" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hezaojian@gmail.com" title="E-Mail → mailto:hezaojian@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fas fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hespoon</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">111k</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
 </body>
 </html>
