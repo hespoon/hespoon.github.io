@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hespoon.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":"//cdn.jsdelivr.net/gh/user/repo@version/file","lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Web 服务器 Web 服务器是 HTTP 请求的应答方。 # CDN Content Delivery Network 内容分发网络。依靠部署在各地的边缘服务器，通过中心平台的负载均衡、内容分发、调度等功能模块，使用户就近获取所需内容，降低网络拥塞，挑个用户访问速度和命中率。 # WAF Web Appalication Firewall 网络应用防火墙。通过执行一系列针对 HTTP&#x2F;HTTP">
+  <meta name="description" content="Web 服务器 Web 服务器是 HTTP 请求的应答方。  CDN Content Delivery Network 内容分发网络。依靠部署在各地的边缘服务器，通过中心平台的负载均衡、内容分发、调度等功能模块，使用户就近获取所需内容，降低网络拥塞，挑个用户访问速度和命中率。  WAF Web Appalication Firewall 网络应用防火墙。通过执行一系列针对 HTTP&#x2F;HTTPS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++ 实现一个 Web 服务器">
 <meta property="og:url" content="http://hespoon.github.io/2020/01/23/C-%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA-Web-%E6%9C%8D%E5%8A%A1%E5%99%A8/index.html">
 <meta property="og:site_name" content="Spirit">
-<meta property="og:description" content="Web 服务器 Web 服务器是 HTTP 请求的应答方。 # CDN Content Delivery Network 内容分发网络。依靠部署在各地的边缘服务器，通过中心平台的负载均衡、内容分发、调度等功能模块，使用户就近获取所需内容，降低网络拥塞，挑个用户访问速度和命中率。 # WAF Web Appalication Firewall 网络应用防火墙。通过执行一系列针对 HTTP&#x2F;HTTP">
+<meta property="og:description" content="Web 服务器 Web 服务器是 HTTP 请求的应答方。  CDN Content Delivery Network 内容分发网络。依靠部署在各地的边缘服务器，通过中心平台的负载均衡、内容分发、调度等功能模块，使用户就近获取所需内容，降低网络拥塞，挑个用户访问速度和命中率。  WAF Web Appalication Firewall 网络应用防火墙。通过执行一系列针对 HTTP&#x2F;HTTPS">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-01-23T08:12:00.000Z">
 <meta property="article:modified_time" content="2020-01-23T13:35:01.357Z">
@@ -196,8 +196,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="web-服务器">Web 服务器</h1>
-<p>Web 服务器是 HTTP 请求的应答方。 # CDN Content Delivery Network 内容分发网络。依靠部署在各地的边缘服务器，通过中心平台的负载均衡、内容分发、调度等功能模块，使用户就近获取所需内容，降低网络拥塞，挑个用户访问速度和命中率。 # WAF Web Appalication Firewall 网络应用防火墙。通过执行一系列针对 HTTP/HTTPS 的安全策略来专门为 Web 应用提供保护的一款产品。它是应用层面的防火墙，专门检测 HTTP 流量，是防护 Web 应用的安全技术。WAF 通常位于 Web 服务器之前，可以阻止 SQL 注入、跨站脚本等攻击。 # URI Uniform Resource Identifier 统一资源标识符。使用 URI 可以唯一的标记互联网上的资源。 # URL Uniform Resource Locator 统一资源定位符。它是 URI 的一个子集。 URL 分析 <code>http://www.example.com:80/path/to/myfile.html?key1=value1&amp;key2=value2#SomewhereInTheDocument</code> <code>http://</code> 是方案或协议，该部分告诉浏览器使用何种协议。 # URN Uniform Resource Name 统一资源名称。</p>
+        <h1 id="web-服务器"><a class="markdownIt-Anchor" href="#web-服务器"></a> Web 服务器</h1>
+<p>Web 服务器是 HTTP 请求的应答方。</p>
+<h1 id="cdn-content-delivery-network"><a class="markdownIt-Anchor" href="#cdn-content-delivery-network"></a> CDN Content Delivery Network</h1>
+<p>内容分发网络。依靠部署在各地的边缘服务器，通过中心平台的负载均衡、内容分发、调度等功能模块，使用户就近获取所需内容，降低网络拥塞，挑个用户访问速度和命中率。</p>
+<h1 id="waf-web-appalication-firewall"><a class="markdownIt-Anchor" href="#waf-web-appalication-firewall"></a> WAF Web Appalication Firewall</h1>
+<p>网络应用防火墙。通过执行一系列针对 HTTP/HTTPS 的安全策略来专门为 Web 应用提供保护的一款产品。它是应用层面的防火墙，专门检测 HTTP 流量，是防护 Web 应用的安全技术。WAF 通常位于 Web 服务器之前，可以阻止 SQL 注入、跨站脚本等攻击。</p>
+<h1 id="uri-uniform-resource-identifier"><a class="markdownIt-Anchor" href="#uri-uniform-resource-identifier"></a> URI Uniform Resource Identifier</h1>
+<p>统一资源标识符。使用 URI 可以唯一的标记互联网上的资源。</p>
+<h1 id="url-uniform-resource-locator"><a class="markdownIt-Anchor" href="#url-uniform-resource-locator"></a> URL Uniform Resource Locator</h1>
+<p>统一资源定位符。它是 URI 的一个子集。<br />
+URL 分析 <code>http://www.example.com:80/path/to/myfile.html?key1=value1&amp;key2=value2#SomewhereInTheDocument</code><br />
+<code>http://</code> 是方案或协议，该部分告诉浏览器使用何种协议。</p>
+<h1 id="urn-uniform-resource-name"><a class="markdownIt-Anchor" href="#urn-uniform-resource-name"></a> URN Uniform Resource Name</h1>
+<p>统一资源名称。</p>
 
     </div>
 
@@ -298,7 +310,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#web-服务器"><span class="nav-number">1.</span> <span class="nav-text">Web 服务器</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#web-服务器"><span class="nav-number">1.</span> <span class="nav-text"> Web 服务器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cdn-content-delivery-network"><span class="nav-number">2.</span> <span class="nav-text"> CDN Content Delivery Network</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#waf-web-appalication-firewall"><span class="nav-number">3.</span> <span class="nav-text"> WAF Web Appalication Firewall</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#uri-uniform-resource-identifier"><span class="nav-number">4.</span> <span class="nav-text"> URI Uniform Resource Identifier</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#url-uniform-resource-locator"><span class="nav-number">5.</span> <span class="nav-text"> URL Uniform Resource Locator</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#urn-uniform-resource-name"><span class="nav-number">6.</span> <span class="nav-text"> URN Uniform Resource Name</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -314,7 +326,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -363,7 +375,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">112k</span>
+    <span title="Symbols count total">113k</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
   </div>

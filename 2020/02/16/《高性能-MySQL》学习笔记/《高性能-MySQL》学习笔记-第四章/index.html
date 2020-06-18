@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hespoon.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":"//cdn.jsdelivr.net/gh/user/repo@version/file","lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="第四章 Schema 与数据类型优化 临时表 MySQL 临时表用于保存一些临时数据。临时表只在当前连接可见，当关闭连接时，MySQL 会自动删除表并释放所有空间。  外部临时表 通过 CREATE TEMORPARY TABLE 创建的临时表称为外部临时表。这种临时表的命名可与非临时表相同。同名后，非临时表对当前回话不可见，直到临时表被删除。 内部临时表 内部临时表是一种特殊的轻量">
+  <meta name="description" content="第四章 Schema 与数据类型优化  临时表 MySQL 临时表用于保存一些临时数据。临时表只在当前连接可见，当关闭连接时，MySQL 会自动删除表并释放所有空间。   外部临时表 通过 CREATE TEMORPARY TABLE 创建的临时表称为外部临时表。这种临时表的命名可与非临时表相同。同名后，非临时表对当前回话不可见，直到临时表被删除。   内部临时表 内部临时表是一种特殊的轻量级临">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《高性能 MySQL》学习笔记 第四章">
 <meta property="og:url" content="http://hespoon.github.io/2020/02/16/%E3%80%8A%E9%AB%98%E6%80%A7%E8%83%BD-MySQL%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E3%80%8A%E9%AB%98%E6%80%A7%E8%83%BD-MySQL%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%AC%AC%E5%9B%9B%E7%AB%A0/index.html">
 <meta property="og:site_name" content="Spirit">
-<meta property="og:description" content="第四章 Schema 与数据类型优化 临时表 MySQL 临时表用于保存一些临时数据。临时表只在当前连接可见，当关闭连接时，MySQL 会自动删除表并释放所有空间。  外部临时表 通过 CREATE TEMORPARY TABLE 创建的临时表称为外部临时表。这种临时表的命名可与非临时表相同。同名后，非临时表对当前回话不可见，直到临时表被删除。 内部临时表 内部临时表是一种特殊的轻量">
+<meta property="og:description" content="第四章 Schema 与数据类型优化  临时表 MySQL 临时表用于保存一些临时数据。临时表只在当前连接可见，当关闭连接时，MySQL 会自动删除表并释放所有空间。   外部临时表 通过 CREATE TEMORPARY TABLE 创建的临时表称为外部临时表。这种临时表的命名可与非临时表相同。同名后，非临时表对当前回话不可见，直到临时表被删除。   内部临时表 内部临时表是一种特殊的轻量级临">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-02-16T09:34:36.000Z">
 <meta property="article:modified_time" content="2020-02-16T12:50:17.694Z">
@@ -197,20 +197,24 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="第四章-schema-与数据类型优化">第四章 Schema 与数据类型优化</h1>
-<h2 id="临时表">临时表</h2>
+        <h1 id="第四章-schema-与数据类型优化"><a class="markdownIt-Anchor" href="#第四章-schema-与数据类型优化"></a> 第四章 Schema 与数据类型优化</h1>
+<h2 id="临时表"><a class="markdownIt-Anchor" href="#临时表"></a> 临时表</h2>
 <p>MySQL 临时表用于保存一些临时数据。临时表只在当前连接可见，当关闭连接时，MySQL 会自动删除表并释放所有空间。</p>
 <ul>
-<li><p>外部临时表</p>
-<p>通过 <code>CREATE TEMORPARY TABLE</code> 创建的临时表称为外部临时表。这种临时表的命名可与非临时表相同。同名后，非临时表对当前回话不可见，直到临时表被删除。</p></li>
-<li><p>内部临时表</p>
-<p>内部临时表是一种特殊的轻量级临时表，由 MySQL 自动创建，用来存储某些操作的中间结果，达到性能优化的目的。该表一般是 Memory 表。如果中间结果太大超出了 Memory 的限制，或者含有 BLOB 或 TEXT 字段，则临时表会转换为 MyISAM 表。</p></li>
+<li>
+<p>外部临时表</p>
+<p>通过 <code>CREATE TEMORPARY TABLE</code> 创建的临时表称为外部临时表。这种临时表的命名可与非临时表相同。同名后，非临时表对当前回话不可见，直到临时表被删除。</p>
+</li>
+<li>
+<p>内部临时表</p>
+<p>内部临时表是一种特殊的轻量级临时表，由 MySQL 自动创建，用来存储某些操作的中间结果，达到性能优化的目的。该表一般是 Memory 表。如果中间结果太大超出了 Memory 的限制，或者含有 BLOB 或 TEXT 字段，则临时表会转换为 MyISAM 表。</p>
+</li>
 </ul>
-<h2 id="对象关系映射-object-relation-mapping-简称-omp">对象关系映射 Object Relation Mapping 简称 OMP</h2>
+<h2 id="对象关系映射-object-relation-mapping-简称-omp"><a class="markdownIt-Anchor" href="#对象关系映射-object-relation-mapping-简称-omp"></a> 对象关系映射 Object Relation Mapping 简称 OMP</h2>
 <p>面向对象的开发方法是当今企业级应用开发环境中的主流方法，关系数据库是企业级应用环境中永久存放数据的主流数据存储系统。对象和关系数据是业务实体的两种表现方式。业务实体在内存中表现为对象，在数据库中表现为关系数据。内存中的对象之间存在关联和继承关系，而在数据库中，关系数据无法直接表达多对多的关联和继承关系。因此，对象-关系映射系统一般以中间件的形式存在，主要实现程序对象到关系数据库数据的映射。</p>
-<h2 id="实体-属性-值模型-entity-attribute-value-model-eav">实体-属性-值模型 Entity-attribute-value model EAV</h2>
+<h2 id="实体-属性-值模型-entity-attribute-value-model-eav"><a class="markdownIt-Anchor" href="#实体-属性-值模型-entity-attribute-value-model-eav"></a> 实体-属性-值模型 Entity-attribute-value model EAV</h2>
 <blockquote>
-<p><a href="%5Bhttps://en.wikipedia.org/wiki/Entity%E2%80%93attribute%E2%80%93value_model%5D(https://en.wikipedia.org/wiki/Entity–attribute–value_model)">Entity-attribute-value mode-wiki</a></p>
+<p><a href="%5Bhttps://en.wikipedia.org/wiki/Entity%E2%80%93attribute%E2%80%93value_model%5D(https://en.wikipedia.org/wiki/Entity%E2%80%93attribute%E2%80%93value_model)">Entity-attribute-value mode-wiki</a></p>
 </blockquote>
 <p>EAV 模型是一种数据模型。主要用于以较高的空间利用率编码一种特殊实体，该实体在整体上包含很多属性，但是具体到某一个个体时，只有有限个的属性有值，其他的属性都为空。这种实体与数学上的稀疏矩阵很相似。</p>
 <p>EAV 表通常是瘦长的。瘦表示表的列很少，长表示表的行很多。</p>
@@ -222,109 +226,126 @@
 </ul>
 <p>使用 EAV 模型的两个例子：医院的病历记录，超市的销售数据。</p>
 <p>EAV 使用了行模型。行模型表示一个实体被记录在很多行而不是很多列中，每行通常有三列：entity、attribute 和 value。</p>
-<h2 id="范式">范式</h2>
+<h2 id="范式"><a class="markdownIt-Anchor" href="#范式"></a> 范式</h2>
 <blockquote>
 <p><a href="https://www.zhihu.com/question/24696366" target="_blank" rel="noopener">常见范式设计</a></p>
 </blockquote>
 <ul>
-<li>依赖：若在一张表中，在属性（或属性组）X 的值确定的情况下，必定能确定属性 Y 的值，那么就可以说 Y 函数依赖于 X，记作 <span class="math inline">\(X \to Y\)</span>。</li>
-<li>完全函数依赖：在一张表中，若 <span class="math inline">\(X \to Y\)</span>，且对于 X 的任何真子集 <span class="math inline">\(X&#39;\)</span>，<span class="math inline">\(X&#39; \to Y\)</span> 不成立，那么我们称 Y 完全依赖于 X，记作 <span class="math inline">\(X\stackrel{F}{\to}Y\)</span>。</li>
-<li>部分函数依赖：Y 函数依赖于 X，同时 Y 不完全依赖于 X，则称 Y 部分依赖于 X，记作 <span class="math inline">\(X\stackrel{P}{\to}Y\)</span>。</li>
-<li>传递函数依赖：Z 函数依赖于 Y，且 Y 函数依赖于 X，且 Y 不包含于 X，且 X 不函数依赖于 Y，则称 Z 传递依赖于 X，记作 <span class="math inline">\(X\stackrel{T}{\to}Z\)</span>。</li>
+<li>依赖：若在一张表中，在属性（或属性组）X 的值确定的情况下，必定能确定属性 Y 的值，那么就可以说 Y 函数依赖于 X，记作 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>X</mi><mo>→</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">X \to Y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span></span></span></span>。</li>
+<li>完全函数依赖：在一张表中，若 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>X</mi><mo>→</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">X \to Y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span></span></span></span>，且对于 X 的任何真子集 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>X</mi><mo mathvariant="normal">′</mo></msup></mrow><annotation encoding="application/x-tex">X&#x27;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.751892em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>X</mi><mo mathvariant="normal">′</mo></msup><mo>→</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">X&#x27; \to Y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.751892em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span></span></span></span> 不成立，那么我们称 Y 完全依赖于 X，记作 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>X</mi><mover><mo><mo>→</mo></mo><mi>F</mi></mover><mi>Y</mi></mrow><annotation encoding="application/x-tex">X\stackrel{F}{\to}Y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1452010000000001em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mop op-limits"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.1452010000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop">→</span></span></span><span style="top:-3.5668699999999998em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">F</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span></span></span></span>。</li>
+<li>部分函数依赖：Y 函数依赖于 X，同时 Y 不完全依赖于 X，则称 Y 部分依赖于 X，记作 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>X</mi><mover><mo><mo>→</mo></mo><mi>P</mi></mover><mi>Y</mi></mrow><annotation encoding="application/x-tex">X\stackrel{P}{\to}Y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1452010000000001em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mop op-limits"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.1452010000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop">→</span></span></span><span style="top:-3.5668699999999998em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">P</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span></span></span></span>。</li>
+<li>传递函数依赖：Z 函数依赖于 Y，且 Y 函数依赖于 X，且 Y 不包含于 X，且 X 不函数依赖于 Y，则称 Z 传递依赖于 X，记作 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>X</mi><mover><mo><mo>→</mo></mo><mi>T</mi></mover><mi>Z</mi></mrow><annotation encoding="application/x-tex">X\stackrel{T}{\to}Z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1452010000000001em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mop op-limits"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.1452010000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop">→</span></span></span><span style="top:-3.5668699999999998em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">Z</span></span></span></span>。</li>
 <li>码：设 K 为某表中的一个属性或属性组，若除 K 之外的所有属性都有完全函数依赖于 K，那么我们称 K 为候选码，简称为码。通常可以这样理解：假如 K 确定的情况下，该表除 K 之外的所有属性的值也就确定，那么 K 就是码。一张表中可以有超过一个码，通常选择其中的一个码作为主码。</li>
 <li>主属性：包含在任何一个码中的属性为主属性</li>
 <li>判断表格符合那一个范式步骤
-<ol type="1">
+<ol>
 <li>找出表中的所有码</li>
 <li>根据第一步的码，找出所有主属性</li>
 <li>除去所有的主属性，剩下的都是非主属性</li>
 <li>查看函数依赖</li>
-</ol></li>
-</ul>
-<ol type="1">
-<li><p>第一范式</p>
-<p>所有属性都是不可分割的原子值。</p>
-<p>数据库表的每一列都是不可分割的原子数据项，不能是集合，数组，记录等非原子数据项。</p></li>
-<li><p>第二范式</p>
-<p>在第一范式的基础上，要求非主属性都要==完全==依赖于码。</p></li>
-<li><p>第三范式</p>
-<p>任何非主属性不依赖于其他非主键属性。</p>
-<p>第三范式是在第二范式的基础上建立起来的，消除了非主属性对于码的传递函数依赖。</p></li>
-<li><p>BC 范式</p>
-<p>在 3NF 的基础上消除主属性对于码的部分与传递函数依赖。</p></li>
 </ol>
-<h2 id="选择数据类型的原则">选择数据类型的原则</h2>
-<ol type="1">
-<li><p>更小的通常更好</p>
+</li>
+</ul>
+<ol>
+<li>
+<p>第一范式</p>
+<p>所有属性都是不可分割的原子值。</p>
+<p>数据库表的每一列都是不可分割的原子数据项，不能是集合，数组，记录等非原子数据项。</p>
+</li>
+<li>
+<p>第二范式</p>
+<p>在第一范式的基础上，要求非主属性都要<mark>完全</mark>依赖于码。</p>
+</li>
+<li>
+<p>第三范式</p>
+<p>任何非主属性不依赖于其他非主键属性。</p>
+<p>第三范式是在第二范式的基础上建立起来的，消除了非主属性对于码的传递函数依赖。</p>
+</li>
+<li>
+<p>BC 范式</p>
+<p>在 3NF 的基础上消除主属性对于码的部分与传递函数依赖。</p>
+</li>
+</ol>
+<h2 id="选择数据类型的原则"><a class="markdownIt-Anchor" href="#选择数据类型的原则"></a> 选择数据类型的原则</h2>
+<ol>
+<li>
+<p>更小的通常更好</p>
 <p>更小的数据类型通常占用更少的存储空间，处理时需要的 CPU 周期更少。</p>
-<p>同时要确保没有低估需要存储的值的范围。在 schema 中的多个地方增加数据类型是一个代价很高的操作。</p></li>
-<li><p>简单就好</p>
+<p>同时要确保没有低估需要存储的值的范围。在 schema 中的多个地方增加数据类型是一个代价很高的操作。</p>
+</li>
+<li>
+<p>简单就好</p>
 <p>简单的数据类型操作通常需要更少的 CPU 周期。</p>
 <p>使用 MySQL 内建的数据类型存储日期和时间，而不是使用字符串。</p>
-<p>使用整形存储 IP 地址。</p></li>
-<li><p>尽量避免 NULL</p>
+<p>使用整形存储 IP 地址。</p>
+</li>
+<li>
+<p>尽量避免 NULL</p>
 <p>可为 NULL 是列的默认属性。</p>
 <p>通常情况下最好指定 NOT NULL，除非真的需要存储 NULL 值。</p>
 <p>包含 NULL 的列，对 MySQL 来说更难优化。</p>
 <p>可为 NULL 的列使得索引、索引统计和值比较都更加复杂。</p>
-<p>但是，通常把可为 NULL 的列改为 NOT NULL 带来的性能提升比较小。所以，在调优时，没有必要首先修改这种情况。但是，在设计表格时要尽量避免 NULL。</p></li>
-<li><p>第一步，确定适合的大类型：数字、字符串、时间等。然后确定具体类型。MySQL 为了兼容性支持很多基本数据类型的别名，例如 INTEGER、BOOL 以及 NUMERIC。这些别名不会影响性能。</p></li>
+<p>但是，通常把可为 NULL 的列改为 NOT NULL 带来的性能提升比较小。所以，在调优时，没有必要首先修改这种情况。但是，在设计表格时要尽量避免 NULL。</p>
+</li>
+<li>
+<p>第一步，确定适合的大类型：数字、字符串、时间等。然后确定具体类型。MySQL 为了兼容性支持很多基本数据类型的别名，例如 INTEGER、BOOL 以及 NUMERIC。这些别名不会影响性能。</p>
+</li>
 </ol>
-<h2 id="整数类型">整数类型</h2>
+<h2 id="整数类型"><a class="markdownIt-Anchor" href="#整数类型"></a> 整数类型</h2>
 <table>
 <thead>
-<tr class="header">
-<th style="text-align: center;">类型</th>
-<th style="text-align: center;">位数</th>
+<tr>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">位数</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: center;">TINYINT</td>
-<td style="text-align: center;">8 位</td>
+<tr>
+<td style="text-align:center">TINYINT</td>
+<td style="text-align:center">8 位</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">SMALLINT</td>
-<td style="text-align: center;">16 位</td>
+<tr>
+<td style="text-align:center">SMALLINT</td>
+<td style="text-align:center">16 位</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">MEDIUMINT</td>
-<td style="text-align: center;">24 位</td>
+<tr>
+<td style="text-align:center">MEDIUMINT</td>
+<td style="text-align:center">24 位</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">INT</td>
-<td style="text-align: center;">32 位</td>
+<tr>
+<td style="text-align:center">INT</td>
+<td style="text-align:center">32 位</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">BIGINT</td>
-<td style="text-align: center;">64 位</td>
+<tr>
+<td style="text-align:center">BIGINT</td>
+<td style="text-align:center">64 位</td>
 </tr>
 </tbody>
 </table>
-<p>可存储的值的范围：<span class="math inline">\(-2^{(N-1)}\thicksim2^{(N-1)}-1\)</span>，N 为位数。</p>
-<p>有可选的 UNSIGNED 属性，表示无符号整数。可存储的值的范围：<span class="math inline">\(0 \thicksim 2^N-1\)</span>，N 为位数。</p>
+<p>可存储的值的范围：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>−</mo><msup><mn>2</mn><mrow><mo stretchy="false">(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></msup><mo>∼</mo><msup><mn>2</mn><mrow><mo stretchy="false">(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">-2^{(N-1)}\thicksim2^{(N-1)}-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9713299999999999em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span><span class="mbin mtight">−</span><span class="mord mtight">1</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel amsrm">∼</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.9713299999999999em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span><span class="mbin mtight">−</span><span class="mord mtight">1</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>，N 为位数。</p>
+<p>有可选的 UNSIGNED 属性，表示无符号整数。可存储的值的范围：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn><mo>∼</mo><msup><mn>2</mn><mi>N</mi></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">0 \thicksim 2^N-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel amsrm">∼</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.924661em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>，N   为位数。</p>
 <p>数据类型决定整数是如何存储的。而整数计算一般使用 64 位的 BIGINT 整数，即使在 32 位环境中也是如此。一些聚合函数是例外，它们使用 DECIMAL 或 DOUBLE 进行计算。</p>
 <p>可以为整数类型指定宽度，例如 INT(11)。这对大多数应用没有意义，这不会改变值的合法范围，只是规定了 MySQL 的一些交互工具用来显示字符的个数。对于存储和计算来讲 INT(1) 与 INT(20) 没有区别。</p>
-<h2 id="实数类型">实数类型</h2>
+<h2 id="实数类型"><a class="markdownIt-Anchor" href="#实数类型"></a> 实数类型</h2>
 <table>
 <thead>
-<tr class="header">
-<th style="text-align: center;">类型</th>
-<th style="text-align: center;">位数</th>
+<tr>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">位数</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: center;">FLOAT</td>
-<td style="text-align: center;">32 位</td>
+<tr>
+<td style="text-align:center">FLOAT</td>
+<td style="text-align:center">32 位</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">DOUBLE</td>
-<td style="text-align: center;">64 位</td>
+<tr>
+<td style="text-align:center">DOUBLE</td>
+<td style="text-align:center">64 位</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">DECIMAL</td>
-<td style="text-align: center;">128 位</td>
+<tr>
+<td style="text-align:center">DECIMAL</td>
+<td style="text-align:center">128 位</td>
 </tr>
 </tbody>
 </table>
@@ -336,77 +357,81 @@
 <p>推荐只指定数据类型，不指定精度。</p>
 <p>尽量只在对小数进行精确计算时才使用 DECIMAL，例如财务数据。</p>
 <p>在数据量比较大时，可以使用 BIGINT 代替 DECIMAL，只需要将 DECIMAL 乘以合适的倍数将其转换为整数即可。这样可以避免浮点数计算精度问题和 DECIMAL 计算代价大的问题。</p>
-<h2 id="字符串类型">字符串类型</h2>
+<h2 id="字符串类型"><a class="markdownIt-Anchor" href="#字符串类型"></a> 字符串类型</h2>
 <p>MySQL 4.1 开始，每个字符串列可以自定义自己的字符集和排序规则，这些东西会很大程度上影响性能。</p>
-<h3 id="varchar-和-char-类型">VARCHAR 和 CHAR 类型</h3>
+<h3 id="varchar-和-char-类型"><a class="markdownIt-Anchor" href="#varchar-和-char-类型"></a> VARCHAR 和 CHAR 类型</h3>
 <p>这两个数据类型在磁盘和内存中的存储方式与存储引擎的具体实现有关。以下以 InnoDB 和 MyISAM 在磁盘上的存储为例。</p>
 <ul>
-<li><p>VARCHAR</p>
+<li>
+<p>VARCHAR</p>
 <p>用于存储可变长的字符串。</p>
 <p>比定长类型节省空间，因为它仅使用必要的空间。</p>
 <p>例外：如果表使用 ROW_FORMAT = FIXED 创建，每一行都会使用定长储存，这会很浪费存储空间。</p>
 <p>VARCHAR 需要使用额外的字节记录字符串的长度，如果列的最大长度小于等于 255 字节，则使用 1 个字节记录，否则使用 2 字节。</p>
 <p>由于行是变长的，在 UPDATE 时可能使行变得比原来长，这会导致额外的工作。如果一个行占用的空间增长，并且在页内没有更多的空间存储，在这种情况下，不同的存储引擎的处理方式不同。InnoDB 会分裂页来使行可以放入页内，MyISAM 会将行拆分成不同的片段存储。</p>
 <p>适用 VARCHAR 的情况：</p>
-<ol type="1">
+<ol>
 <li>字符串列的最大长度比平均长度大很多</li>
 <li>列的更新很少</li>
 <li>使用了像 UTF-8 这样的复杂字符集，每个字符都使用不同的字节进行存储。</li>
 </ol>
 <p>MySQL 5.0 及以上在存储和检索时会保留末尾空格。</p>
-<p>InnoDB 会把过长的 VARCHAR 存储为 BLOB。</p></li>
-<li><p>CHAR</p>
+<p>InnoDB 会把过长的 VARCHAR 存储为 BLOB。</p>
+</li>
+<li>
+<p>CHAR</p>
 <p>CHAR 是定长的。MySQL 总是根据定义的字符串长度为 CHAR 分配足够的空间。</p>
 <p>存储时，MySQL 会删除所有的末尾空格。</p>
 <p>CHAR 值会根据需要使用空格进行填充以便进行比较。</p>
 <p>适用 CHAR 的情况：</p>
-<ol type="1">
+<ol>
 <li>很短的字符串。</li>
 <li>所有值都接近同一长度的字符串。比如 MD5 值。</li>
 <li>对于经常变更的数据，CHAR 比 VARCHAR 更有效率，因为不容易产生碎片。</li>
-</ol></li>
+</ol>
+</li>
 </ul>
 <p>填充和截取空格的行为在不同的存储引擎中都是一样的，因为这是在服务器层处理的。</p>
-<h3 id="binary-和-varbinary">BINARY 和 VARBINARY</h3>
+<h3 id="binary-和-varbinary"><a class="markdownIt-Anchor" href="#binary-和-varbinary"></a> BINARY 和 VARBINARY</h3>
 <p>与 CHAR 和 VARCHAR 很像。</p>
 <p>这两个数据类型存储的是二进制的字符串，即存储的是字节码而不是字符。</p>
 <p>填充时使用 \0 而不是空格。</p>
 <p>二进制比较比字符比较简单很多，也就快很多。</p>
-<h3 id="慷慨是不明智的-最好的策略是只分配真正需要的空间">慷慨是不明智的 最好的策略是只分配真正需要的空间</h3>
-<h3 id="blob-和-text-类型">BLOB 和 TEXT 类型</h3>
+<h3 id="慷慨是不明智的-最好的策略是只分配真正需要的空间"><a class="markdownIt-Anchor" href="#慷慨是不明智的-最好的策略是只分配真正需要的空间"></a> 慷慨是不明智的 最好的策略是只分配真正需要的空间</h3>
+<h3 id="blob-和-text-类型"><a class="markdownIt-Anchor" href="#blob-和-text-类型"></a> BLOB 和 TEXT 类型</h3>
 <p>用于存储很大的数据。</p>
 <p>BLOB 存储二进制数据，没有字符集和排序规则。</p>
 <p>TEXT 存储字符数据，有字符集和排序规则。</p>
 <table>
 <thead>
-<tr class="header">
-<th style="text-align: center;">字符类型</th>
-<th style="text-align: center;">二进制类型</th>
+<tr>
+<th style="text-align:center">字符类型</th>
+<th style="text-align:center">二进制类型</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: center;">TINYTEXT</td>
-<td style="text-align: center;">TINYBLOB</td>
+<tr>
+<td style="text-align:center">TINYTEXT</td>
+<td style="text-align:center">TINYBLOB</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">SMALLTEXT(TEXT)</td>
-<td style="text-align: center;">SMALLBLOB(BLOB)</td>
+<tr>
+<td style="text-align:center">SMALLTEXT(TEXT)</td>
+<td style="text-align:center">SMALLBLOB(BLOB)</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">MEDIUMTEXT</td>
-<td style="text-align: center;">MEDIUMBLOB</td>
+<tr>
+<td style="text-align:center">MEDIUMTEXT</td>
+<td style="text-align:center">MEDIUMBLOB</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">LONGTEXT</td>
-<td style="text-align: center;">LONGBLOB</td>
+<tr>
+<td style="text-align:center">LONGTEXT</td>
+<td style="text-align:center">LONGBLOB</td>
 </tr>
 </tbody>
 </table>
 <p>InnoDB 在 BLOB 或 TEXT 太大时，使用专用的外部存储区域存储，在行内只存储一个指向外部存储区域的指针。</p>
 <p>只对每列最前的 max_sort_lenght 字节做排序而不是对整个字符串。</p>
 <p>不能将 BLOB 和 TEXT 全部长度的字符串进行索引，也不能使用这些索引消除排序。</p>
-<h3 id="使用枚举类型代替字符串类型">使用枚举类型代替字符串类型</h3>
+<h3 id="使用枚举类型代替字符串类型"><a class="markdownIt-Anchor" href="#使用枚举类型代替字符串类型"></a> 使用枚举类型代替字符串类型</h3>
 
     </div>
 
@@ -510,7 +535,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第四章-schema-与数据类型优化"><span class="nav-number">1.</span> <span class="nav-text">第四章 Schema 与数据类型优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#临时表"><span class="nav-number">1.1.</span> <span class="nav-text">临时表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象关系映射-object-relation-mapping-简称-omp"><span class="nav-number">1.2.</span> <span class="nav-text">对象关系映射 Object Relation Mapping 简称 OMP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实体-属性-值模型-entity-attribute-value-model-eav"><span class="nav-number">1.3.</span> <span class="nav-text">实体-属性-值模型 Entity-attribute-value model EAV</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#范式"><span class="nav-number">1.4.</span> <span class="nav-text">范式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择数据类型的原则"><span class="nav-number">1.5.</span> <span class="nav-text">选择数据类型的原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整数类型"><span class="nav-number">1.6.</span> <span class="nav-text">整数类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实数类型"><span class="nav-number">1.7.</span> <span class="nav-text">实数类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串类型"><span class="nav-number">1.8.</span> <span class="nav-text">字符串类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#varchar-和-char-类型"><span class="nav-number">1.8.1.</span> <span class="nav-text">VARCHAR 和 CHAR 类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#binary-和-varbinary"><span class="nav-number">1.8.2.</span> <span class="nav-text">BINARY 和 VARBINARY</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#慷慨是不明智的-最好的策略是只分配真正需要的空间"><span class="nav-number">1.8.3.</span> <span class="nav-text">慷慨是不明智的 最好的策略是只分配真正需要的空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#blob-和-text-类型"><span class="nav-number">1.8.4.</span> <span class="nav-text">BLOB 和 TEXT 类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用枚举类型代替字符串类型"><span class="nav-number">1.8.5.</span> <span class="nav-text">使用枚举类型代替字符串类型</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第四章-schema-与数据类型优化"><span class="nav-number">1.</span> <span class="nav-text"> 第四章 Schema 与数据类型优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#临时表"><span class="nav-number">1.1.</span> <span class="nav-text"> 临时表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象关系映射-object-relation-mapping-简称-omp"><span class="nav-number">1.2.</span> <span class="nav-text"> 对象关系映射 Object Relation Mapping 简称 OMP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实体-属性-值模型-entity-attribute-value-model-eav"><span class="nav-number">1.3.</span> <span class="nav-text"> 实体-属性-值模型 Entity-attribute-value model EAV</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#范式"><span class="nav-number">1.4.</span> <span class="nav-text"> 范式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择数据类型的原则"><span class="nav-number">1.5.</span> <span class="nav-text"> 选择数据类型的原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整数类型"><span class="nav-number">1.6.</span> <span class="nav-text"> 整数类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实数类型"><span class="nav-number">1.7.</span> <span class="nav-text"> 实数类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串类型"><span class="nav-number">1.8.</span> <span class="nav-text"> 字符串类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#varchar-和-char-类型"><span class="nav-number">1.8.1.</span> <span class="nav-text"> VARCHAR 和 CHAR 类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#binary-和-varbinary"><span class="nav-number">1.8.2.</span> <span class="nav-text"> BINARY 和 VARBINARY</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#慷慨是不明智的-最好的策略是只分配真正需要的空间"><span class="nav-number">1.8.3.</span> <span class="nav-text"> 慷慨是不明智的 最好的策略是只分配真正需要的空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#blob-和-text-类型"><span class="nav-number">1.8.4.</span> <span class="nav-text"> BLOB 和 TEXT 类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用枚举类型代替字符串类型"><span class="nav-number">1.8.5.</span> <span class="nav-text"> 使用枚举类型代替字符串类型</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -526,7 +551,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -575,7 +600,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">112k</span>
+    <span title="Symbols count total">113k</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
   </div>
