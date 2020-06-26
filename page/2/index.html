@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"hespoon.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":"//cdn.jsdelivr.net/gh/user/repo@version/file","lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"hespoon.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":"//cdn.jsdelivr.net/gh/user/repo@version/file","lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="全心全意的投入生活">
@@ -155,6 +155,131 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://hespoon.github.io/2020/02/01/leetcode-%E5%88%B7%E9%A2%98%E7%BB%8F%E9%AA%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hespoon">
+      <meta itemprop="description" content="全心全意的投入生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Spirit">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/01/leetcode-%E5%88%B7%E9%A2%98%E7%BB%8F%E9%AA%8C/" class="post-title-link" itemprop="url">leetcode 刷题经验</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-02-01 16:20:40" itemprop="dateCreated datePublished" datetime="2020-02-01T16:20:40+08:00">2020-02-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-02-05 21:20:04" itemprop="dateModified" datetime="2020-02-05T21:20:04+08:00">2020-02-05</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="c-不要用局部静态变量在多个测试用例的调用过程中局部静态变量只会被初始化一次导致测试用例之间的结果相互影响出现-bug">C++ 不要用局部静态变量。在多个测试用例的调用过程中，局部静态变量只会被初始化一次，导致测试用例之间的结果相互影响，出现 bug。</h1>
+<h1 id="想要所有的递归函数使用同一个变量有三种方法全局变量局部静态变量参数传引用">想要所有的递归函数使用同一个变量有三种方法，全局变量，局部静态变量，参数传引用。</h1>
+<h1 id="string-转-int">string 转 int</h1>
+<ol type="1">
+<li>使用 C++ 11 中的全局函数 std::to_string <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">to_string</span><span class="params">(<span class="keyword">int</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">to_string</span><span class="params">(<span class="keyword">long</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">to_string</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">to_string</span><span class="params">(<span class="keyword">unsigned</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">to_string</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">long</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">to_string</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">to_string</span><span class="params">(<span class="keyword">float</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">to_string</span><span class="params">(<span class="keyword">double</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">to_string</span><span class="params">(<span class="keyword">long</span> <span class="keyword">double</span>)</span></span>;</span><br></pre></td></tr></table></figure></li>
+<li>使用 sstream 中定义的字符串流对象来实现 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ostringstream</span> os; <span class="comment">// 构造一个输出字符串流，流的内容为空</span></span><br><span class="line"><span class="keyword">int</span> i=<span class="number">12</span>;</span><br><span class="line">os&lt;&lt;i; <span class="comment">// 向输出字符串流中输入 int 型整数 i 的内容</span></span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;os.str()&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure> # C++ stringstream 使用 C++ 的输入输出分为三种</li>
+<li>基于控制台的 I/O</li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th>头文件</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>iostream</td>
+<td>istream 从流中读取、ostream 写到流中去、iostream 对流进行读写</td>
+</tr>
+</tbody>
+</table>
+<ol start="2" type="1">
+<li>基于文件的 I/O</li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th>头文件</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>fstream</td>
+<td>ifstream 从文件中读取、ofstream 写到文件中去、fstream 对文件进行读写</td>
+</tr>
+</tbody>
+</table>
+<ol start="3" type="1">
+<li>基于字符串的 I/O</li>
+</ol>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>头文件</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>sstream</td>
+<td>istringstream 从 string 对象中读取、ostringstream 写到 string 对象中去、stringstream 对 string 对象进行读写</td>
+</tr>
+</tbody>
+</table>
+<p>ostringstream、istringstream、stringstream 这三个类包含在 sstream.h 文件中。 istringstream 类用于执行 C++ 风格的串流的输入操作。 ostringstream 类用于执行 C++ 风格的串流的输出操作。 stringstream 类同时支持 C++ 风格的串流的输入输出操作。 * istringstream 类 从字符串中提取数据，支持 &gt;&gt; 操作。 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">istringstream</span>::<span class="built_in">istringstream</span>(<span class="built_in">string</span> str); <span class="comment">// 构造函数原型</span></span><br><span class="line"><span class="function"><span class="built_in">istringstream</span> <span class="title">istr</span><span class="params">(<span class="string">"1 56.3"</span>)</span></span>; <span class="comment">// 初始化一个 istringstream 对象</span></span><br><span class="line">istr.str(<span class="string">"1100 2.3"</span>); <span class="comment">// 把字符串写入 istr 中。可以使用分界点获取不同的数据，完成字符串到其他数据类型的转换。</span></span><br><span class="line">istr.str(); <span class="comment">// 使 istringstream 返回一个字符串</span></span><br><span class="line"><span class="comment">// 举例 把字符串转换为其他数据类型</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;   </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sstream&gt;   </span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;  </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>  </span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line">    <span class="function"><span class="built_in">istringstream</span> <span class="title">istr</span><span class="params">(<span class="string">"1 56.7"</span>)</span></span>;  </span><br><span class="line">  </span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;istr.str()&lt;&lt;<span class="built_in">endl</span>;<span class="comment">//直接输出字符串的数据 "1 56.7"   </span></span><br><span class="line">      </span><br><span class="line">    <span class="built_in">string</span> str = istr.str();<span class="comment">//函数str()返回一个字符串   </span></span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;str&lt;&lt;<span class="built_in">endl</span>;  </span><br><span class="line">      </span><br><span class="line">    <span class="keyword">int</span> n;  </span><br><span class="line">    <span class="keyword">double</span> d;  </span><br><span class="line">  </span><br><span class="line">    <span class="comment">//以空格为界，把istringstream中数据取出，应进行类型转换   </span></span><br><span class="line">    istr&gt;&gt;n;<span class="comment">//第一个数为整型数据，输出1   </span></span><br><span class="line">    istr&gt;&gt;d;<span class="comment">//第二个数位浮点数，输出56.7   </span></span><br><span class="line">  </span><br><span class="line">    <span class="comment">//假设换下存储类型   </span></span><br><span class="line">    istr&gt;&gt;d;<span class="comment">//istringstream第一个数要自动变成浮点型，输出仍为1   </span></span><br><span class="line">    istr&gt;&gt;n;<span class="comment">//istringstream第二个数要自动变成整型，有数字的阶段，输出为56   </span></span><br><span class="line">  </span><br><span class="line">    <span class="comment">//测试输出   </span></span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;d&lt;&lt;<span class="built_in">endl</span>;  </span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;n&lt;&lt;<span class="built_in">endl</span>;  </span><br><span class="line">    system(<span class="string">"pause"</span>);  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://hespoon.github.io/2020/01/30/SQL-%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -194,33 +319,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="mysql-命令"><a class="markdownIt-Anchor" href="#mysql-命令"></a> MySQL 命令</h1>
+          <h1 id="mysql-命令">MySQL 命令</h1>
 <ul>
-<li>登录本机的 MySQL 数据库<br />
-mysql -u root -p</li>
-<li>登录 MySQL 服务器<br />
-mysql -h 主机名 -u 用户名 -p<br />
--h：指定客户端需要登陆的 MySQL 主机名，登录本机时可以省略。<br />
--u：登录的用户名<br />
--p：告诉服务器将会使用一个密码登录。如果密码为空，可以忽略此选项。</li>
-<li>创建新用户<br />
-MySQL 默认使用严格模式，禁止使用 INSERT 命令直接向 mysql 数据库的 user 表中插入新行。</li>
+<li>登录本机的 MySQL 数据库 mysql -u root -p</li>
+<li>登录 MySQL 服务器 mysql -h 主机名 -u 用户名 -p -h：指定客户端需要登陆的 MySQL 主机名，登录本机时可以省略。 -u：登录的用户名 -p：告诉服务器将会使用一个密码登录。如果密码为空，可以忽略此选项。</li>
+<li>创建新用户 MySQL 默认使用严格模式，禁止使用 INSERT 命令直接向 mysql 数据库的 user 表中插入新行。 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> username@host indentified <span class="keyword">by</span> <span class="string">'password'</span>; // 创建用户，没有任何权限</span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">GRANTS</span> <span class="keyword">FOR</span> username@host; // 查询用户权限</span><br></pre></td></tr></table></figure> username 和 host 用 @ 符号分割。host 指明用户登陆 MySQL 服务器的主机。host 为 % 时，表示用户可以从任何主机登陆 MySQL 服务器。</li>
+<li>向用户授予权限 GRANT 语句 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> privilege,[privilege],.. <span class="keyword">ON</span> privilege_level </span><br><span class="line"><span class="keyword">TO</span> <span class="string">'username'</span>@<span class="string">'localhost'</span> [<span class="keyword">IDENTIFIED</span> <span class="keyword">BY</span> <span class="keyword">password</span>]</span><br><span class="line">[REQUIRE tsl_option]</span><br><span class="line">[<span class="keyword">WITH</span> [GRANT_OPTION | resource_option]];</span><br></pre></td></tr></table></figure> [] 内的内容为可选选项。 GRANT 关键字之后可以指定一个或多个权限。权限之间以逗号分隔。 privilege_level 指定权限级别。MySQL 支持全局 <code>*.*</code> 权限，数据库 <code>database.*</code> 权限，表 <code>database.table</code> 权限和列权限。使用列权限时，必须在每个权限之后用逗号分隔列名。 放置要授予权限的用户。如果用户已存在，则 GRANT 语句修改其权限。如果不存在，则 GRANT 语句将创建一个新用户。可选的 IDENTIFIED BY 允许为新用户设置密码。 REQUIRE tsl_option 指定用户是否必须通过安全连接连接到数据库 WITH GRANT OPTION 子句允许此用户授予其他用户权限。 RESOURCE OPTION 子句用于分配 MySQL 服务器的资源。例如，设置用户每小时可以使用多少个连接或语句。 使用 GRANT 语句必须要有 GRANT OPTION 权限。如果启用了 read_only 系统变量，则需要具有 SUPER 权限才能执行 GRANT 语句。</li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> username@host indentified <span class="keyword">by</span> <span class="string">'password'</span>; // 创建用户，没有任何权限</span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">GRANTS</span> <span class="keyword">FOR</span> username@host; // 查询用户权限</span><br></pre></td></tr></table></figure>
-<p>username 和 host 用 @ 符号分割。host 指明用户登陆 MySQL 服务器的主机。host 为 % 时，表示用户可以从任何主机登陆 MySQL 服务器。</p>
-<ul>
-<li>向用户授予权限<br />
-GRANT 语句</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> privilege,[privilege],.. <span class="keyword">ON</span> privilege_level </span><br><span class="line"><span class="keyword">TO</span> <span class="string">'username'</span>@<span class="string">'localhost'</span> [<span class="keyword">IDENTIFIED</span> <span class="keyword">BY</span> <span class="keyword">password</span>]</span><br><span class="line">[REQUIRE tsl_option]</span><br><span class="line">[<span class="keyword">WITH</span> [GRANT_OPTION | resource_option]];</span><br></pre></td></tr></table></figure>
-<p>[] 内的内容为可选选项。<br />
-GRANT 关键字之后可以指定一个或多个权限。权限之间以逗号分隔。<br />
-privilege_level 指定权限级别。MySQL 支持全局 <code>*.*</code> 权限，数据库 <code>database.*</code> 权限，表 <code>database.table</code> 权限和列权限。使用列权限时，必须在每个权限之后用逗号分隔列名。<br />
-放置要授予权限的用户。如果用户已存在，则 GRANT 语句修改其权限。如果不存在，则 GRANT 语句将创建一个新用户。可选的 IDENTIFIED BY 允许为新用户设置密码。<br />
-REQUIRE tsl_option 指定用户是否必须通过安全连接连接到数据库<br />
-WITH GRANT OPTION 子句允许此用户授予其他用户权限。<br />
-RESOURCE OPTION 子句用于分配 MySQL 服务器的资源。例如，设置用户每小时可以使用多少个连接或语句。<br />
-使用 GRANT 语句必须要有 GRANT OPTION 权限。如果启用了 read_only 系统变量，则需要具有 SUPER 权限才能执行 GRANT 语句。</p>
 
       
     </div>
@@ -285,14 +390,10 @@ RESOURCE OPTION 子句用于分配 MySQL 服务器的资源。例如，设置用
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="mysql-的架构"><a class="markdownIt-Anchor" href="#mysql-的架构"></a> MySQL 的架构</h1>
+          <h1 id="mysql-的架构">MySQL 的架构</h1>
 <p>最上层 服务器层</p>
-<p>第二层 查询执行引擎<br />
-大多数 MySQL 的核心服务功能位于这一层，比如：查询解析、分析、优化、缓存以及所有的内置函数。所有跨存储引擎的功能也都位于这一层，比如：存储过程、触发器、视图等。</p>
-<p>第三层 存储引擎<br />
-存储引擎负责 MySQL 中数据的存储与提取。第二层通过 API 与存储引擎进行通信。这些接口屏蔽了不同存储引擎之间的差异，使这些差异对上层的查询过程透明。<br />
-存储引擎不会解析 SQL 语句。InnoDB 是个例外，它会解析外键，因为 MySQL 服务器中没有实现解析外键这一功能。<br />
-存储引擎之间不会相互通信，只是简单的响应上层的请求。</p>
+<p>第二层 查询执行引擎 大多数 MySQL 的核心服务功能位于这一层，比如：查询解析、分析、优化、缓存以及所有的内置函数。所有跨存储引擎的功能也都位于这一层，比如：存储过程、触发器、视图等。</p>
+<p>第三层 存储引擎 存储引擎负责 MySQL 中数据的存储与提取。第二层通过 API 与存储引擎进行通信。这些接口屏蔽了不同存储引擎之间的差异，使这些差异对上层的查询过程透明。 存储引擎不会解析 SQL 语句。InnoDB 是个例外，它会解析外键，因为 MySQL 服务器中没有实现解析外键这一功能。 存储引擎之间不会相互通信，只是简单的响应上层的请求。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/01/30/%E3%80%8A%E9%AB%98%E6%80%A7%E8%83%BD-MySQL%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E3%80%8A%E9%AB%98%E6%80%A7%E8%83%BD-MySQL%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%AC%AC%E4%B8%80%E7%AB%A0/#more" rel="contents">
@@ -358,8 +459,8 @@ RESOURCE OPTION 子句用于分配 MySQL 服务器的资源。例如，设置用
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="javascript-是大小写敏感的"><a class="markdownIt-Anchor" href="#javascript-是大小写敏感的"></a> JavaScript 是大小写敏感的</h1>
-<h1 id="数据类型"><a class="markdownIt-Anchor" href="#数据类型"></a> 数据类型</h1>
+          <h1 id="javascript-是大小写敏感的">JavaScript 是大小写敏感的</h1>
+<h1 id="数据类型">数据类型</h1>
 <ul>
 <li>七种基本数据类型
 <ul>
@@ -370,8 +471,7 @@ RESOURCE OPTION 子句用于分配 MySQL 服务器的资源。例如，设置用
 <li>BigInt 任意精度的整数</li>
 <li>String 字符串</li>
 <li>Symbol 一种实例唯一且不可更改的数据类型</li>
-</ul>
-</li>
+</ul></li>
 <li>Object 对象</li>
 </ul>
 
@@ -432,20 +532,8 @@ RESOURCE OPTION 子句用于分配 MySQL 服务器的资源。例如，设置用
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="web-服务器"><a class="markdownIt-Anchor" href="#web-服务器"></a> Web 服务器</h1>
-<p>Web 服务器是 HTTP 请求的应答方。</p>
-<h1 id="cdn-content-delivery-network"><a class="markdownIt-Anchor" href="#cdn-content-delivery-network"></a> CDN Content Delivery Network</h1>
-<p>内容分发网络。依靠部署在各地的边缘服务器，通过中心平台的负载均衡、内容分发、调度等功能模块，使用户就近获取所需内容，降低网络拥塞，挑个用户访问速度和命中率。</p>
-<h1 id="waf-web-appalication-firewall"><a class="markdownIt-Anchor" href="#waf-web-appalication-firewall"></a> WAF Web Appalication Firewall</h1>
-<p>网络应用防火墙。通过执行一系列针对 HTTP/HTTPS 的安全策略来专门为 Web 应用提供保护的一款产品。它是应用层面的防火墙，专门检测 HTTP 流量，是防护 Web 应用的安全技术。WAF 通常位于 Web 服务器之前，可以阻止 SQL 注入、跨站脚本等攻击。</p>
-<h1 id="uri-uniform-resource-identifier"><a class="markdownIt-Anchor" href="#uri-uniform-resource-identifier"></a> URI Uniform Resource Identifier</h1>
-<p>统一资源标识符。使用 URI 可以唯一的标记互联网上的资源。</p>
-<h1 id="url-uniform-resource-locator"><a class="markdownIt-Anchor" href="#url-uniform-resource-locator"></a> URL Uniform Resource Locator</h1>
-<p>统一资源定位符。它是 URI 的一个子集。<br />
-URL 分析 <code>http://www.example.com:80/path/to/myfile.html?key1=value1&amp;key2=value2#SomewhereInTheDocument</code><br />
-<code>http://</code> 是方案或协议，该部分告诉浏览器使用何种协议。</p>
-<h1 id="urn-uniform-resource-name"><a class="markdownIt-Anchor" href="#urn-uniform-resource-name"></a> URN Uniform Resource Name</h1>
-<p>统一资源名称。</p>
+          <h1 id="web-服务器">Web 服务器</h1>
+<p>Web 服务器是 HTTP 请求的应答方。 # CDN Content Delivery Network 内容分发网络。依靠部署在各地的边缘服务器，通过中心平台的负载均衡、内容分发、调度等功能模块，使用户就近获取所需内容，降低网络拥塞，挑个用户访问速度和命中率。 # WAF Web Appalication Firewall 网络应用防火墙。通过执行一系列针对 HTTP/HTTPS 的安全策略来专门为 Web 应用提供保护的一款产品。它是应用层面的防火墙，专门检测 HTTP 流量，是防护 Web 应用的安全技术。WAF 通常位于 Web 服务器之前，可以阻止 SQL 注入、跨站脚本等攻击。 # URI Uniform Resource Identifier 统一资源标识符。使用 URI 可以唯一的标记互联网上的资源。 # URL Uniform Resource Locator 统一资源定位符。它是 URI 的一个子集。 URL 分析 <code>http://www.example.com:80/path/to/myfile.html?key1=value1&amp;key2=value2#SomewhereInTheDocument</code> <code>http://</code> 是方案或协议，该部分告诉浏览器使用何种协议。 # URN Uniform Resource Name 统一资源名称。</p>
 
       
     </div>
@@ -504,6 +592,7 @@ URL 分析 <code>http://www.example.com:80/path/to/myfile.html?key1=value1&amp;k
 
       
           
+
       
     </div>
 
@@ -567,7 +656,7 @@ URL 分析 <code>http://www.example.com:80/path/to/myfile.html?key1=value1&amp;k
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="余大佬的面试经验"><a class="markdownIt-Anchor" href="#余大佬的面试经验"></a> 余大佬的面试经验</h1>
+          <h1 id="余大佬的面试经验">余大佬的面试经验</h1>
 <ul>
 <li>多刷算法题</li>
 <li>啃《高级 Unix 编程》</li>
@@ -583,25 +672,14 @@ URL 分析 <code>http://www.example.com:80/path/to/myfile.html?key1=value1&amp;k
 <li>算法题最难到动态规划</li>
 <li>每一面都会问算法问题</li>
 </ul>
-<h1 id="计算机网络"><a class="markdownIt-Anchor" href="#计算机网络"></a> 计算机网络</h1>
+<h1 id="计算机网络">计算机网络</h1>
 <ul>
-<li>
-<p>TCP 协议 Transmission Control Protocol</p>
-</li>
-<li>
-<p>TCP 是传输层的协议，解决传输的可靠、有序、无丢失和不重复。</p>
-</li>
-<li>
-<p>面向连接的，每条 TCP 连接只有两个端点</p>
-</li>
-<li>
-<p>全双工通信，通信双发在任何时候都能发送数据，有缓存，用于临时存放双向通信数据</p>
-</li>
-<li>
-<p>面向字节流，TCP 将应用程序交付的数据视为一串无结构的字节流</p>
-</li>
-<li>
-<p>TCP 首部最短 20B。</p>
+<li><p>TCP 协议 Transmission Control Protocol</p></li>
+<li><p>TCP 是传输层的协议，解决传输的可靠、有序、无丢失和不重复。</p></li>
+<li><p>面向连接的，每条 TCP 连接只有两个端点</p></li>
+<li><p>全双工通信，通信双发在任何时候都能发送数据，有缓存，用于临时存放双向通信数据</p></li>
+<li><p>面向字节流，TCP 将应用程序交付的数据视为一串无结构的字节流</p></li>
+<li><p>TCP 首部最短 20B。</p>
 <ul>
 <li>源端口，目的端口各占 2B。</li>
 <li>序号字段 4B，每个字节都会编号。</li>
@@ -614,56 +692,41 @@ URL 分析 <code>http://www.example.com:80/path/to/myfile.html?key1=value1&amp;k
 <li>紧急字段指针，2B。指出本报文段中紧急数据共有多少字节。</li>
 <li>选项字段，长度可变。</li>
 <li>填充字段。使头部的长度为 4B 的整数倍。</li>
-</ul>
-</li>
-<li>
-<p>建立连接的 3 次握手</p>
+</ul></li>
+<li><p>建立连接的 3 次握手</p>
 <ul>
 <li>SYN=1，seq=x，不含应用层数据，消耗一个序号</li>
 <li>SYN=1，ACK=1，ack=x+1，seq=y，不含应用层数据，消耗一个序号，服务器为连接分配资源，因此易受 SYN 洪泛攻击</li>
 <li>ACK=1，seq=x+1，ack=y+1，可以开始携带应用层数据，客户端为连接分配资源</li>
 <li>为何要三次握手？为了解决网络中存在延迟的重复分组。比如，客户端发送了一个连接请求，但在网络中长时间的滞留了，以至于延迟到连接结束后的某个时间到达了服务器。服务器会误以为这是一个新的连接请求，然后响应该请求并发出确认，为连接分配资源。如果不采用三次握手，客户端不理睬服务器的确认，不会向服务器传输数据，因此服务器的资源就被浪费了。</li>
-</ul>
-</li>
-<li>
-<p>断开连接的 4 次挥手</p>
+</ul></li>
+<li><p>断开连接的 4 次挥手</p>
 <ul>
 <li>FIN=1，seq=u，客户端主动请求断开连接</li>
 <li>ACK=1，seq=v，ack=u+1，此时客户端到服务器的连接已经释放了，TCP 处于半关闭状态，服务器发送数据，客户端依旧要接收。客户端不能发送数据，但可以发送确认报文。</li>
 <li>FIN=1，ACK=1，seq=w，ack=u+1，此时服务器请求释放连接</li>
 <li>ACK=1，seq=u+1，ack=w+1，客户端收到服务器发来的连接释放报文后，必须要发出确认，然后等待 2 个报文最大生存时间后关闭连接。服务器端在接受到客户端的确认报文后就断开连接。</li>
-<li>为何要四次挥手？<br />
-因为在客户端主动要求断开连接后，服务器端还可能存在需要发送的数据，要等这些数据发送完后，再断开 TCP 连接。</li>
-<li>为何要有 TIME_WAIT 阶段<br />
-因为客户端在发送确认报文后，服务器端可能没有收到，此时服务器会再次发送请求断开连接的报文，客户端应当保持 TCP 连接一段时间，以便保证服务器端收到了自己的确认报文。同时，TCP 连接占用了一个套接字，连接释放后，该套接字会被其他连接重复使用。若没有 TIME_WAIT 状态，网络中可能还存在当前连接产生的报文，连接释放后，旧的报文可能会被新的连接接收，造成信息混乱。因此，TIME_WAIT 状态主要是保证当前连接产生的报文在网络中已经全部消失了。</li>
-</ul>
-</li>
-<li>
-<p>TCP 可靠传输</p>
+<li>为何要四次挥手？ 因为在客户端主动要求断开连接后，服务器端还可能存在需要发送的数据，要等这些数据发送完后，再断开 TCP 连接。</li>
+<li>为何要有 TIME_WAIT 阶段 因为客户端在发送确认报文后，服务器端可能没有收到，此时服务器会再次发送请求断开连接的报文，客户端应当保持 TCP 连接一段时间，以便保证服务器端收到了自己的确认报文。同时，TCP 连接占用了一个套接字，连接释放后，该套接字会被其他连接重复使用。若没有 TIME_WAIT 状态，网络中可能还存在当前连接产生的报文，连接释放后，旧的报文可能会被新的连接接收，造成信息混乱。因此，TIME_WAIT 状态主要是保证当前连接产生的报文在网络中已经全部消失了。</li>
+</ul></li>
+<li><p>TCP 可靠传输</p>
 <ul>
 <li>TCP 通过校验机制保证传输的报文段没有差错</li>
 <li>TCP 通过首部的序号字段保证数据能够有序的提交给应用层，对每个字节进行编号，同时会丢弃重复数据。</li>
 <li>TCP 通过首部的确认号表示期望收到的下一报文段数据的第一个字节的序号，发送方会在缓存中存储那些已经发送但未确认的报文段，以便在需要时重传。使用累计确认</li>
 <li>TCP 重传。
 <ul>
-<li>超时重传<br />
-TCP 为每一个发送的报文段都设置一个计时器。计时器设置的重传时间到期但还没有收到确认，就要重传这一报文段。超时重传时间 RTO，加权平均往返时间 RTTs，RTT 的偏差的加权平均值 RTTd。RTO = RTTs + 4 × RTTd，RTTs = ( 1 - α ) × 旧 RTTs + α × 新 RTT 样本，RTTd = ( 1 - β ) × 旧 RTTd + β × |RTTs - 新 RTT 样本|。α 和 β 都是小于 1 大于 0 的系数。第一个 RTTs 等于测量到的 RTT，第一个 RTTd 等于测量到的 RTT 的值的一半。</li>
-<li>冗余 ACK<br />
-发送方可以通过冗余 ACK 来检测丢包情况。TCP 规定，每当接收方收到比期望序号大的失序报文段时，就发送一个冗余 ACK，指明下一个期待字节的序号。当发送方收到对同一报文段的三个冗余 ACK 时，就认为该报文段已经丢失。冗余 ACK 也用在了拥塞控制中。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>TCP 流量控制</p>
+<li>超时重传 TCP 为每一个发送的报文段都设置一个计时器。计时器设置的重传时间到期但还没有收到确认，就要重传这一报文段。超时重传时间 RTO，加权平均往返时间 RTTs，RTT 的偏差的加权平均值 RTTd。RTO = RTTs + 4 × RTTd，RTTs = ( 1 - α ) × 旧 RTTs + α × 新 RTT 样本，RTTd = ( 1 - β ) × 旧 RTTd + β × |RTTs - 新 RTT 样本|。α 和 β 都是小于 1 大于 0 的系数。第一个 RTTs 等于测量到的 RTT，第一个 RTTd 等于测量到的 RTT 的值的一半。</li>
+<li>冗余 ACK 发送方可以通过冗余 ACK 来检测丢包情况。TCP 规定，每当接收方收到比期望序号大的失序报文段时，就发送一个冗余 ACK，指明下一个期待字节的序号。当发送方收到对同一报文段的三个冗余 ACK 时，就认为该报文段已经丢失。冗余 ACK 也用在了拥塞控制中。</li>
+</ul></li>
+</ul></li>
+<li><p>TCP 流量控制</p>
 <ul>
 <li>TCP 提供一种基于滑动窗口协议的流量控制机制。</li>
 <li>接收方根据自己缓存的大小，动态调整接收窗口的大小，就是调整头部中的窗口字段。限制发送方的发送速率。</li>
 <li>发送方根据当前网络的拥塞情况调整拥塞窗口的大小。发送方的发送窗口取接收窗口和拥塞窗口两者中的最小值。</li>
-</ul>
-</li>
-<li>
-<p>TCP 拥塞控制</p>
+</ul></li>
+<li><p>TCP 拥塞控制</p>
 <ul>
 <li>两个窗口，接收窗口和拥塞窗口。发送窗口 = min(接受窗口，拥塞窗口)</li>
 <li>四种算法，慢开始、拥塞避免、快重传、快恢复。四种算法是用来维护拥塞窗口的。
@@ -672,55 +735,36 @@ TCP 为每一个发送的报文段都设置一个计时器。计时器设置的�
 <li>拥塞避免。发送端的拥塞窗口每经过一个 RTT 就增加 1，就是开始线性增加。</li>
 <li>网络拥塞处理
 <ul>
-<li>超时<br />
-当发送方检测到超时时，就将慢开始阈值设为当前拥塞窗口大小的一半，但不能小于 2，并将拥塞窗口的大小设为一个 MSS。然后开始执行慢开始算法。这样可以快速减少发送方发到网络中的分组数。</li>
-</ul>
-</li>
-<li>快重传<br />
-当发送方连续收到三个冗余 ACK 时，就直接重传接收方未收到的报文段，不用等到超时。</li>
-<li>快恢复<br />
-当发送方收到三个冗余 ACK 时，就将慢开始阈值设为当前拥塞窗口的一半，将拥塞窗口设为改变后的慢开始阈值，然后执行拥塞避免算法。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>UDP 协议，User Datagram Protocol</p>
-</li>
-<li>
-<p>UDP 的优点</p>
+<li>超时 当发送方检测到超时时，就将慢开始阈值设为当前拥塞窗口大小的一半，但不能小于 2，并将拥塞窗口的大小设为一个 MSS。然后开始执行慢开始算法。这样可以快速减少发送方发到网络中的分组数。</li>
+</ul></li>
+<li>快重传 当发送方连续收到三个冗余 ACK 时，就直接重传接收方未收到的报文段，不用等到超时。</li>
+<li>快恢复 当发送方收到三个冗余 ACK 时，就将慢开始阈值设为当前拥塞窗口的一半，将拥塞窗口设为改变后的慢开始阈值，然后执行拥塞避免算法。</li>
+</ul></li>
+</ul></li>
+<li><p>UDP 协议，User Datagram Protocol</p></li>
+<li><p>UDP 的优点</p>
 <ul>
 <li>UDP 无需建立连接，所以没有建立连接带来的延时，速度比较快。</li>
 <li>UDP 不用维护连接状态，就是说不用维护发送接收缓存，不用记录确认序号和拥塞控制参数，消耗的资源就小一些。</li>
 <li>分组头部开销小，只有 8B。</li>
 <li>发送方的应用层能够更好的控制要发送的数据和发送时间。因为 UDP 没有拥塞控制，所以网络中的拥塞不会影响发送方的发送效率。</li>
-</ul>
-</li>
-<li>
-<p>UDP 应用</p>
+</ul></li>
+<li><p>UDP 应用</p>
 <ul>
 <li>一次性传输数据较少的应用。比如 DNS。</li>
 <li>多媒体应用。比如实时视频会议。可靠的数据传输对这些应用来说不是最重要的。</li>
-</ul>
-</li>
-<li>
-<p>UDP 不保证可靠交付，数据的可靠性要通过应用层来完成。</p>
-</li>
-<li>
-<p>UDP 面向报文，将应用层传下来的报文添加首部后就交给网络层，将网络层传上来的报文去除首部后就交给应用层。</p>
-</li>
-<li>
-<p>UDP 数据报首部</p>
+</ul></li>
+<li><p>UDP 不保证可靠交付，数据的可靠性要通过应用层来完成。</p></li>
+<li><p>UDP 面向报文，将应用层传下来的报文添加首部后就交给网络层，将网络层传上来的报文去除首部后就交给应用层。</p></li>
+<li><p>UDP 数据报首部</p>
 <ul>
 <li>2B 的源端口号。需要对方回复时才会使用。</li>
 <li>2B 的目的端口号。</li>
 <li>2B 的长度标记，单位为 1B</li>
 <li>2B 的校验和。是可选的。计算校验和时要在数据报之前添加 12B 的伪首部。校验整个数据报。</li>
-</ul>
-</li>
-<li>
-<p>TCP 与 UDP 的区别</p>
-<ol>
+</ul></li>
+<li><p>TCP 与 UDP 的区别</p>
+<ol type="1">
 <li>TCP 是有连接的，UDP 是无连接的</li>
 <li>TCP 是可靠的，UDP 是不可靠的。接收方不会对 UDP 报文发送确认报文。</li>
 <li>TCP 是面向字节流的，UDP 是面向报文的。TCP 发送报文时以字节为单位，应用层传来的数据报可拆分。UDP 不能拆分数据报。</li>
@@ -728,31 +772,22 @@ TCP 为每一个发送的报文段都设置一个计时器。计时器设置的�
 <li>TCP 首部开销大，UDP 首部开销小。</li>
 <li>UDP 不需要维护连接状态，消耗资源小。</li>
 <li>TCP 只支持点对点通信。UDP 可以一对一、一对多、多对一、多对多</li>
-</ol>
-</li>
-<li>
-<p>如何选择 TCP 与 UDP<br />
-对实时性要求高，对可靠传输要求低时，一般选用 UDP。比如 DNS 服务，直播。对可靠性要求高时用 TCP。HTTP 协议一般都用 TCP。HTTP3 使用了基于 UDP 协议的QUIC 协议。可能是因为现在网络环境越来越好了吧，设备本身越来越可靠，协议上就可以偷些懒。</p>
-</li>
-<li>
-<p>TCP 粘包</p>
+</ol></li>
+<li><p>如何选择 TCP 与 UDP 对实时性要求高，对可靠传输要求低时，一般选用 UDP。比如 DNS 服务，直播。对可靠性要求高时用 TCP。HTTP 协议一般都用 TCP。HTTP3 使用了基于 UDP 协议的QUIC 协议。可能是因为现在网络环境越来越好了吧，设备本身越来越可靠，协议上就可以偷些懒。</p></li>
+<li><p>TCP 粘包</p>
 <ul>
 <li>指发送方发送的若干数据包在到达接收方时粘成了一包。从接收方缓存来看，后一包数据的头紧挨着前一包数据的尾。如果粘包是同一数据的不同部分，可以不处理。如果粘包之间没有关系，此时就必须要使用合理的拆包机制将包分开。</li>
 <li>粘包原因
-<ol>
+<ol type="1">
 <li>发送方默认使用 Nagle 算法，将多次间隔较小，数据量较小的数据报合并成一个数据量大的数据报发送，用于减少网络中的报文段，尽可能的利用网络带宽。</li>
 <li>接收方读取接收缓存的速度比 TCP 写入缓存的速度慢。</li>
-</ol>
-</li>
+</ol></li>
 <li>解决方法
 <ul>
 <li>发送方可以尝试关闭 Nagle 算法。接收方可以在应用层处理。将接收缓存的数据全部读完后，再分组。可以通过开始符和结束符的方式分组，也可以在数据报数据部分的开始部分记录数据的长度。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>HTTP HyperText Transfer Protocol</p>
+</ul></li>
+</ul></li>
+<li><p>HTTP HyperText Transfer Protocol</p>
 <ul>
 <li>HTTP 使用计算机能够理解的语言确立了一种计算机之间交流通信的规范，以及相关的各种控制和错误处理方式。</li>
 <li>HTTP 是专门用来在两点之间传输数据的约定和规范</li>
@@ -779,16 +814,13 @@ TCP 为每一个发送的报文段都设置一个计时器。计时器设置的�
 <li>Accept-Encoding 声明可接受的压缩方式</li>
 <li>首部行后有一个空行。空行后是请求的实体。</li>
 <li>GET 方法用与获取服务器内容，向服务器传递的参数加在 URL 中，只允许 ASCII 字符，有长度限制。请求的实体为空。</li>
-<li>GET 方法是安全的和幂等的。<br />
-幂等是指，同样的请求被执行一次与连续执行多次的效果是一样的，服务器的状态也是一样的。<br />
-安全是指，请求方法不会破坏服务器上的资源。</li>
+<li>GET 方法是安全的和幂等的。 幂等是指，同样的请求被执行一次与连续执行多次的效果是一样的，服务器的状态也是一样的。 安全是指，请求方法不会破坏服务器上的资源。</li>
 <li>POST 方法一般用来向指定的资源提交数据进行处理请求，如上传表单和文件。数据包含在请求体中。</li>
 <li>POST 方法是不安全和不幂等的。</li>
 <li>HEAD 方法用于向服务器索要与 GET 请求相一致的响应，但是响应体不返回，只返回响应消息的头部。</li>
 <li>PUT 方法用于向指定资源位置上传其最新内容，是幂等的。</li>
 <li>DELETE 方法用于删除 URL 所标识的资源。</li>
-</ul>
-</li>
+</ul></li>
 <li>响应报文
 <ul>
 <li>第一行是状态行。包含 HTTP 版本，状态码和状态描述</li>
@@ -799,13 +831,11 @@ TCP 为每一个发送的报文段都设置一个计时器。计时器设置的�
 <li>200 OK 表示请求成功</li>
 <li>302 Found 临时重定向</li>
 <li>404 Not Found 请求失败，所请求的资源未在服务器上找到</li>
-</ul>
-</li>
-</ul>
-</li>
+</ul></li>
+</ul></li>
 <li>HTTP 常见状态码</li>
 </ul>
-<ol>
+<ol type="1">
 <li>1xx 状态码 信息，服务器收到请求，需要请求者继续执行操作。100 Continue 继续、101 Switching Protocols 切换协议，只能切换到更高级的协议</li>
 <li>2xx 状态码 操作成功。200 OK 请求成功、204 No Content 请求成功，但是响应报文的 body 部分没有数据</li>
 <li>3xx 状态码 重定向。301 Moved Permanently 永久重定向、302 Found 临时移动、304 Not Modify 资源未修改，重定向至缓存文件。</li>
@@ -813,22 +843,16 @@ TCP 为每一个发送的报文段都设置一个计时器。计时器设置的�
 <li>5xx 状态码 服务端错误。500 Internal Server Error 服务器内部错误、501 Not Implemented 服务器不支持请求的功能、502 Bad GateWay 网关或代理服务器执行请求时，从远程服务器接收到了一个无效响应。</li>
 </ol>
 <ul>
-<li>
-<p>HTTP 重定向<br />
-URL 重定向，也称 URL 转发，是一种当前实际资源，如页面，表单等迁移到新的 URL 下的时候，保持原有链接可用的技术。HTTP 使用 HTTP 重定向来执行此类操作。可以用于网站维护期间的临时跳转或者网站架构改变后为保持外部链接继续可用的永久重定向。<br />
-重定向操作由服务器发送特殊的响应而触发，状态码是 3xx。浏览器接受到重定向响应后，会采用响应提供的新的 URL，并立即加载。<br />
-永久重定向：表示原 URL 不再使用，应优先选用新的 URL。<br />
-临时重定向：资源无法从其标准的地址访问，却可以从另外的地方访问。搜索引擎不会记录这个新的、临时的链接。临时重定向也可以用来显示临时性质的进度页面。<br />
-特殊重定向：304 Not Modified 资源未修改，会使页面跳转到本地缓存的版本中。300 Multiple Choice 是一种手工重定向，以 Web 页面的形式呈现消息主题包含的一个可能的重定向链接列表，用户可以从中选择。</p>
-</li>
-<li>
-<p>HTTPS</p>
+<li><p>HTTP 重定向 URL 重定向，也称 URL 转发，是一种当前实际资源，如页面，表单等迁移到新的 URL 下的时候，保持原有链接可用的技术。HTTP 使用 HTTP 重定向来执行此类操作。可以用于网站维护期间的临时跳转或者网站架构改变后为保持外部链接继续可用的永久重定向。 重定向操作由服务器发送特殊的响应而触发，状态码是 3xx。浏览器接受到重定向响应后，会采用响应提供的新的 URL，并立即加载。 永久重定向：表示原 URL 不再使用，应优先选用新的 URL。 临时重定向：资源无法从其标准的地址访问，却可以从另外的地方访问。搜索引擎不会记录这个新的、临时的链接。临时重定向也可以用来显示临时性质的进度页面。 特殊重定向：304 Not Modified 资源未修改，会使页面跳转到本地缓存的版本中。300 Multiple Choice 是一种手工重定向，以 Web 页面的形式呈现消息主题包含的一个可能的重定向链接列表，用户可以从中选择。</p></li>
+<li><p>HTTPS</p>
 <ul>
 <li><a href="https://mp.weixin.qq.com/s/ibwNtDc2zd2tdhMN7iROJw" target="_blank" rel="noopener">GoLang：你真的了解 HTTPS 吗？</a></li>
 <li>运行在 SSL （Secure Sockets Layer 安全套接层 位于传输层和应用层之间）上，添加了加密和认证机制，更加安全。</li>
 <li>HTTPS = HTTP over SSL/TLS，也就是说，HTTPS 在传输层 TCP 和应用层 HTTP 之间多了一层 SSL/TLS。SSL/TLS 协议作用在传输层和应用层之间，对应用数据进行加密传输。</li>
 </ul>
-<p><img src="http://ww1.sinaimg.cn/large/006XJF4Oly1gc494izextj30u00fymyi.jpg" alt="STL+TSL.jpg" /></p>
+<figure>
+<img src="http://ww1.sinaimg.cn/large/006XJF4Oly1gc494izextj30u00fymyi.jpg" alt="" /><figcaption>STL+TSL.jpg</figcaption>
+</figure>
 <p>SSL，全称 Secure Socket Layer，在 1994 年由网景公司最早提出。TLS，全称 Transport Layer Security，在 1999 年基于 SSL3.0 版本上改进而来的。官方建议启用 SSL 而保留和采用 TLS。</p>
 <ul>
 <li>HTTPS 三大优势：数据加密，防窃听；身份验证，防冒充；完整性校验，防篡改。</li>
@@ -842,89 +866,63 @@ URL 重定向，也称 URL 转发，是一种当前实际资源，如页面，�
 <li>证书公钥用于加密在握手过程中生成的随机密钥，随机密钥用于加密真正传输的数据，Hash 算法用于验证数据的完整性。</li>
 <li>对称加密，加密和解密使用同一个的密钥。</li>
 <li>非对称加密，需要两个密钥，公钥和私钥。使用公钥加密的内容用私钥才能解开。</li>
-</ul>
-</li>
-<li>
-<p>SSL/TLS 连接建立过程</p>
-<ol>
+</ul></li>
+<li><p>SSL/TLS 连接建立过程</p>
+<ol type="1">
 <li>ClientHello</li>
 <li>SeverHello</li>
 <li>客户端回应</li>
 <li>服务器最后回应</li>
-</ol>
-</li>
-<li>
-<p>HTTPS 为什么同时需要有对称加密和非对称加密两种加密方式？<br />
-对称加密的加密和解密使用的是同样的密钥，所以速度快，但密钥需要在网络中传播，所以安全性不高。<br />
-非对称加密使用了一对密钥，公钥和私钥，安全性高，但是加密与解密速度慢。<br />
-两者结合起来，可以结合双方的优点，摒弃双方的缺点。即，将对称加密的密钥使用非对称加密的公钥进行加密，然后发送出去，接收方使用私钥进行解密得到对称加密的密钥，然后双发可以使用对称加密来进行沟通。<br />
-HTTPS 最开始就是这样做的。HTTPS 既有非对称加密也有对称加密。对称加密的性能高速度快，因此在数据传输时使用对称加密。对称加密使用的密钥 SK 是在对话前通过网络协商生成的。为了确保 SK 的安全，使用非对称加密来协商 SK。</p>
-</li>
-<li>
-<p>HTTPS 对称加密的密钥 SK 如何产生？<br />
-HTTPS 分为两个阶段：</p>
-<ol>
+</ol></li>
+<li><p>HTTPS 为什么同时需要有对称加密和非对称加密两种加密方式？ 对称加密的加密和解密使用的是同样的密钥，所以速度快，但密钥需要在网络中传播，所以安全性不高。 非对称加密使用了一对密钥，公钥和私钥，安全性高，但是加密与解密速度慢。 两者结合起来，可以结合双方的优点，摒弃双方的缺点。即，将对称加密的密钥使用非对称加密的公钥进行加密，然后发送出去，接收方使用私钥进行解密得到对称加密的密钥，然后双发可以使用对称加密来进行沟通。 HTTPS 最开始就是这样做的。HTTPS 既有非对称加密也有对称加密。对称加密的性能高速度快，因此在数据传输时使用对称加密。对称加密使用的密钥 SK 是在对话前通过网络协商生成的。为了确保 SK 的安全，使用非对称加密来协商 SK。</p></li>
+<li><p>HTTPS 对称加密的密钥 SK 如何产生？ HTTPS 分为两个阶段：</p>
+<ol type="1">
 <li>协商对称加密密钥 SK 的非对称加密阶段，称为 TLS 握手阶段。</li>
-<li>使用 SK 对数据进行对称加密的阶段，称为数据通信阶段。<br />
-HTTPS 协商对称加密密钥 SK 的办法有很多种，其中三种最常见的为：</li>
+<li>使用 SK 对数据进行对称加密的阶段，称为数据通信阶段。 HTTPS 协商对称加密密钥 SK 的办法有很多种，其中三种最常见的为：</li>
 <li>基于非对称加密算法</li>
 <li>基于专用密钥交换算法，常见的有 DH，ECDH 等</li>
 <li>基于共享的 secret，常见的有 PSK，SRP 等</li>
-</ol>
-</li>
-<li>
-<p>非对称加密 RSA 协商密钥的办法，是 HTTPS 最早的办法，其过程如下：</p>
-<p><img src="http://ww1.sinaimg.cn/large/006XJF4Oly1gc5xu6v526j30u00iymyj.jpg" alt="RSA 协商密钥.jpg" /></p>
-<ol>
+</ol></li>
+<li><p>非对称加密 RSA 协商密钥的办法，是 HTTPS 最早的办法，其过程如下：</p>
+<figure>
+<img src="http://ww1.sinaimg.cn/large/006XJF4Oly1gc5xu6v526j30u00iymyj.jpg" alt="" /><figcaption>RSA 协商密钥.jpg</figcaption>
+</figure>
+<ol type="1">
 <li>客户端给服务端发送请求</li>
 <li>服务端将自己的公钥 PuK 返回给客户端</li>
 <li>客户端生成本次对话的对称密钥 SK，并用 PuK 进行加密得到 SK_Enc 后传给服务端</li>
 <li>服务端收到 SK_Enc 后用自己的私钥 PrK 解密得到 SK；若成功，则返回客户端 OK，否则终止对话。</li>
-<li>接下来，客户端和服务端的对话均用 SK 加密后传输。<br />
-这种方法存在中间人攻击的问题，同时，服务端的私钥 PrK 泄露后，HTTPS 的加密也就不安全了。</li>
-</ol>
-</li>
-<li>
-<p>密钥交换算法。DH 和 ECDH 协商密钥算法的大致过程如下：</p>
-</li>
+<li>接下来，客户端和服务端的对话均用 SK 加密后传输。 这种方法存在中间人攻击的问题，同时，服务端的私钥 PrK 泄露后，HTTPS 的加密也就不安全了。</li>
+</ol></li>
+<li><p>密钥交换算法。DH 和 ECDH 协商密钥算法的大致过程如下：</p></li>
 </ul>
-<p><img src="http://ww1.sinaimg.cn/large/006XJF4Oly1gc5y87dgrrj30u00rzgo7.jpg" alt="DH ECDH 密钥协商.jpg" /></p>
-<p>ECDH 算法中的 A 和 B，也别称为 PreMaster-Secret。最终协商得到的密钥 SK 被称为 Master Secret，也被称为 Session Key。<br />
-ECDH 比 DH 算法更快，并且 ECDH 比 DH 更难破解，可行性更好。</p>
+<figure>
+<img src="http://ww1.sinaimg.cn/large/006XJF4Oly1gc5y87dgrrj30u00rzgo7.jpg" alt="" /><figcaption>DH ECDH 密钥协商.jpg</figcaption>
+</figure>
+<p>ECDH 算法中的 A 和 B，也别称为 PreMaster-Secret。最终协商得到的密钥 SK 被称为 Master Secret，也被称为 Session Key。 ECDH 比 DH 算法更快，并且 ECDH 比 DH 更难破解，可行性更好。</p>
 <ul>
-<li>
-<p>基于共享的 secret<br />
-这列做法就是在客户端和服务端预设好对称加密的密钥，握手阶段只需要传递类似钥匙 id 即可。代表算法有 PSK。</p>
-</li>
-<li>
-<p>HTTPS 有几套非对称加密？目的是什么？是否可以省略？<br />
-有两套非对称加密。<br />
-一套用于协商对称加密密钥，一套用于数字证书签名加密。<br />
-前者是服务器端产生的，私钥在服务器上。后者是 CA 机构产生的，私钥在 CA 机构那里。<br />
-两套都不应当省略。</p>
-</li>
-<li>
-<p>HTTPS 的证书</p>
-</li>
+<li><p>基于共享的 secret 这列做法就是在客户端和服务端预设好对称加密的密钥，握手阶段只需要传递类似钥匙 id 即可。代表算法有 PSK。</p></li>
+<li><p>HTTPS 有几套非对称加密？目的是什么？是否可以省略？ 有两套非对称加密。 一套用于协商对称加密密钥，一套用于数字证书签名加密。 前者是服务器端产生的，私钥在服务器上。后者是 CA 机构产生的，私钥在 CA 机构那里。 两套都不应当省略。</p></li>
+<li><p>HTTPS 的证书</p></li>
 </ul>
-<p>CA、CA 机构：Certificate Authority 机构/组织概念<br />
-数字证书、（CA）证书、HTTPS 证书、SSL/TLS 证书：CA 签发的数字证书。<br />
-数字签名、证书指纹：CA 签发的证书的内容之一，一段加密的密文。<br />
-数字证书用于主体身份验证。<br />
-数字证书 = 主体信息 + 数字签名<br />
-一张完整的数字证书包括：<br />
-1. 主体的必要信息：版本、序列号、签名算法、颁发者、有效期、使用者、公钥信息<br />
-2. 主体的扩展信息：密钥标识符、证书策略<br />
-如下图：</p>
-<p><img src="http://ww1.sinaimg.cn/large/006XJF4Oly1gc639pr8n0j30ku0ofdi6.jpg" alt="数字证书.jpg" /></p>
-   <center>数字证书</center>
+<p>CA、CA 机构：Certificate Authority 机构/组织概念 数字证书、（CA）证书、HTTPS 证书、SSL/TLS 证书：CA 签发的数字证书。 数字签名、证书指纹：CA 签发的证书的内容之一，一段加密的密文。 数字证书用于主体身份验证。 数字证书 = 主体信息 + 数字签名 一张完整的数字证书包括： 1. 主体的必要信息：版本、序列号、签名算法、颁发者、有效期、使用者、公钥信息 2. 主体的扩展信息：密钥标识符、证书策略 如下图：</p>
+<figure>
+<img src="http://ww1.sinaimg.cn/large/006XJF4Oly1gc639pr8n0j30ku0ofdi6.jpg" alt="" /><figcaption>数字证书.jpg</figcaption>
+</figure>
+<center>
+<p>数字证书</p>
+</center>
 <p>数字证书用于防范中间人攻击。</p>
 <ul>
 <li>HTTPS 中间人攻击及防范</li>
 </ul>
 <p>中间人攻击 MITM（Man-in-the-middle attack）</p>
-<p><img src="http://ww1.sinaimg.cn/large/006XJF4Oly1gc63hpi46qj30u00m1ab3.jpg" alt="中间人攻击.jpg" /></p>
-   <center>中间人攻击</center>
+<figure>
+<img src="http://ww1.sinaimg.cn/large/006XJF4Oly1gc63hpi46qj30u00m1ab3.jpg" alt="" /><figcaption>中间人攻击.jpg</figcaption>
+</figure>
+<center>
+<p>中间人攻击</p>
+</center>
 <p>中间人攻击是指攻击者与通讯的两端分别建立独立的连接，并交换其收到的数据，使通讯的两端认为他们正在通过一个私密的连接接与对方通讯，但事实上整个会话都被攻击者 控制。攻击者可以截通讯双方的通话并插入新的内容。</p>
 <p>客户端请求与服务器发起 HTTPS 通信，信息被中间人获取。服务器把自己的公钥发给客户端，信息被中间人获取，中间人将公钥改为自己的公钥，再发给客户端。客户端收到 公钥，生成随机密钥并用公钥加密随机密钥，然后发给服务器。信息被中间人获取，中间人自己的私钥解密获得随机密钥。现在中间人有服务器的公钥和客端产生的随机密钥。 中间人将随机密钥用服务器的公钥加密，再给服务器。服务器用自己的私钥解密，获得随机密钥。以后客户与服务器的通信都通过随机密钥加密，而中间人有随机密钥，所以中 间人可以获得所有的通信信息。</p>
 <p>防范中间人攻击，就是要保证通信中的信息来自正确的发送者且没被修改过。保证客户端收到的信息来自服务器，保证服务器到的信息来自客户端，保证中间没有一个家伙能查 看并修改信息。</p>
@@ -933,223 +931,126 @@ ECDH 比 DH 算法更快，并且 ECDH 比 DH 更难破解，可行性更好。<
 <ul>
 <li>数字证书如何工作？</li>
 </ul>
-<p>这需要从两个角度来说明：<br />
-申请证书，即需要被验证身份的一端，需要申请一份能够验证自己身份的证书<br />
-验证证书，即需要验证对方身份的一端，拿到证书后验证对端的身份。<br />
-这张证书必须是由权威 CA 机构颁发的，且尚在有效期内，或者是一张受信任的私人证书。</p>
-<p>申请证书<br />
-申请证书的过程：用户向 CA 机构提交自己的信息（如域名）和公钥（用户自己生成的非对称加密公钥，用于 TLS 握手阶段和另一端协商密钥），CA 机构生成数字证书，如下图：</p>
-<p><img src="http://ww1.sinaimg.cn/large/006XJF4Oly1gc646iatulj30u00gtwfz.jpg" alt="申请证书.jpg" /></p>
-   <center>申请证书</center>
-<p>验证证书<br />
-收到对端发来的证书，执行证书申请的“逆过程”即可，如下图：</p>
-<p><img src="http://ww1.sinaimg.cn/large/006XJF4Oly1gc648lr2d9j30u00am75m.jpg" alt="验证证书.jpg" /></p>
-   <center>验证证书</center>
+<p>这需要从两个角度来说明： 申请证书，即需要被验证身份的一端，需要申请一份能够验证自己身份的证书 验证证书，即需要验证对方身份的一端，拿到证书后验证对端的身份。 这张证书必须是由权威 CA 机构颁发的，且尚在有效期内，或者是一张受信任的私人证书。</p>
+<p>申请证书 申请证书的过程：用户向 CA 机构提交自己的信息（如域名）和公钥（用户自己生成的非对称加密公钥，用于 TLS 握手阶段和另一端协商密钥），CA 机构生成数字证书，如下图：</p>
+<figure>
+<img src="http://ww1.sinaimg.cn/large/006XJF4Oly1gc646iatulj30u00gtwfz.jpg" alt="" /><figcaption>申请证书.jpg</figcaption>
+</figure>
+<center>
+<p>申请证书</p>
+</center>
+<p>验证证书 收到对端发来的证书，执行证书申请的“逆过程”即可，如下图：</p>
+<figure>
+<img src="http://ww1.sinaimg.cn/large/006XJF4Oly1gc648lr2d9j30u00am75m.jpg" alt="" /><figcaption>验证证书.jpg</figcaption>
+</figure>
+<center>
+<p>验证证书</p>
+</center>
 <p>接受证书的一端先对除数字签名的其他部分使用证书中指明的哈希算法计算一次哈希值，记作 H1；获取 CA 机构的公钥对数字签名属性做解码，得到了 CA 机构计算出来的哈希值，记作 H2.对比 H1 和 H2 是否严格相等。若是，则代表该证书的信息未被篡改，证书有效；否则，证书无效。</p>
-<p>CA 机构的公钥如何获取？<br />
-答案是提前内置。<br />
-操作系统和浏览器在软件安装阶段会在其特定目录下放置一堆证书。<br />
-查看 win10 的内置证书命令：win+R 然后输入 certmgr.msc<br />
-这些证书都是权威 CA 机构颁发的根证书（Root Certificate）。<br />
-根证书有如下几个特点：</p>
+<p>CA 机构的公钥如何获取？ 答案是提前内置。 操作系统和浏览器在软件安装阶段会在其特定目录下放置一堆证书。 查看 win10 的内置证书命令：win+R 然后输入 certmgr.msc 这些证书都是权威 CA 机构颁发的根证书（Root Certificate）。 根证书有如下几个特点：</p>
 <ul>
 <li>没有上层机构再为其本身作数字签名</li>
 <li>证书上的公钥即为 CA 机构发布的公钥</li>
 <li>权威 CA 机构的自签证书</li>
 </ul>
-<p>本地内置了这么多根证书，那要怎么知道我这份证书应该要用哪个根证书来验证呢？<br />
-通过证书信任链。<br />
-证书信任链上有 3 类证书：根证书、中介证书和用户证书。<br />
-根证书就是前面提到的，内置在浏览器和操作系统中的证书。用户证书就是对端发过来的证书，是用户向权威 CA 机构绑定了自己身份（主要指域名）和自己公钥的证书。中介证书可以理解为由权威 CA 机构委派的代理机构签发的数字证书。中介证书或说中介机构的存在是为了保证根证书密钥的安全性。<br />
-从用户证书寻找根证书的过程，是一个在树形结构中，从叶子节点搜索根节点的过程。</p>
-<p><img src="http://ww1.sinaimg.cn/large/006XJF4Oly1gc785harqgj30u00itn3s.jpg" alt="搜索根证书.png" /></p>
-   <center>搜索根证书</center>
+<p>本地内置了这么多根证书，那要怎么知道我这份证书应该要用哪个根证书来验证呢？ 通过证书信任链。 证书信任链上有 3 类证书：根证书、中介证书和用户证书。 根证书就是前面提到的，内置在浏览器和操作系统中的证书。用户证书就是对端发过来的证书，是用户向权威 CA 机构绑定了自己身份（主要指域名）和自己公钥的证书。中介证书可以理解为由权威 CA 机构委派的代理机构签发的数字证书。中介证书或说中介机构的存在是为了保证根证书密钥的安全性。 从用户证书寻找根证书的过程，是一个在树形结构中，从叶子节点搜索根节点的过程。</p>
+<figure>
+<img src="http://ww1.sinaimg.cn/large/006XJF4Oly1gc785harqgj30u00itn3s.jpg" alt="" /><figcaption>搜索根证书.png</figcaption>
+</figure>
+<center>
+<p>搜索根证书</p>
+</center>
 <ul>
-<li>完整性校验：HTTPS 的哈希<br />
-HTTPS 的哈希用在两个地方：</li>
+<li>完整性校验：HTTPS 的哈希 HTTPS 的哈希用在两个地方：</li>
 </ul>
-<ol>
-<li>证书的数字签名<br />
-这里使用哈希的主要目的是减少非对称加密算法在文本上的开销。</li>
-<li>对称加密的 Message Digest<br />
-在数据通信阶段，SSL/TLS 会对原始消息做一次哈希，的到该消息的摘要，称为消息摘要。对端接受到消息后，使用协商出来的对称加密密钥解密数据包，得到原始信息。接着也做一次相同的哈希算法得到摘要，对比发送过来的消息摘要和计算出的消息摘要是否一致，可以判断通信数据是否被篡改。</li>
+<ol type="1">
+<li>证书的数字签名 这里使用哈希的主要目的是减少非对称加密算法在文本上的开销。</li>
+<li>对称加密的 Message Digest 在数据通信阶段，SSL/TLS 会对原始消息做一次哈希，的到该消息的摘要，称为消息摘要。对端接受到消息后，使用协商出来的对称加密密钥解密数据包，得到原始信息。接着也做一次相同的哈希算法得到摘要，对比发送过来的消息摘要和计算出的消息摘要是否一致，可以判断通信数据是否被篡改。</li>
 </ol>
 <ul>
 <li>HTTPS 的通信流程</li>
 </ul>
-<p><img src="http://ww1.sinaimg.cn/large/006XJF4Oly1gc79ecgev5j30u00rmwi5.jpg" alt="HTTPS的通信流程.jpg" /></p>
+<figure>
+<img src="http://ww1.sinaimg.cn/large/006XJF4Oly1gc79ecgev5j30u00rmwi5.jpg" alt="" /><figcaption>HTTPS的通信流程.jpg</figcaption>
+</figure>
 <ul>
-<li>如何由 <a href="http://www.example.com" target="_blank" rel="noopener">www.example.com</a> 跳转至 <a href="https://www.example.com" target="_blank" rel="noopener">https://www.example.com</a></li>
+<li>如何由 www.example.com 跳转至 https://www.example.com</li>
 </ul>
-<p>如果网站启用了 HTTPS，则服务器会将这个请求使用 301 永久重定向或者 302 临时重定向将请求从 HTTP 的 80 端口重定向到 HTTPS 的 443 端口。<br />
-此时，如果中间人劫持了使用者的网络请求，那么中间人可以阻止客户端与服务器建立 HTTPS 连接，而一直使用 HTTP 连接，而中间人则和服务器建立正常的 HTTPS 连接，让客户端以为自己在和真正的服务器通信，这种攻击手法称为 SSLTrip。</p>
-</li>
-<li>
-<p>Session 与 Cooike 的区别<br />
-Session 是服务器保持状态的方法，Cooike 是客户端保持状态的方法。<br />
-Cooike 是本地机器存储的一个小段文本，并随着每一个请求发送至同一个服务器。服务器通过 HTTP 头向客户端发送 Cooike。在客户端，浏览器解析这些 Cooike 并把它们保存为一个本地文件，浏览器会自动的将向同一服务器发送的任何请求上附加这些 Cooike。<br />
-Cooike 是用户端的会话状态保存机制。Cooike 的作用是为了解决 HTTP 协议无状态的缺陷。<br />
-Cooike 的主要内容包含：名字、值、过期时间、路径和域。路径和域一起组成 Cooike 的作用范围。如果不设置过期时间，则表示 Cooike 的生命周期为浏览器的会话期间，关闭浏览器，Cooike 就消失，这种 Cooike 被称为会话 Cooike，一般存放在内存中。若设置了过期时间，浏览器就会把 Cooike 保存到硬盘上，关闭后再次打开浏览器，这些 Cooike 依旧有效直到超过设定的过期时间。<br />
-Session 机制采用的是在服务器端保持状态的解决方案。由于采用服务器端保持状态的方案在客户端也需要保存一个标识，所以 Session 机制可能需要借助 Cooike 机制来达到保存状态的目的。<br />
-Session 是针对每一个用户的，Session 的值保存在服务器端，使用 SessionID 来区分用户。SessionID 是一个不容易被找到规律的字符串，用来防止仿造。<br />
-服务器接受到客户端的请求时，会检查请求中是否包含一个 SessionID，如果包含，则服务器会通过 SessionID 检索 Session，如果检索不到则会新建一个。如果客户端请求中不包含 SessionID，则服务器为次客户端创建一个 Session 并生成一个与该 Session 关联的 SessionID，SessionID 会在本次响应中返回给客户端。<br />
-保存这个 SessionID 的方式可以使用 Cooike。当客户端禁止使用 Cooike 时，可以采用 URL 重写的技术，把 SessionID 直接附加在 URL 的路径后，类似于 URL 的参数。还有一种技术称为表单隐藏字段，服务器自动修改表单，增加一个隐藏字段，以便表单在提交时能够把 SessionID 传递给服务器。<br />
-Cooike 中只能保存 ASCII 字符串，如果需要存放 Unicode 字符或者二进制数据，则需要先进行编码。因此存储较复杂的状态，使用 Cooike 是比较困难的。<br />
-Session 中能存放任何类型的数据，使用起来比较方便。<br />
-Cooike 中的信息存放在客户端，因此最好不要存放一些敏感信息，比如帐号密码，因为一些客户端的不良程序可能会窥探甚至修改 Cooike 中的内容。也可以对 Cooike 加密，提交到服务器后再解密。<br />
-Session 在服务器端，保存隐私信息很方便。<br />
-Cooike 可以设置一个长时间的有效期，来保持状态一直有效，比如保持登陆。<br />
-Session 一般依赖一个会话 Cooike，浏览器关闭后，该 Session 就失效了。而且 Session 一般不应维持较长的有效期，因为这样会对服务器带来较大的压力。并且，Session 不适用于访问量超高的网站，因为这种网站使用 Session 保存状态的话，会消耗大量服务器资源。<br />
-Cooike 存放在客户端，如果网站的并发量超大，一般都采用 Cooike 保存状态。<br />
-Cooike 的有效时间，有效位置容易设置，Session 就不行。<br />
-Cooike 支持跨域名访问。Session 不支持跨域名访问。</p>
-</li>
-<li>
-<p>session 的实现<br />
-session 由三个组件配合完成，分别为 <code>Manager</code>、<code>Provider</code> 和 <code>Session</code> 这三个类。</p>
-</li>
+<p>如果网站启用了 HTTPS，则服务器会将这个请求使用 301 永久重定向或者 302 临时重定向将请求从 HTTP 的 80 端口重定向到 HTTPS 的 443 端口。 此时，如果中间人劫持了使用者的网络请求，那么中间人可以阻止客户端与服务器建立 HTTPS 连接，而一直使用 HTTP 连接，而中间人则和服务器建立正常的 HTTPS 连接，让客户端以为自己在和真正的服务器通信，这种攻击手法称为 SSLTrip。</p></li>
+<li><p>Session 与 Cooike 的区别 Session 是服务器保持状态的方法，Cooike 是客户端保持状态的方法。 Cooike 是本地机器存储的一个小段文本，并随着每一个请求发送至同一个服务器。服务器通过 HTTP 头向客户端发送 Cooike。在客户端，浏览器解析这些 Cooike 并把它们保存为一个本地文件，浏览器会自动的将向同一服务器发送的任何请求上附加这些 Cooike。 Cooike 是用户端的会话状态保存机制。Cooike 的作用是为了解决 HTTP 协议无状态的缺陷。 Cooike 的主要内容包含：名字、值、过期时间、路径和域。路径和域一起组成 Cooike 的作用范围。如果不设置过期时间，则表示 Cooike 的生命周期为浏览器的会话期间，关闭浏览器，Cooike 就消失，这种 Cooike 被称为会话 Cooike，一般存放在内存中。若设置了过期时间，浏览器就会把 Cooike 保存到硬盘上，关闭后再次打开浏览器，这些 Cooike 依旧有效直到超过设定的过期时间。 Session 机制采用的是在服务器端保持状态的解决方案。由于采用服务器端保持状态的方案在客户端也需要保存一个标识，所以 Session 机制可能需要借助 Cooike 机制来达到保存状态的目的。 Session 是针对每一个用户的，Session 的值保存在服务器端，使用 SessionID 来区分用户。SessionID 是一个不容易被找到规律的字符串，用来防止仿造。 服务器接受到客户端的请求时，会检查请求中是否包含一个 SessionID，如果包含，则服务器会通过 SessionID 检索 Session，如果检索不到则会新建一个。如果客户端请求中不包含 SessionID，则服务器为次客户端创建一个 Session 并生成一个与该 Session 关联的 SessionID，SessionID 会在本次响应中返回给客户端。 保存这个 SessionID 的方式可以使用 Cooike。当客户端禁止使用 Cooike 时，可以采用 URL 重写的技术，把 SessionID 直接附加在 URL 的路径后，类似于 URL 的参数。还有一种技术称为表单隐藏字段，服务器自动修改表单，增加一个隐藏字段，以便表单在提交时能够把 SessionID 传递给服务器。 Cooike 中只能保存 ASCII 字符串，如果需要存放 Unicode 字符或者二进制数据，则需要先进行编码。因此存储较复杂的状态，使用 Cooike 是比较困难的。 Session 中能存放任何类型的数据，使用起来比较方便。 Cooike 中的信息存放在客户端，因此最好不要存放一些敏感信息，比如帐号密码，因为一些客户端的不良程序可能会窥探甚至修改 Cooike 中的内容。也可以对 Cooike 加密，提交到服务器后再解密。 Session 在服务器端，保存隐私信息很方便。 Cooike 可以设置一个长时间的有效期，来保持状态一直有效，比如保持登陆。 Session 一般依赖一个会话 Cooike，浏览器关闭后，该 Session 就失效了。而且 Session 一般不应维持较长的有效期，因为这样会对服务器带来较大的压力。并且，Session 不适用于访问量超高的网站，因为这种网站使用 Session 保存状态的话，会消耗大量服务器资源。 Cooike 存放在客户端，如果网站的并发量超大，一般都采用 Cooike 保存状态。 Cooike 的有效时间，有效位置容易设置，Session 就不行。 Cooike 支持跨域名访问。Session 不支持跨域名访问。</p></li>
+<li><p>session 的实现 session 由三个组件配合完成，分别为 <code>Manager</code>、<code>Provider</code> 和 <code>Session</code> 这三个类。</p></li>
 </ul>
 <p>下图是一个 HTTP 请求的完整流程</p>
-<p><img src="http://ww1.sinaimg.cn/large/006XJF4Oly1gbq9oo19c7j30u00gwgn8.jpg" alt="http的请求过程.jpg" /></p>
-<ol>
-<li>Handler 函数用于接收请求，解析 HTTP header  中的 cooike，得到 SessionID，然后把 SessionID 发给 Manager。</li>
+<figure>
+<img src="http://ww1.sinaimg.cn/large/006XJF4Oly1gbq9oo19c7j30u00gwgn8.jpg" alt="" /><figcaption>http的请求过程.jpg</figcaption>
+</figure>
+<ol type="1">
+<li>Handler 函数用于接收请求，解析 HTTP header 中的 cooike，得到 SessionID，然后把 SessionID 发给 Manager。</li>
 <li>Manager 充当一个 Session 管理器的角色，主要用于存储配置信息。比如：session 的存活时间，Cooike 的名字等。Manager 将 SessionID 接着发给 Provider。</li>
 <li>Provider 是一个容器，一般是一个散列表，将每个 SessionID 和 Session 的对应关系存储起来。</li>
 <li>Session 中存放用户的具体信息，一般是一个散列表。</li>
 </ol>
 <ul>
-<li>
-<p>Cross-Origin Resource Sharing（CORS）跨域资源共享<br />
-一般是指，一个域下的文档或脚本试图请求另一个域下的资源。</p>
-</li>
-<li>
-<p>从输入 URL 到获得页面的过程</p>
+<li><p>Cross-Origin Resource Sharing（CORS）跨域资源共享 一般是指，一个域下的文档或脚本试图请求另一个域下的资源。</p></li>
+<li><p>从输入 URL 到获得页面的过程</p>
 <ul>
 <li>浏览器查询 DNS。浏览器自己的 DNS 缓存，本地 Host 文件，操作系统的 DNS 缓存，本地 DNS 服务器，递归查询或迭代查询</li>
 <li>浏览器获得 IP 地址后，向服务器建立 TCP 连接。</li>
 <li>TCP 连接建立后，浏览器向服务器发送 HTTP 请求。</li>
 <li>服务器响应 HTTP 请求。</li>
 <li>浏览器不断请求资源，最终渲染出整个页面。</li>
-</ul>
-</li>
-<li>
-<p>网络层</p>
-</li>
-<li>
-<p>功能：互联异构网络、路由与转发、拥塞控制</p>
+</ul></li>
+<li><p>网络层</p></li>
+<li><p>功能：互联异构网络、路由与转发、拥塞控制</p>
 <ul>
 <li>异构网络：好多个网络，各个网络由不同厂家生产的计算机组成，使用了不同的协议。</li>
 <li>路由与转发：通过路由器实现</li>
 <li>拥塞控制：ICMP Internet Control Message Protocol 网络信息控制协议</li>
-</ul>
-</li>
-<li>
-<p>路由算法</p>
+</ul></li>
+<li><p>路由算法</p>
 <ul>
 <li>静态：网络管理员手工配置</li>
 <li>动态：通过路由器间彼此交换信息来构造路由表，分为距离-向量算法和链路状态算法。
 <ul>
-<li>距离-向量算法<br />
-所有的路由器都定期地将它们自己的整个路由选择表传送给所有与之相连的临近路由器。路由选择表包含每条路径的目的地和路径的代价。</li>
-<li>链路状态算法<br />
-每个参与该算法的节点都有整个网络的拓扑信息。一个结点检查所有与之直连的链路的状态，并将所得的信息发送给网络上的所有其他节点。其他结点包括和它直连的和不直连的。当一个结点收到其他节点发来的链路状态时，该节点就通过这些信息更新自己维护的整张网络的拓扑图。如果链路状态发生变化，就通过 Dijsktra 算法计算最短路由。只有链路状态发生变化时，结点才会发送此消息。消息传递使用的是洪泛法。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>层次路由<br />
-将互联网分为许多较小的自治系统，系统有权决定自己内部使用什么路由协议</p>
+<li>距离-向量算法 所有的路由器都定期地将它们自己的整个路由选择表传送给所有与之相连的临近路由器。路由选择表包含每条路径的目的地和路径的代价。</li>
+<li>链路状态算法 每个参与该算法的节点都有整个网络的拓扑信息。一个结点检查所有与之直连的链路的状态，并将所得的信息发送给网络上的所有其他节点。其他结点包括和它直连的和不直连的。当一个结点收到其他节点发来的链路状态时，该节点就通过这些信息更新自己维护的整张网络的拓扑图。如果链路状态发生变化，就通过 Dijsktra 算法计算最短路由。只有链路状态发生变化时，结点才会发送此消息。消息传递使用的是洪泛法。</li>
+</ul></li>
+</ul></li>
+<li><p>层次路由 将互联网分为许多较小的自治系统，系统有权决定自己内部使用什么路由协议</p>
 <ul>
-<li>内部网关协议<br />
-自制系统内部使用的协议。比如使用距离向量算法更新路由表的 RIP 协议和使用链路状态算法更新路由表的 OSPF 协议。</li>
-<li>外部网关协议<br />
-自制系统之间的网关协议。比如 BGP4。</li>
-</ul>
-</li>
-<li>
-<p>IPV4</p>
-</li>
-<li>
-<p>首部，固定部分为 20B，还有一部分的变长部分。</p>
-</li>
-<li>
-<p>NAT Network Address Transform 网络地址转换<br />
-用于实现专用网络与公共网络之间的地址转换</p>
-</li>
-<li>
-<p>子网划分<br />
-使用子网掩码，对物理子网再一次进行划分。IP 地址分为三部分：网络号，子网号，主机号</p>
-</li>
-<li>
-<p>CIDR Classless Inter-Domin Routing 无分类域间路由选择<br />
-用于消除传统的 A、B、C类网络划分。IP 地址分为两部分：网络前缀和主机号。需要在 IP 地址后用斜线记录网络前缀占用的比特数。可以合并路由表的表项。</p>
-</li>
-<li>
-<p>路由聚合<br />
-将网络前缀相同的连续 IP 地址组成 CIDR 地址块。使得一个地址块可以表示多个地址，减少路由表的表项，从而降低路由器间交换信息的大小</p>
-</li>
-<li>
-<p>ARP address resolution protocol 地址解析协议<br />
-对于特定的 IP 地址，查询其对应的物理地址</p>
-</li>
-<li>
-<p>DHCP dynamic host configuration protocol 动态地址配置协议<br />
-给网络中的主机动态分配 IP 地址</p>
-</li>
-<li>
-<p>ICMP internet control message protocol 网络控制信息协议<br />
-用来给主机和路由器报告差错和异常，用于拥塞控制。</p>
-</li>
-<li>
-<p>IPV6<br />
-首部固定 40B，地址长度 16B，用于解决 IPV4 地址耗尽的问题</p>
-</li>
-<li>
-<p>路由协议</p>
+<li>内部网关协议 自制系统内部使用的协议。比如使用距离向量算法更新路由表的 RIP 协议和使用链路状态算法更新路由表的 OSPF 协议。</li>
+<li>外部网关协议 自制系统之间的网关协议。比如 BGP4。</li>
+</ul></li>
+<li><p>IPV4</p></li>
+<li><p>首部，固定部分为 20B，还有一部分的变长部分。</p></li>
+<li><p>NAT Network Address Transform 网络地址转换 用于实现专用网络与公共网络之间的地址转换</p></li>
+<li><p>子网划分 使用子网掩码，对物理子网再一次进行划分。IP 地址分为三部分：网络号，子网号，主机号</p></li>
+<li><p>CIDR Classless Inter-Domin Routing 无分类域间路由选择 用于消除传统的 A、B、C类网络划分。IP 地址分为两部分：网络前缀和主机号。需要在 IP 地址后用斜线记录网络前缀占用的比特数。可以合并路由表的表项。</p></li>
+<li><p>路由聚合 将网络前缀相同的连续 IP 地址组成 CIDR 地址块。使得一个地址块可以表示多个地址，减少路由表的表项，从而降低路由器间交换信息的大小</p></li>
+<li><p>ARP address resolution protocol 地址解析协议 对于特定的 IP 地址，查询其对应的物理地址</p></li>
+<li><p>DHCP dynamic host configuration protocol 动态地址配置协议 给网络中的主机动态分配 IP 地址</p></li>
+<li><p>ICMP internet control message protocol 网络控制信息协议 用来给主机和路由器报告差错和异常，用于拥塞控制。</p></li>
+<li><p>IPV6 首部固定 40B，地址长度 16B，用于解决 IPV4 地址耗尽的问题</p></li>
+<li><p>路由协议</p>
 <ul>
 <li>自制系统内
 <ul>
-<li>RIP 协议 Routing Information Protocol<br />
-基于距离向量算法的路由选择协议。<br />
-网络中的每个路由器都要维护从它自身到其他每一个目的网络的距离记录。<br />
-距离用跳数表示，路由器与网络直连时跳数为 1。每经过一个路由器，跳数加一。16 跳时，表示网络不可达。<br />
-RIP 认为跳数少，则该路径就好。<br />
-仅与相邻的路由器交换信息。交换的是整个路由表。每个固定的时间，就交换一次信息。<br />
-应用层协议，使用 UDP 传输数据</li>
-<li>OSPF 协议 Open Shortest Path First 开放最短路径优先协议<br />
-基于链路状态算法的路由选择协议。<br />
-使用洪泛法发送信息。<br />
-只发送与本路由器直连的链路的状态。<br />
-只有链路状态发生变化时，才发送信息。<br />
-网络层协议，直接使用 IP 数据报发送信息，此时 IP 数据报首部的协议字段为 89。<br />
-每个链路状态都附带一个 32 位的序号，序号越大，状态越新。</li>
-</ul>
-</li>
+<li>RIP 协议 Routing Information Protocol 基于距离向量算法的路由选择协议。 网络中的每个路由器都要维护从它自身到其他每一个目的网络的距离记录。 距离用跳数表示，路由器与网络直连时跳数为 1。每经过一个路由器，跳数加一。16 跳时，表示网络不可达。 RIP 认为跳数少，则该路径就好。 仅与相邻的路由器交换信息。交换的是整个路由表。每个固定的时间，就交换一次信息。 应用层协议，使用 UDP 传输数据</li>
+<li>OSPF 协议 Open Shortest Path First 开放最短路径优先协议 基于链路状态算法的路由选择协议。 使用洪泛法发送信息。 只发送与本路由器直连的链路的状态。 只有链路状态发生变化时，才发送信息。 网络层协议，直接使用 IP 数据报发送信息，此时 IP 数据报首部的协议字段为 89。 每个链路状态都附带一个 32 位的序号，序号越大，状态越新。</li>
+</ul></li>
 <li>自制系统间
 <ul>
-<li>BGP border gateway protocol 边界网关协议<br />
-只力求找到一条能够到达目的网络且比较好的路由，而不是寻找最佳路由。<br />
-主要用于处理各 ISP 之间的路由选择。<br />
-应用层协议，使用 TCP 传输数据。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>IP 组播<br />
-一个发送者与多个接受者之间实现一对多的数据传输。使用 UDP 协议传输数据，IP 地址为 D 类地址。</p>
-</li>
-<li>
-<p>计算机网络体系结构</p>
+<li>BGP border gateway protocol 边界网关协议 只力求找到一条能够到达目的网络且比较好的路由，而不是寻找最佳路由。 主要用于处理各 ISP 之间的路由选择。 应用层协议，使用 TCP 传输数据。</li>
+</ul></li>
+</ul></li>
+<li><p>IP 组播 一个发送者与多个接受者之间实现一对多的数据传输。使用 UDP 协议传输数据，IP 地址为 D 类地址。</p></li>
+<li><p>计算机网络体系结构</p>
 <ul>
 <li>原理的体系结构：应用层、传输层、网络层、数据链路层、物理层</li>
 <li>IOS 7 层结构：应用层、表示层、会话层、传输层、网络层、数据链路层、物理层</li>
-<li>TCP\IP 4 层结构：应用层、传输层、网际层、网络接口层</li>
-</ul>
-</li>
-<li>
-<p>应用层常见协议</p>
+<li>TCP 层结构：应用层、传输层、网际层、网络接口层</li>
+</ul></li>
+<li><p>应用层常见协议</p>
 <ul>
 <li>FTP 文件传输协议 使用 TCP 21端口为控制端口，20端口是数据连接端口</li>
 <li>HTTP 超文本传输协议 80端口</li>
@@ -1158,11 +1059,10 @@ RIP 认为跳数少，则该路径就好。<br />
 <li>STMP 发送邮件协议 客户端向邮件服务器发邮件，邮件服务器向邮件服务器发邮件 25端口 使用 TCP</li>
 <li>POP3 接收邮件协议 邮件服务器向客户端发邮件 110端口 使用 TCP</li>
 <li>TELNET 远程登录 23端口</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h1 id="操作系统基础"><a class="markdownIt-Anchor" href="#操作系统基础"></a> 操作系统基础</h1>
-<h2 id="进程与线程的区别"><a class="markdownIt-Anchor" href="#进程与线程的区别"></a> 进程与线程的区别</h2>
+<h1 id="操作系统基础">操作系统基础</h1>
+<h2 id="进程与线程的区别">进程与线程的区别</h2>
 <ul>
 <li>进程是系统进行资源分配和调度的基本单位，线程是 CUP 调度和分派的基本单位</li>
 <li>线程依赖于进程</li>
@@ -1176,38 +1076,20 @@ RIP 认为跳数少，则该路径就好。<br />
 <li>多线程模型：多对一模型、一对一模型、多对多模型</li>
 <li>多对一模型：将多个用户级线程映射到一个内核级线程上，线程管理在用户空间完成。一个线程阻塞时，整个进程都阻塞。</li>
 <li>一对一模型：每个用户级线程都对应一个内核级线程。并发能力强。</li>
-<li>多对多模型：m 个用户级线程映射到 n 个内核级线程上，要求 n ≤ m</li>
-</ul>
-<h2 id="进程间通信"><a class="markdownIt-Anchor" href="#进程间通信"></a> 进程间通信</h2>
-<ul>
-<li>共享存储<br />
-通信进程间共享一块可以直接访问的内存空间。通过对这块共享空间的读写操作来实现进程间的信息交换。对共享空间的读写需要用到 P、V 操作实现同步互斥。</li>
-<li>消息传递<br />
-进程间的数据交换以格式化的消息为单位。进程间通过操作系统提供的发送消息和接受消息两个原语进行数据交换。<br />
-直接通信方式：发送进程直接把消息发给接收进程，并把消息挂在接收进程的消息缓冲队列上。<br />
-间接通信方式：发送进程把消息发到某个中间实体，接收进程从中间实体获得消息。</li>
-<li>管道通信<br />
-管道是连接一个读进程和一个写进程以实现他们之间通信的一个共享文件。写进程向管道写入数据，读进程从管道读出数据。数据被读出后就会被抛弃。管道是半双工通的，要向实现双向通信，则需要两个管道。</li>
-</ul>
-<h2 id="进程间调度策略"><a class="markdownIt-Anchor" href="#进程间调度策略"></a> 进程间调度策略</h2>
-<ul>
+<li>多对多模型：m 个用户级线程映射到 n 个内核级线程上，要求 n ≤ m ## 进程间通信</li>
+<li>共享存储 通信进程间共享一块可以直接访问的内存空间。通过对这块共享空间的读写操作来实现进程间的信息交换。对共享空间的读写需要用到 P、V 操作实现同步互斥。</li>
+<li>消息传递 进程间的数据交换以格式化的消息为单位。进程间通过操作系统提供的发送消息和接受消息两个原语进行数据交换。 直接通信方式：发送进程直接把消息发给接收进程，并把消息挂在接收进程的消息缓冲队列上。 间接通信方式：发送进程把消息发到某个中间实体，接收进程从中间实体获得消息。</li>
+<li>管道通信 管道是连接一个读进程和一个写进程以实现他们之间通信的一个共享文件。写进程向管道写入数据，读进程从管道读出数据。数据被读出后就会被抛弃。管道是半双工通的，要向实现双向通信，则需要两个管道。 ## 进程间调度策略</li>
 <li>先来先服务</li>
 <li>最短作业优先</li>
 <li>优先级调度算法
 <ul>
-<li>优先级反转问题<br />
-高优先级的进程等待被一个低优先级进程占用的资源时会出现优先级反转。</li>
-<li>解决方法<br />
-优先级继承：将低优先级进程的优先级提升到等待它所占有的资源的最高优先级进程的优先级。当高优先级进程由于等待资源而被阻塞时，此时资源的拥有者的优先级将会自 动被提升。<br />
-优先级天花板：将申请某资源的进程的优先级提升到可能访问该资源的所有进程中最高优先级进程的优先级.(这个优先级称为该资源的优先级天花板)</li>
-</ul>
-</li>
+<li>优先级反转问题 高优先级的进程等待被一个低优先级进程占用的资源时会出现优先级反转。</li>
+<li>解决方法 优先级继承：将低优先级进程的优先级提升到等待它所占有的资源的最高优先级进程的优先级。当高优先级进程由于等待资源而被阻塞时，此时资源的拥有者的优先级将会自 动被提升。 优先级天花板：将申请某资源的进程的优先级提升到可能访问该资源的所有进程中最高优先级进程的优先级.(这个优先级称为该资源的优先级天花板)</li>
+</ul></li>
 <li>高响应比优先调度算法</li>
 <li>时间片轮转</li>
-<li>多级反馈队列</li>
-</ul>
-<h2 id="进程间同步"><a class="markdownIt-Anchor" href="#进程间同步"></a> 进程间同步</h2>
-<ul>
+<li>多级反馈队列 ## 进程间同步</li>
 <li>多道程序环境下，进程是并发执行的，但不同进程之前存在这制约关系，为了协调进程间的制约关系，引入了进程间同步。</li>
 <li>临界资源：一次仅允许一个进程使用的资源称为临界资源</li>
 <li>临界区：进程中访问临界资源的那段代码</li>
@@ -1217,147 +1099,94 @@ RIP 认为跳数少，则该路径就好。<br />
 <li>信号量机制：信号量机制使用两个原语 “P 操作” 和 “V 操作” 解决同步互斥问题。整型信号量和记录型信号量。</li>
 <li>管程：管程是由一组数据及定义在这组数据上的对这组数据的操作所组成的软件模块。</li>
 <li>管程的组成
-<ol>
+<ol type="1">
 <li>局部于管程的共享数据结构，该组数据结构可以用于描述系统中的各种软件资源和硬件资源</li>
 <li>对该数据结构进行操作的一组方法</li>
 <li>对该数据结构设置初始值的语句</li>
-</ol>
-</li>
+</ol></li>
 <li>管程的特性
-<ol>
+<ol type="1">
 <li>管程内的共享数据只能通过管程的方法操作</li>
-<li>每次只允许一个进程在管程内执行某个管程的方法</li>
-</ol>
-</li>
-</ul>
-<h2 id="死锁"><a class="markdownIt-Anchor" href="#死锁"></a> 死锁</h2>
-<ul>
+<li>每次只允许一个进程在管程内执行某个管程的方法 ## 死锁</li>
+</ol></li>
 <li>死锁的必要条件
 <ul>
 <li>互斥：在某一段时间内，一个资源只能由一个进程占有。若此时有其他进程申请资源，则发起请求的进程只能等待。</li>
 <li>不剥夺：进程获得资源在未使用完之前，不能被其他进程强行夺走。资源只能由获得资源的进程主动释放。</li>
 <li>请求并保持：进程已经获得了至少一个资源，同时又提出了新的资源请求，而该资源已被其他进程占有，此时请求资源的进程被阻塞，但不释放自己获得资源。</li>
 <li>循环等待：存在一种进程资源的循环等待链，链中每个进程已获得资源并且该资源同时被链中的下一个进程请求。</li>
-</ul>
-</li>
-<li>死锁与循环等待的区别<br />
-死锁形成的循环等待环，进程 i 请求的资源必须由进程 i+1 提供。而循环等待链却没有该要求。即进程 i 的请求可以被链外的某个进程持有，该进程释放资源后，循环等待链就会被打破。</li>
+</ul></li>
+<li>死锁与循环等待的区别 死锁形成的循环等待环，进程 i 请求的资源必须由进程 i+1 提供。而循环等待链却没有该要求。即进程 i 的请求可以被链外的某个进程持有，该进程释放资源后，循环等待链就会被打破。</li>
 <li>死锁处理
 <ul>
-<li>死锁预防<br />
-破坏死锁的四个必要条件，就可以保证死锁不会发生。</li>
-<li>死锁避免<br />
-通过银行家算法实现，保证系统一直处于安全状态</li>
-<li>死锁检测和解除<br />
-系统分配资源时，不采取任何措施。用资源分配图检测当前系统状态是否是死锁状态。资源分配图可以完全简化，则说明当前系统未死锁。死锁时，用死锁解除方法解除死锁。比如，撤销一个进程，剥夺某个进程的资源，或者让进程回退到系统不死锁的状态。</li>
-</ul>
-</li>
-</ul>
-<h2 id="内存管理"><a class="markdownIt-Anchor" href="#内存管理"></a> 内存管理</h2>
-<p>为了更好的支持多道程序的并发，提升系统性能。</p>
-<ul>
-<li>逻辑地址空间<br />
-是指一个源程序在编译或者链接装配后，指令和数据使用的虚拟地址组成的空间。</li>
-<li>物理地址空间<br />
-指内存中真实的物理单元的集合</li>
-<li>内存保护<br />
-通过上、下限地址寄存器。访问内存时，现将地址与上下限寄存器中的地址比较，防止越界。<br />
-通过界址寄存器。虚拟地址与必须小于界址寄存器中的值。</li>
+<li>死锁预防 破坏死锁的四个必要条件，就可以保证死锁不会发生。</li>
+<li>死锁避免 通过银行家算法实现，保证系统一直处于安全状态</li>
+<li>死锁检测和解除 系统分配资源时，不采取任何措施。用资源分配图检测当前系统状态是否是死锁状态。资源分配图可以完全简化，则说明当前系统未死锁。死锁时，用死锁解除方法解除死锁。比如，撤销一个进程，剥夺某个进程的资源，或者让进程回退到系统不死锁的状态。 ## 内存管理 为了更好的支持多道程序的并发，提升系统性能。</li>
+</ul></li>
+<li>逻辑地址空间 是指一个源程序在编译或者链接装配后，指令和数据使用的虚拟地址组成的空间。</li>
+<li>物理地址空间 指内存中真实的物理单元的集合</li>
+<li>内存保护 通过上、下限地址寄存器。访问内存时，现将地址与上下限寄存器中的地址比较，防止越界。 通过界址寄存器。虚拟地址与必须小于界址寄存器中的值。</li>
 <li>内存管理方式
 <ul>
-<li>连续分配<br />
-一个作业装入一块连续的内存中，内存不够，作业不能执行。<br />
-单一连续分配：内存中只有一个作业，用于单道程序机器。<br />
-固定分区分配：先在内存中划分好若干固定大小的内存区域，每个区域中装入一个作业。可以实现多道程序的并发。<br />
-动态分区分配：不事先划分好内存区域。在进程装入内存时，根据进程的大小动态划分分区。
+<li>连续分配 一个作业装入一块连续的内存中，内存不够，作业不能执行。 单一连续分配：内存中只有一个作业，用于单道程序机器。 固定分区分配：先在内存中划分好若干固定大小的内存区域，每个区域中装入一个作业。可以实现多道程序的并发。 动态分区分配：不事先划分好内存区域。在进程装入内存时，根据进程的大小动态划分分区。
 <ul>
-<li>动态分区分配方法<br />
-按照程序的需要进行动态的划分。分配算法有首次适应算法、最佳适应算法、最坏适应算法和临近适应算法</li>
-</ul>
-</li>
-<li>非连续分配<br />
-允许一个程序分散的装入不连续的内存中。此时，需要额外的空间去存储分散的内存区域的索引。根据分区大小是否固定，分为分页存储管理方式和分段存储管理方式。其中，分页管理方式根据运行作业时，是否需要把作业的所有页面都装入内存，分为基本分页管理和请求分页管理，两种管理方式。<br />
-基本分页：内存分为固定的块，按物理结构划分，会有内部碎片。进程的虚拟内存空间划分为大小相等页，物理内存空间划分为大小相等的页框，一个页刚好装入一个页框中。虚拟地址分为两部分：页号和页内地址。页表记录了页面对应的物理页框号。<br />
-基本分段：内存块的大小不固定，按照逻辑结构划分，会有外部碎片。虚拟地址分为两部分：段号和段内地址。<br />
-段页式：基本分段和基本分页的结合，会有内部碎片。虚拟地址分为三部分：段号、页号和页内偏移。</li>
-</ul>
-</li>
-<li>虚拟内存<br />
-虚拟内存基于局部性原理，在程序装入时，将程序的一部分装入内存，其余部分留在外面，就可以启动程序执行。在执行的过程中，当所访问的信息不在内存中时，由操作系统将所需要的部分调入内存，然后继续执行。此时，操作系统好像为用户程序提供了一个比实际内存大的多的存储器，称为虚拟存储器。虚拟存储器的大小由计算机的地址结构决定，并不是内存和外存的简单相加。</li>
+<li>动态分区分配方法 按照程序的需要进行动态的划分。分配算法有首次适应算法、最佳适应算法、最坏适应算法和临近适应算法</li>
+</ul></li>
+<li>非连续分配 允许一个程序分散的装入不连续的内存中。此时，需要额外的空间去存储分散的内存区域的索引。根据分区大小是否固定，分为分页存储管理方式和分段存储管理方式。其中，分页管理方式根据运行作业时，是否需要把作业的所有页面都装入内存，分为基本分页管理和请求分页管理，两种管理方式。 基本分页：内存分为固定的块，按物理结构划分，会有内部碎片。进程的虚拟内存空间划分为大小相等页，物理内存空间划分为大小相等的页框，一个页刚好装入一个页框中。虚拟地址分为两部分：页号和页内地址。页表记录了页面对应的物理页框号。 基本分段：内存块的大小不固定，按照逻辑结构划分，会有外部碎片。虚拟地址分为两部分：段号和段内地址。 段页式：基本分段和基本分页的结合，会有内部碎片。虚拟地址分为三部分：段号、页号和页内偏移。</li>
+</ul></li>
+<li>虚拟内存 虚拟内存基于局部性原理，在程序装入时，将程序的一部分装入内存，其余部分留在外面，就可以启动程序执行。在执行的过程中，当所访问的信息不在内存中时，由操作系统将所需要的部分调入内存，然后继续执行。此时，操作系统好像为用户程序提供了一个比实际内存大的多的存储器，称为虚拟存储器。虚拟存储器的大小由计算机的地址结构决定，并不是内存和外存的简单相加。</li>
 <li>虚拟内存的实现方式</li>
 </ul>
-<ol>
+<ol type="1">
 <li>请求分页式存储管理
 <ul>
-<li>页表项结构<br />
-与普通页式管理相比，请求分页式管理要处理缺页的情况。如何发现和处理缺页是请求分页管理系统必须解决的问题。因此，页表中增加了四个字段。页表项共有 6 个字段。<br />
-页号、页框号、状态位、访问字段、修改位、外存地址<br />
-状态位用于指示内存中的该页是否有效。<br />
-访问字段用于记录本页在一段时间内被访问的次数，或记录本页最近已经有多长时间未被访问。用于置换算法换出页面时的参考。<br />
-修改位用于标识该页在写入内存后是否被修改过。<br />
-外存地址，是该页在外存上的物理地址。</li>
-<li>地址变换 虚拟地址转换为物理地址<br />
-虚拟地址结构：页号和页内地址<br />
-首先访问 TLB，TLB 未命中则访问页表，再未命中则缺页。</li>
-<li>缺页中断<br />
-缺页中断属于内中断。</li>
+<li>页表项结构 与普通页式管理相比，请求分页式管理要处理缺页的情况。如何发现和处理缺页是请求分页管理系统必须解决的问题。因此，页表中增加了四个字段。页表项共有 6 个字段。 页号、页框号、状态位、访问字段、修改位、外存地址 状态位用于指示内存中的该页是否有效。 访问字段用于记录本页在一段时间内被访问的次数，或记录本页最近已经有多长时间未被访问。用于置换算法换出页面时的参考。 修改位用于标识该页在写入内存后是否被修改过。 外存地址，是该页在外存上的物理地址。</li>
+<li>地址变换 虚拟地址转换为物理地址 虚拟地址结构：页号和页内地址 首先访问 TLB，TLB 未命中则访问页表，再未命中则缺页。</li>
+<li>缺页中断 缺页中断属于内中断。</li>
 <li>页面置换算法</li>
 </ul>
-<ol>
+<ol type="1">
 <li>理想的最佳置换算法</li>
 <li>先进先出置换算法</li>
 <li>最近最久未使用置换算法</li>
-<li>时钟置换算法又称为最近未使用算法<br />
-先换出未被访问且未被修改的，然后是未被访问但修改了的，然后是被访问但未被修改的，最后是被访问也被修改的</li>
-</ol>
-</li>
+<li>时钟置换算法又称为最近未使用算法 先换出未被访问且未被修改的，然后是未被访问但修改了的，然后是被访问但未被修改的，最后是被访问也被修改的</li>
+</ol></li>
 <li>请求分段式内存管理</li>
 <li>请求段页式内存管理</li>
 </ol>
 <ul>
 <li>实现虚拟内存所需要的硬件支持</li>
 </ul>
-<ol>
+<ol type="1">
 <li>一定容量的内存和外存</li>
 <li>页表机制或段表机制</li>
 <li>中断机构</li>
-<li>地址变换机构。实现虚拟地址到物理地址的转换</li>
+<li>地址变换机构。实现虚拟地址到物理地址的转换 ## 文件系统</li>
 </ol>
-<h2 id="文件系统"><a class="markdownIt-Anchor" href="#文件系统"></a> 文件系统</h2>
 <ul>
-<li>文件目录<br />
-UNIX 的文件目录由文件名和指向文件对应的 inode 的指针组成。</li>
+<li>文件目录 UNIX 的文件目录由文件名和指向文件对应的 inode 的指针组成。</li>
 <li>inode</li>
 </ul>
-<ol>
+<ol type="1">
 <li>存放了文件控制文件所需要的各种基本信息。
-<ol>
-<li>文件基本信息<br />
-文件物理位置、文件的逻辑结构、文件的物理结构、文件大小、文件占用的块的个数</li>
-<li>存取控制信息<br />
-文件读写权限，文件所属的用户，文件所属的组，文件连接数</li>
-<li>使用信息<br />
-文件最近一次访问时间、inode 的修改时间、文件的修改时间和文件的删除时间</li>
-</ol>
-</li>
+<ol type="1">
+<li>文件基本信息 文件物理位置、文件的逻辑结构、文件的物理结构、文件大小、文件占用的块的个数</li>
+<li>存取控制信息 文件读写权限，文件所属的用户，文件所属的组，文件连接数</li>
+<li>使用信息 文件最近一次访问时间、inode 的修改时间、文件的修改时间和文件的删除时间</li>
+</ol></li>
 <li>还有文件用到的物理块的地址。</li>
 </ol>
 <ul>
 <li>文件的逻辑结构
-<ol>
+<ol type="1">
 <li>流式文件。没有结构，将数据按顺序组织成记录并保存，以字节为单位。</li>
 <li>有结构文件。顺序文件、索引文件、索引顺序文件、散列文件</li>
-</ol>
-</li>
-<li>文件共享<br />
-基于索引节点的硬连接，利用符号链实现的软连接</li>
-<li>文件控制访问<br />
-为每个文件和目录设置一个访问控制表</li>
-<li>文件描述符、文件描述符表、打开文件表、目录项、inode 结点<br />
-每个进程在 PCB 中都有一个数组，名叫文件描述符表，文件描述符就是这个数组的下标。文件描述符 0 表示标准输入流文件，文件描述符 1 表示标准输出流文件，文件描述符 2 表示标准错误输出流文件。文件描述符的表项是一个指向系统打开文件表的指针。</li>
-<li>系统打开文件表<br />
-又叫做系统级的描述符表，表格中的各项条目称为打开文件句柄，是一个 file 对象。一个打开文件句柄存储了与一个打开文件相关的全部信息。如下所示：
-<ol>
+</ol></li>
+<li>文件共享 基于索引节点的硬连接，利用符号链实现的软连接</li>
+<li>文件控制访问 为每个文件和目录设置一个访问控制表</li>
+<li>文件描述符、文件描述符表、打开文件表、目录项、inode 结点 每个进程在 PCB 中都有一个数组，名叫文件描述符表，文件描述符就是这个数组的下标。文件描述符 0 表示标准输入流文件，文件描述符 1 表示标准输出流文件，文件描述符 2 表示标准错误输出流文件。文件描述符的表项是一个指向系统打开文件表的指针。</li>
+<li>系统打开文件表 又叫做系统级的描述符表，表格中的各项条目称为打开文件句柄，是一个 file 对象。一个打开文件句柄存储了与一个打开文件相关的全部信息。如下所示：
+<ol type="1">
 <li>当前文件偏移量</li>
 <li>打开文件时所使用的状态标识</li>
 <li>文件访问模式</li>
@@ -1367,83 +1196,47 @@ UNIX 的文件目录由文件名和指向文件对应的 inode 的指针组成�
 <li>文件的各种属性，包括文件大小以及不同类型操作相关的时间戳</li>
 <li>该文件的引用计数，就是指向该表项的文件描述符的个数。关闭一个文件描述符会减少相应的文件的引用计数，当引用计数为零时，内核会删除该文件在系统打开文件表中的表项。</li>
 <li>一个指向 file_operations 结构体的指针，结构体的成员都是函数指针，指向实现各种文件操作的内核函数。比如：read、write、open 等函数。</li>
-<li>一个指向 dentry 结构体的指针。“dentry” 是 directory entry 的缩写。open、stat 等函数的参数是文件路径，这些函数需要通过文件路径找到文件的 inode。为了减少磁盘访问，内核缓存了目录的树状结构，称为 dentry cache。该树状结构的每一个结点就是一个 dentry 结构体。open、stat 等函数可以沿着路径各部分的 dentry 结构体搜索即可。dentry 结构体中有一个指向 inode 结构体的指针。inode 结构体保存着从磁盘上 inode 读出来的信息。如果两个 dentry 结构体指向同一个 inode 结构体，则说明这两个文件是硬连接。<br />
-系统只维护一个系统打开文件表，所有进程共享这张表。</li>
-</ol>
-</li>
-<li>虚拟文件系统<br />
-Linux 系统中存在很多物理的文件系统，比如 ext2、ext3、ext4 等。每个文件系统都有自己的文件组织方法，操作方法。Linux 系统通过虚拟文件系统使用户能够透明的处理文件，忽视不同物理文件系统之间的差异。<br />
-虚拟文件系统中有四个重要对象：超级块（super block)、索引节点（inode）、目录项（dentry）和文件对象（file）</li>
-<li>超级块（super block）<br />
-一个超级块对应一个真实的物理文件系统，保存文件系统的类型、大小、状态等元信息。不同的物理文件系统对应不同的 super_block，因此对于不同的 super_block 的操作也不同。super_block 结构体中有一个指向 super_operations 结构体的指针，指向某个特定的具体文件系统用于管理这个文件系统中 inode 的操作函数的集合。<br />
-内核中的结构处理都是有讲究的，内核单独使用一个简单的结构体将所有 super_block 都连接起来，但这个结构体不是 super_block 本身，因为 super_block 本身太大了，效率不高。<br />
-struct file_system_type *s_type 属性：文件系统类型，也就是当前文件系统是属于哪个类型，ext2 还是 ext3。</li>
-<li>索引节点 inode<br />
-保存的是文件的元数据，就是文件属性的描述。例如：文件大小、设备标识符、用户标识符、文件模式、文件读取或修改的时间戳、指向存储文件数据的磁盘区块的指针。<br />
-inode 有两种，一种是虚拟文件系统的 inode，一种是具体文件系统的 inode。前者存在与内存中，后者存在于磁盘中。使用 inode 时，要将磁盘上的 inode 填充到内存中的 inode 中。<br />
-每个 inode 结点的大小，一般是 128B 或者 256B。inode 结点的总数在磁盘格式化时就给定。一般每 2KB 的硬盘就设置一个 inode。<br />
-inode number 是唯一的，表示不同的文件。文件名是给用户使用的，Linux 的系统文件目录的一个表项就是 “文件名 + inode number”。系统通过文件名，找到文件对应的 inode number，再通过 inode number 找到 inode 信息，最后通过 inode 中的指向磁盘块的指针，找到文件的数据。<br />
-创建一个文件时，内核就给该文件分配一个 inode，一个 inode 只对应一个实际文件，一个文件也只有一个 inode。inode 的个数就是系统中文件的最大个数。</li>
-<li>目录项（dentry）<br />
-目录项是描述文件的逻辑属性，只存在与内存中，没有实际对应的磁盘描述，是存在于内存的目录项缓存，为了提高查找性能而设计的。所有目录项在一起构成一颗庞大的目录树。<br />
-一个目录项对应一个 inode 结构，一个 inode 结构可以对应多个 dentry 结构。</li>
-<li>文件对象（file）<br />
-文件对象描述的是进程已经打开的文件。file 对象组成系统打开文件表。</li>
+<li>一个指向 dentry 结构体的指针。“dentry” 是 directory entry 的缩写。open、stat 等函数的参数是文件路径，这些函数需要通过文件路径找到文件的 inode。为了减少磁盘访问，内核缓存了目录的树状结构，称为 dentry cache。该树状结构的每一个结点就是一个 dentry 结构体。open、stat 等函数可以沿着路径各部分的 dentry 结构体搜索即可。dentry 结构体中有一个指向 inode 结构体的指针。inode 结构体保存着从磁盘上 inode 读出来的信息。如果两个 dentry 结构体指向同一个 inode 结构体，则说明这两个文件是硬连接。 系统只维护一个系统打开文件表，所有进程共享这张表。</li>
+</ol></li>
+<li>虚拟文件系统 Linux 系统中存在很多物理的文件系统，比如 ext2、ext3、ext4 等。每个文件系统都有自己的文件组织方法，操作方法。Linux 系统通过虚拟文件系统使用户能够透明的处理文件，忽视不同物理文件系统之间的差异。 虚拟文件系统中有四个重要对象：超级块（super block)、索引节点（inode）、目录项（dentry）和文件对象（file）</li>
+<li>超级块（super block） 一个超级块对应一个真实的物理文件系统，保存文件系统的类型、大小、状态等元信息。不同的物理文件系统对应不同的 super_block，因此对于不同的 super_block 的操作也不同。super_block 结构体中有一个指向 super_operations 结构体的指针，指向某个特定的具体文件系统用于管理这个文件系统中 inode 的操作函数的集合。 内核中的结构处理都是有讲究的，内核单独使用一个简单的结构体将所有 super_block 都连接起来，但这个结构体不是 super_block 本身，因为 super_block 本身太大了，效率不高。 struct file_system_type *s_type 属性：文件系统类型，也就是当前文件系统是属于哪个类型，ext2 还是 ext3。</li>
+<li>索引节点 inode 保存的是文件的元数据，就是文件属性的描述。例如：文件大小、设备标识符、用户标识符、文件模式、文件读取或修改的时间戳、指向存储文件数据的磁盘区块的指针。 inode 有两种，一种是虚拟文件系统的 inode，一种是具体文件系统的 inode。前者存在与内存中，后者存在于磁盘中。使用 inode 时，要将磁盘上的 inode 填充到内存中的 inode 中。 每个 inode 结点的大小，一般是 128B 或者 256B。inode 结点的总数在磁盘格式化时就给定。一般每 2KB 的硬盘就设置一个 inode。 inode number 是唯一的，表示不同的文件。文件名是给用户使用的，Linux 的系统文件目录的一个表项就是 “文件名 + inode number”。系统通过文件名，找到文件对应的 inode number，再通过 inode number 找到 inode 信息，最后通过 inode 中的指向磁盘块的指针，找到文件的数据。 创建一个文件时，内核就给该文件分配一个 inode，一个 inode 只对应一个实际文件，一个文件也只有一个 inode。inode 的个数就是系统中文件的最大个数。</li>
+<li>目录项（dentry） 目录项是描述文件的逻辑属性，只存在与内存中，没有实际对应的磁盘描述，是存在于内存的目录项缓存，为了提高查找性能而设计的。所有目录项在一起构成一颗庞大的目录树。 一个目录项对应一个 inode 结构，一个 inode 结构可以对应多个 dentry 结构。</li>
+<li>文件对象（file） 文件对象描述的是进程已经打开的文件。file 对象组成系统打开文件表。</li>
 </ul>
-<h1 id="数据库"><a class="markdownIt-Anchor" href="#数据库"></a> 数据库</h1>
-<h2 id="事务的概念与特性"><a class="markdownIt-Anchor" href="#事务的概念与特性"></a> 事务的概念与特性</h2>
+<h1 id="数据库">数据库</h1>
+<h2 id="事务的概念与特性">事务的概念与特性</h2>
 <ul>
 <li>事务是一个操作序列，是不可分割的工作单位。</li>
 <li>特性</li>
 </ul>
-<ol>
+<ol type="1">
 <li>原子性，逻辑上是不可分割的操作单元，事务的所有操作要么全部提交成功，要么全部失败回滚。</li>
 <li>一致性，事务的执行必须使数据库保持一致性状态。在一致性状态下，所有事务对一个数据的读取结果都是相同的。</li>
 <li>隔离性，一个事务所做的修改在最终提交之前，对其他事务是不可见的。并发的事务之间不能互相影响。</li>
 <li>持久性，事务一旦提交成功，对数据的修改是永久性的。</li>
 </ol>
-<h1 id="计算机组成"><a class="markdownIt-Anchor" href="#计算机组成"></a> 计算机组成</h1>
-<h2 id="补码"><a class="markdownIt-Anchor" href="#补码"></a> 补码</h2>
-<p>正数和 0 的补码就是该数字本身。负数的补码则是将其对应的整数按位取反再加 1。<br />
-补码的最大优点是可以在加法或减法处理中，不需要因为数字的正负而使用不同的计算方式。减一个数相当于加上这个数的相反数的补码。<br />
-0 只有一个表示方式。</p>
-<h1 id="编译器文法分析模拟器"><a class="markdownIt-Anchor" href="#编译器文法分析模拟器"></a> 编译器文法分析模拟器</h1>
+<h1 id="计算机组成">计算机组成</h1>
+<h2 id="补码">补码</h2>
+<p>正数和 0 的补码就是该数字本身。负数的补码则是将其对应的整数按位取反再加 1。 补码的最大优点是可以在加法或减法处理中，不需要因为数字的正负而使用不同的计算方式。减一个数相当于加上这个数的相反数的补码。 0 只有一个表示方式。</p>
+<h1 id="编译器文法分析模拟器">编译器文法分析模拟器</h1>
 <ul>
-<li>简单介绍项目<br />
-项目是一个只有前端没有后端的静态化 Web 应用。项目通过可视化的方式，动态的展示了 LL(1) 文法的分析过程。项目主要是用来辅助老师教学。用户首先自定义一个上下文无关文法，然后通过消除文法中的左递归和提取左因子化简文法，简化的目的是尝试将用户自定义的上下文无关文法化简为 LL(1) 文法。计算化简后文法的 First 集合和 Follow 集合。通过 First 集合和 Follow 集合的信息判断当前文法是否属于 LL(1) 文法。如果是，则继续生成预测分析表，否则提醒用户去修改文法。</li>
-<li>为何选用 Nuxt.js 作为开发框架？<br />
-因为项目是一个没有后端的静态化 Web 应用，Nuxt.js 可以把基于 Vue.js 的应用生成对应的静态站点，所以就选用了 Nuxt.js。</li>
-<li>如何进行项目管理的？<br />
-使用华为云项目管理平台进行的项目管理。主要使用了平台的需求规划、迭代和测试管理这三个功能。代码使用 git-flow 进行版本控制。需求分析-用例归约描述-项目计划（项目开发计划和测试计划）-解决方案说明书-设计原型-编码-测试。小组成员每周开两次例会，写一次周报，借此来监控项目进度。</li>
-<li>项目技术细节？<br />
-项目使用了 Element-UI 组件库中的一些基础组件，也自定义了很多组件，比如 “计算 First 集合” 的组件、“计算 Follow 集合” 的组件。</li>
-<li>你做的工作？<br />
-实现四个功能。读取用户输入、检查并消除文法中的左递归（包括立即左递归和间接左递归）、计算文法的 First 集合并动态展示计算过程和判断文法是否属于 LL(1) 文法这四个功能。
-<ol>
-<li>读取用户输入<br />
-就是读取用户自定义的文法符号和产生式，然后将其转换为我们自定义的一个 grammar 对象。</li>
-<li>检查并消除文法中的左递归<br />
-2.1 检查并消除文法中的立即左递归<br />
-立即左递归很好检查与消除。<br />
-2.2 检查并消除文法中的间接左递归<br />
-间接左递归需要经过两步或两步以上的推导才能检测出来，有一些难度，这里使用了回溯法进行检测。</li>
-<li>计算 First 集合并动态展示计算过程<br />
-计算 First 集合有标准的算法，只要将其翻译为代码即可。这里的难点是动态展示计算过程。要求达到的效果是，用户点击下一步，界面上显示下一步的计算结果，以此帮助用户理解算法的运行过程。<br />
-解决方法是使用了 JavaScript 中的 Generator 函数，算法每进行一步就通过 yield 表达式返回当前算法状态并展示在前端界面上，然后返回 yield 表达式停下的地方继续执行算法。</li>
-<li>判断文法是否属于 LL(1) 文法<br />
-这里没有难度。有两条规则用于判断文法是否属于 LL(1) 文法。如果一个文法同时满足这两条规则，则属于 LL(1) 文法，否则不属于。</li>
-</ol>
-</li>
-<li>项目整体架构？<br />
-项目使用了单例模式，有一个单例对象 grammar，代表用户输入的文法。没有通过编码技巧保证全局只有一个 grammar 对象，只是要求大家在写代码时不可调用 grammar 的构造方法。。</li>
+<li>简单介绍项目 项目是一个只有前端没有后端的静态化 Web 应用。项目通过可视化的方式，动态的展示了 LL(1) 文法的分析过程。项目主要是用来辅助老师教学。用户首先自定义一个上下文无关文法，然后通过消除文法中的左递归和提取左因子化简文法，简化的目的是尝试将用户自定义的上下文无关文法化简为 LL(1) 文法。计算化简后文法的 First 集合和 Follow 集合。通过 First 集合和 Follow 集合的信息判断当前文法是否属于 LL(1) 文法。如果是，则继续生成预测分析表，否则提醒用户去修改文法。</li>
+<li>为何选用 Nuxt.js 作为开发框架？ 因为项目是一个没有后端的静态化 Web 应用，Nuxt.js 可以把基于 Vue.js 的应用生成对应的静态站点，所以就选用了 Nuxt.js。</li>
+<li>如何进行项目管理的？ 使用华为云项目管理平台进行的项目管理。主要使用了平台的需求规划、迭代和测试管理这三个功能。代码使用 git-flow 进行版本控制。需求分析-用例归约描述-项目计划（项目开发计划和测试计划）-解决方案说明书-设计原型-编码-测试。小组成员每周开两次例会，写一次周报，借此来监控项目进度。</li>
+<li>项目技术细节？ 项目使用了 Element-UI 组件库中的一些基础组件，也自定义了很多组件，比如 “计算 First 集合” 的组件、“计算 Follow 集合” 的组件。</li>
+<li>你做的工作？ 实现四个功能。读取用户输入、检查并消除文法中的左递归（包括立即左递归和间接左递归）、计算文法的 First 集合并动态展示计算过程和判断文法是否属于 LL(1) 文法这四个功能。
+<ol type="1">
+<li>读取用户输入 就是读取用户自定义的文法符号和产生式，然后将其转换为我们自定义的一个 grammar 对象。</li>
+<li>检查并消除文法中的左递归 2.1 检查并消除文法中的立即左递归 立即左递归很好检查与消除。 2.2 检查并消除文法中的间接左递归 间接左递归需要经过两步或两步以上的推导才能检测出来，有一些难度，这里使用了回溯法进行检测。</li>
+<li>计算 First 集合并动态展示计算过程 计算 First 集合有标准的算法，只要将其翻译为代码即可。这里的难点是动态展示计算过程。要求达到的效果是，用户点击下一步，界面上显示下一步的计算结果，以此帮助用户理解算法的运行过程。 解决方法是使用了 JavaScript 中的 Generator 函数，算法每进行一步就通过 yield 表达式返回当前算法状态并展示在前端界面上，然后返回 yield 表达式停下的地方继续执行算法。</li>
+<li>判断文法是否属于 LL(1) 文法 这里没有难度。有两条规则用于判断文法是否属于 LL(1) 文法。如果一个文法同时满足这两条规则，则属于 LL(1) 文法，否则不属于。</li>
+</ol></li>
+<li>项目整体架构？ 项目使用了单例模式，有一个单例对象 grammar，代表用户输入的文法。没有通过编码技巧保证全局只有一个 grammar 对象，只是要求大家在写代码时不可调用 grammar 的构造方法。。</li>
 </ul>
-<h1 id="内存数据库模型"><a class="markdownIt-Anchor" href="#内存数据库模型"></a> 内存数据库模型</h1>
+<h1 id="内存数据库模型">内存数据库模型</h1>
 <ul>
-<li>简单介绍<br />
-通过控制台读入 SQL 语句，对 SQL 进行解析，调用对应的方法。可以解析八种 SQL 语句。</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">database</span> databasename</span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">database</span> databasename</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tablename(column1,column2) <span class="keyword">values</span> (value1,value2)</span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> tablename <span class="keyword">where</span> <span class="keyword">column</span>=<span class="keyword">value</span></span><br><span class="line"><span class="keyword">select</span> column1 <span class="keyword">from</span> tablename <span class="keyword">where</span> column2=<span class="keyword">value</span></span><br><span class="line"><span class="keyword">update</span> tablename <span class="keyword">set</span> column1=value1, column2=value2 <span class="keyword">where</span> column3=value3</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> tablename</span><br><span class="line">(</span><br><span class="line">	colume1 <span class="keyword">type</span>,</span><br><span class="line">	column2 <span class="keyword">type</span>,</span><br><span class="line">	primary <span class="keyword">key</span>(column1)</span><br><span class="line">)</span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> tablename</span><br></pre></td></tr></table></figure>
-<ul>
+<li>简单介绍 通过控制台读入 SQL 语句，对 SQL 进行解析，调用对应的方法。可以解析八种 SQL 语句。 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">database</span> databasename</span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">database</span> databasename</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tablename(column1,column2) <span class="keyword">values</span> (value1,value2)</span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> tablename <span class="keyword">where</span> <span class="keyword">column</span>=<span class="keyword">value</span></span><br><span class="line"><span class="keyword">select</span> column1 <span class="keyword">from</span> tablename <span class="keyword">where</span> column2=<span class="keyword">value</span></span><br><span class="line"><span class="keyword">update</span> tablename <span class="keyword">set</span> column1=value1, column2=value2 <span class="keyword">where</span> column3=value3</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> tablename</span><br><span class="line">(</span><br><span class="line">	colume1 <span class="keyword">type</span>,</span><br><span class="line">	column2 <span class="keyword">type</span>,</span><br><span class="line">	primary <span class="keyword">key</span>(column1)</span><br><span class="line">)</span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> tablename</span><br></pre></td></tr></table></figure></li>
 <li>SQL 语句解析过程
 <ul>
 <li>首先从控制台读取 SQL 语句，让后词法分析器提取 SQL 语句中的 token 并传递给语法分析器，语法分析器获取 token 并分析 SQL 的语义，按照语义调用数据引擎的接口，实现 SQL 语句的执行。</li>
@@ -1451,8 +1244,7 @@ inode number 是唯一的，表示不同的文件。文件名是给用户使用�
 <li>语法分析首先要获得一个词法分析器对象。然后不断调用词法分析对象的 scan 方法获取词法单元。然后通过一个 stmt 函数分析获得词法单元。其实就是一堆 switch 和 case，用 case 匹配预先定义好的 token-name。比如 CREATE、TABLE、DROP 等。然后调用 DBs 对象实现的方法来模拟 SQL 语句的功能。</li>
 <li>没有生成语法树，语义分析和语法分析放在一起了。或者说没有语法分析，只有语义分析。语义分析实现了类型检查。</li>
 <li>到语义分析就结束了。该编译器的功能就是把 SQL ��句翻译为 C++ 函数调用。。</li>
-</ul>
-</li>
+</ul></li>
 <li>数据库模拟
 <ul>
 <li>有一个 DBs 对象，该对象用来管理所有的数据库。它的属性是一个 vector 数组，数组里面的值是一个个 Database 对象。DBs 对象有所有的操作数据库的方法。SQL 语句分析结束后就是调用这里的方法来模拟执行 SQL 语句。</li>
@@ -1464,57 +1256,43 @@ inode number 是唯一的，表示不同的文件。文件名是给用户使用�
 <li>create database 方法实现
 <ul>
 <li>创建一个数据库就是创建一个 Database 对象。。然后加入 DBs 对象的 vector 数组中。。</li>
-</ul>
-</li>
+</ul></li>
 <li>drop database 方法实现
 <ul>
 <li>就是将 DBs 对象的 vector 数组中对应的 Database 对象删除。。</li>
-</ul>
-</li>
+</ul></li>
 <li>insert 方法实现
 <ul>
 <li>通过 vector 的 push_back 方法实现的。。插入的时候先检查要插入行的主码是否与已经存在的行的主码相同。。</li>
-</ul>
-</li>
+</ul></li>
 <li>delete 方法实现
 <ul>
 <li>通过 vector 的 erase 方法实现的。。</li>
-</ul>
-</li>
+</ul></li>
 <li>select 方法实现
 <ul>
 <li>找到对应的数据库，找到对应的表，找到对应的行，然后将行显示出来。</li>
-</ul>
-</li>
+</ul></li>
 <li>update 方法实现
 <ul>
 <li>找到对应的数据库，找到对应的表，找到对应的行，然后将要修改的内容修改了。</li>
-</ul>
-</li>
+</ul></li>
 <li>create table 方法实现
 <ul>
 <li>先检查要创建的表是否存在，然后用 push_back 将新建的 Table 对象加入 Database 对象的记录 Table 的 vector 数组中。。</li>
-</ul>
-</li>
+</ul></li>
 <li>drop table 方法实现
 <ul>
 <li>先检查要创建的表是否存在，然后使用 erase 方法将要删除的表删除。。</li>
-</ul>
-</li>
-</ul>
-</li>
+</ul></li>
+</ul></li>
 <li>序列化
 <ul>
 <li>使用了 boost 库。</li>
 <li>之前提到的每一个类都有一个对应的结构，用来序列化。该结构的属性和对应的类的属性相同，有一个用来序列化的函数。</li>
-<li>首先将对象转换为对应的结构。然后��序列化。</li>
-</ul>
-</li>
-</ul>
-<h1 id="linux-文件系统"><a class="markdownIt-Anchor" href="#linux-文件系统"></a> Linux 文件系统</h1>
-<ul>
-<li>简单介绍<br />
-二级文件系统有一个根目录，每个用户在根目录下创建自己的用户目录，用户可以在自己的用户目录下创建文件。使用 C++ 的文件操作函数，对文件进行读、写、删、查操作。</li>
+<li>首先将对象转换为对应的结构。然后��序列化。 # Linux 文件系统</li>
+</ul></li>
+<li>简单介绍 二级文件系统有一个根目录，每个用户在根目录下创建自己的用户目录，用户可以在自己的用户目录下创建文件。使用 C++ 的文件操作函数，对文件进行读、写、删、查操作。</li>
 <li>文件系统结构
 <ul>
 <li>使用一个真正的文件夹模拟磁盘。该文件称为 file system。</li>
@@ -1524,56 +1302,43 @@ inode number 是唯一的，表示不同的文件。文件名是给用户使用�
 <li>使用一个名为 inode 的 map&lt;int,fileAttribute&gt; 记录 inode 结点。fileAttribute 记录了文件的基本属性。程序退出时，写入file system 目录下的一个名为 inode.bin 的文件。</li>
 <li>file system 文件夹下有一个 node 文件夹，里面存放 username.bin 文件，记录用户创建的文件名和文件对应的 inode number。相当于系统文件目录。程序启动时读入到一个名为 fileTable 的 map&lt;string,int&gt; 中。</li>
 <li>file system 文件夹下有一个 userfiles 文件夹，里面存放用户创建的文件，使用 inode number 命名。</li>
-</ul>
-</li>
+</ul></li>
 <li>方法实现
 <ul>
-<li>signIn 用户注册<br />
-就是简单的在 account 中添加一项。添加之前检查该用户是否已经存在。</li>
-<li>logIn 用户登陆<br />
-检查用户输入的帐号密码是否在 account 中。</li>
-<li>createFile 创建文件<br />
-找到一个空闲的 inode number，找到一个空闲的 block，然后在 userFiles 目录下创建文件，该文件以 inode number 命名。</li>
-<li>deleteFile 删除文件<br />
-在 fileTabe 中查找文件是否存在，找到了就删除，释放文件占用的 inode number 和 block。</li>
-<li>openFile 打开文件<br />
-在 fileTable 中查找文件是否存在，找到了就返回文件的 inode number。</li>
+<li>signIn 用户注册 就是简单的在 account 中添加一项。添加之前检查该用户是否已经存在。</li>
+<li>logIn 用户登陆 检查用户输入的帐号密码是否在 account 中。</li>
+<li>createFile 创建文件 找到一个空闲的 inode number，找到一个空闲的 block，然后在 userFiles 目录下创建文件，该文件以 inode number 命名。</li>
+<li>deleteFile 删除文件 在 fileTabe 中查找文件是否存在，找到了就删除，释放文件占用的 inode number 和 block。</li>
+<li>openFile 打开文件 在 fileTable 中查找文件是否存在，找到了就返回文件的 inode number。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h1 id="字节跳动-一面"><a class="markdownIt-Anchor" href="#字节跳动-一面"></a> 字节跳动 一面</h1>
-<h2 id="经验"><a class="markdownIt-Anchor" href="#经验"></a> 经验</h2>
+<h1 id="字节跳动-一面">字节跳动 一面</h1>
+<h2 id="经验">经验</h2>
 <ul>
 <li>复习知识点时要全面准确，一定要全面，因为面试官会根据你的回答向深处问！！</li>
 <li>不会的要说不会。</li>
 <li>算法要有一定的基础，LeetCode 的简单和中等难度的题要能解决。</li>
 <li>对面试官的问题有疑惑就直接问清楚。</li>
-<li>遇到不会的算法题，自己边想边说，面试官可能会给出一些指导。要会找话头。</li>
-</ul>
-<h2 id="内容"><a class="markdownIt-Anchor" href="#内容"></a> 内容</h2>
-<ul>
+<li>遇到不会的算法题，自己边想边说，面试官可能会给出一些指导。要会找话头。 ## 内容</li>
 <li>自我介绍 就是把自己的简历复述一遍 说的时候有些紧张。。</li>
 <li>项目 编译器文法分析模拟器
 <ul>
 <li>直接跳到了编译器有哪几部分，是怎么实现的</li>
 <li>一个可执行的二进制文件从打开到执行的步骤是怎样的（不会）</li>
-</ul>
-</li>
+</ul></li>
 <li>项目 内存数据库模型
 <ul>
 <li>解析 SQL 语句的编译器是怎样实现的</li>
 <li>数据库使用什么模拟的？STL 里面的 vector</li>
 <li>数据库事务的特征（不会，就答了一个原子性）</li>
-</ul>
-</li>
+</ul></li>
 <li>项目 二级文件系统
 <ul>
 <li>基本功能</li>
 <li>进程打开的第一个文件时，对应的文件描述符是什么（3）</li>
 <li>文件描述符是什么</li>
 <li>系统打开文件表里面存放什么东西（不会）</li>
-</ul>
-</li>
+</ul></li>
 <li>说一下 TCP 协议的三次握手和四次挥手</li>
 <li>在第四次挥手后为何要有 TIME_WAIT 状态</li>
 <li>如果有两个线程，同时修改一个变量 i，使 i 的值增加一，i 的初始值为 0，不加锁，i 会有几个可能结果。为什么会有这样的结果，怎么解决？</li>
@@ -1581,83 +1346,58 @@ inode number 是唯一的，表示不同的文件。文件名是给用户使用�
 <li>C++ 语言细节
 <ul>
 <li>const 关键字的用途。（只答了修饰普通变量，指针，函数参数）</li>
-</ul>
-</li>
+</ul></li>
 <li>算法题：循环有序数组的二分查找、固定几个数字组成的下一个比当前数字大的数</li>
 <li>有啥问题想问面试官，最近在读什么书？</li>
 </ul>
-<h1 id="字节跳动-二面"><a class="markdownIt-Anchor" href="#字节跳动-二面"></a> 字节跳动 二面</h1>
-<h2 id="经验-2"><a class="markdownIt-Anchor" href="#经验-2"></a> 经验</h2>
+<h1 id="字节跳动-二面">字节跳动 二面</h1>
+<h2 id="经验-1">经验</h2>
 <ul>
 <li>刷算法题。见多识广，做的少了就会露馅。要写代码。</li>
-<li>基础知识要牢固。</li>
-</ul>
-<h2 id="内容-2"><a class="markdownIt-Anchor" href="#内容-2"></a> 内容</h2>
-<ul>
+<li>基础知识要牢固。 ## 内容</li>
 <li>自我介绍</li>
 <li>基于简历上的项目提问</li>
 <li>项目 编译器文法分析模拟器
 <ul>
 <li>简述模拟器实现的功能</li>
 <li>如何实现一个正则表达式匹配引擎（词法分析）</li>
-</ul>
-</li>
+</ul></li>
 <li>项目 内存数据库系统
 <ul>
 <li>解析 SQL 语句时，如何判断 where 语句中的关系的优先级（不会）</li>
 <li>数据库是如何存储在内存中的</li>
-</ul>
-</li>
+</ul></li>
 <li>项目 二级文件系统 结合操作系统提问
 <ul>
 <li>虚拟内存 只有 4G 内存的机器上能运行 8G 大小的程序吗？</li>
 <li>虚拟内存的实现细节</li>
 <li>页面置换算法</li>
-</ul>
-</li>
+</ul></li>
 <li>C++
 <ul>
 <li>map 容器实现方式-&gt;红黑树-&gt;红黑树的定义-&gt;除了红黑树还可以用什么数据结构实现-&gt;跳表-&gt;还有吗？-&gt;散列表-&gt;实现一个散列表应当注意的细节-&gt;要有一个好的散列函数，要能解决散列冲突-&gt;散列冲突的解决方法有哪些？-&gt; 开哈希和闭哈希</li>
-</ul>
-</li>
+</ul></li>
 <li>算法
 <ul>
 <li>给 2000 万的高考考生按照分数排序（基数排序）</li>
 <li>给定 m 个不重复的字符 [a, b, c, d]，以及一个长度为 n 的字符串 tbcacbdata。问能否在这个字符串中找到一个长度为 m 的连续子串，使得这个子串刚好由上面 m 个字符组成，顺序无所谓，返回任意满足条件的一个子串的起始位置，未找到返回-1。比如上面这个例子，acbd，3。
 <ul>
 <li>该题为 leetcode 30.串联所有单词的子串。知识点为哈希表、滑动窗口、字符串。解题文章：[LeetCode 图解|30.串联所有单词的子串-五分钟学算法][link1]</li>
+</ul></li>
+</ul></li>
+<li>有什么想问的吗？ 下次就问自己没做出来的题。。</li>
 </ul>
-</li>
-</ul>
-</li>
-<li>有什么想问的吗？<br />
-下次就问自己没做出来的题。。</li>
-</ul>
-<h1 id="腾讯春招补招"><a class="markdownIt-Anchor" href="#腾讯春招补招"></a> 腾讯春招补招</h1>
+<h1 id="腾讯春招补招">腾讯春招补招</h1>
 <ul>
-<li>岗位方向<br />
-软件开发-后台开发方向</li>
-<li>岗位要求<br />
-编程基本功扎实，掌握 C/C++/JAVA 等开发语言、常用算法和数据结构；<br />
-熟悉 TCP/UDP 网络协议即相关编程，进程间通讯编程；<br />
-了解 Python、Shell、Perl 等脚本语言；<br />
-了解 MySQL 及 SQL 语言，了解 NoSQL 和 key-value 存储原理；<br />
-全面、扎实的软件知识结构，掌握操作系统、软件工程、设计模式、数据结构、数据库系统、网络安全等知识；<br />
-了解分布式系统设计与开发、负载均衡技术、系统容灾设计、高可用系统等知识。<br />
-[link1]:<a href="https://mp.weixin.qq.com/s/OnpzUjnBaUw9Y-tzsralJA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/OnpzUjnBaUw9Y-tzsralJA</a></li>
+<li>岗位方向 软件开发-后台开发方向</li>
+<li>岗位要求 编程基本功扎实，掌握 C/C++/JAVA 等开发语言、常用算法和数据结构； 熟悉 TCP/UDP 网络协议即相关编程，进程间通讯编程； 了解 Python、Shell、Perl 等脚本语言； 了解 MySQL 及 SQL 语言，了解 NoSQL 和 key-value 存储原理； 全面、扎实的软件知识结构，掌握操作系统、软件工程、设计模式、数据结构、数据库系统、网络安全等知识； 了解分布式系统设计与开发、负载均衡技术、系统容灾设计、高可用系统等知识。 [link1]:https://mp.weixin.qq.com/s/OnpzUjnBaUw9Y-tzsralJA</li>
 </ul>
-<h1 id="字节跳动春招补招"><a class="markdownIt-Anchor" href="#字节跳动春招补招"></a> 字节跳动春招补招</h1>
+<h1 id="字节跳动春招补招">字节跳动春招补招</h1>
 <ul>
-<li>
-<p>岗位方向<br />
-后端开发工程师-抖音、直播、Faceu、轻颜、剪映</p>
-</li>
-<li>
-<p>岗位描述<br />
-团队介绍：互娱研发包含抖音短视频、抖音火山版、直播、Faceu、轻颜、剪映等，截止2020年1月，抖音日活（DAU）已经突破4亿，并继续保持高速增长。你会支持包括但不限于上述产品研发和相关架构工作，每一行代码都能影响亿万用户。</p>
-</li>
+<li><p>岗位方向 后端开发工程师-抖音、直播、Faceu、轻颜、剪映</p></li>
+<li><p>岗位描述 团队介绍：互娱研发包含抖音短视频、抖音火山版、直播、Faceu、轻颜、剪映等，截止2020年1月，抖音日活（DAU）已经突破4亿，并继续保持高速增长。你会支持包括但不限于上述产品研发和相关架构工作，每一行代码都能影响亿万用户。</p></li>
 </ul>
-<ol>
+<ol type="1">
 <li>参与开发公司直播平台，构建通用平台，工具组件；</li>
 <li>支持直播生产端业务迭代，提升运营效率与内容生产效率；</li>
 <li>能够充分理解业务需求，与各个业务角色配合，负责业务项目的分析、抽象、架构、研发过程及最终质量；</li>
@@ -1666,69 +1406,28 @@ inode number 是唯一的，表示不同的文件。文件名是给用户使用�
 <ul>
 <li>岗位要求</li>
 </ul>
-<ol>
+<ol type="1">
 <li>2020届获得本科及以上学历，计算机相关专业；</li>
 <li>热爱计算机科学和互联网技术，对移动产品有浓厚兴趣；</li>
 <li>扎实的数据结构和算法基础；熟悉至少一门编程语言，包括但不限于：Java、Objective-C、Swift、C、C++；</li>
 <li>关注用户体验，能够积极把技术转化到用户体验改进上；</li>
 <li>对新技术保持热情，具备良好的分析、解决问题的能力。</li>
 </ol>
-<h2 id="一面"><a class="markdownIt-Anchor" href="#一面"></a> 一面</h2>
-<p>基础知识问题：<br />
-对文件系统熟不熟悉？介绍一下 Linux 的文件系统。<br />
-如何检测死锁，如何避免死锁。（死锁的四个必要条件：互斥，非抢占，保持请求，循环等待）<br />
-C<ins>语言细节，move 函数的实现（不会，没听说过这个函数），C</ins> 有哪几种锁（不会，没用过 C++ 的锁）。<br />
-常见的排序算法，哪些是稳定的，哪些是不稳定的？<br />
-进程与线程的区别。<br />
-进程间通信的方式，系统是如何实现共享内存这种通信方式的？（不会，只知道原理，不知道实现）<br />
-一个文件从打开，然后修改，再到写回硬盘的流程。（不知道，只说出了打开文件的过程，修改到写回的过程不清楚）</p>
-<p>编程题：<br />
-k 个一组反转链表</p>
-<h1 id="深信服春招"><a class="markdownIt-Anchor" href="#深信服春招"></a> 深信服春招</h1>
+<h2 id="一面">一面</h2>
+<p>基础知识问题： 对文件系统熟不熟悉？介绍一下 Linux 的文件系统。 如何检测死锁，如何避免死锁。（死锁的四个必要条件：互斥，非抢占，保持请求，循环等待） C++语言细节，move 函数的实现（不会，没听说过这个函数），C++ 有哪几种锁（不会，没用过 C++ 的锁）。 常见的排序算法，哪些是稳定的，哪些是不稳定的？ 进程与线程的区别。 进程间通信的方式，系统是如何实现共享内存这种通信方式的？（不会，只知道原理，不知道实现） 一个文件从打开，然后修改，再到写回硬盘的流程。（不知道，只说出了打开文件的过程，修改到写回的过程不清楚）</p>
+<p>编程题： k 个一组反转链表</p>
+<h1 id="深信服春招">深信服春招</h1>
 <ul>
-<li>笔试<br />
-选择题：考察数据结构中的栈，树的遍历<br />
-填空题：考察程序输出，sizeof() 函数的使用，函数定义的参数与传递的参数不同怎么办，结构体语法，指针的使用，一些概率计算<br />
-编程题：模拟题，模拟口罩分配，要自己处理输入；字符串处理，将一连串的空格变为逗号，要自己处理输入；后缀表达式转中缀表达式，不能有多余的括号。</li>
-<li>结果<br />
-凉了，C++ 基础知识太差，模拟题没思路，输入处理好久不写给忘了。::&gt;_&lt;::</li>
+<li>笔试 选择题：考察数据结构中的栈，树的遍历 填空题：考察程序输出，sizeof() 函数的使用，函数定义的参数与传递的参数不同怎么办，结构体语法，指针的使用，一些概率计算 编程题：模拟题，模拟口罩分配，要自己处理输入；字符串处理，将一连串的空格变为逗号，要自己处理输入；后缀表达式转中缀表达式，不能有多余的括号。</li>
+<li>结果 凉了，C++ 基础知识太差，模拟题没思路，输入处理好久不写给忘了。::&gt;_&lt;:: ## 没凉，被捞起来了，一面问题 首先询问项目经历 编译器文法分析模拟器，项目具体做什么，怎么做的项目管理，你负责哪一部分？ Linux 二级文件系统，什么是二级文件系统，怎么做的，是在用户层做的还是在应用层做的？当一个文件需要扩容时，怎么办？ 内存数据库模型，存储引擎怎么做的？存储引擎能不能建立索引？SQL 语句解析的时候有没有考虑异常情况？最终发现，这个其实就是一个 SQL 语句解析器。。 ## 三面 树的前中后序遍历，使用迭代实现。 一个文件打开，修改，再写回磁盘都有哪些系统调用。 宏定义一个三个数比较。</li>
 </ul>
-<h2 id="没凉被捞起来了一面问题"><a class="markdownIt-Anchor" href="#没凉被捞起来了一面问题"></a> 没凉，被捞起来了，一面问题</h2>
-<p>首先询问项目经历<br />
-编译器文法分析模拟器，项目具体做什么，怎么做的项目管理，你负责哪一部分？<br />
-Linux 二级文件系统，什么是二级文件系统，怎么做的，是在用户层做的还是在应用层做的？当一个文件需要扩容时，怎么办？<br />
-内存数据库模型，存储引擎怎么做的？存储引擎能不能建立索引？SQL 语句解析的时候有没有考虑异常情况？最终发现，这个其实就是一个 SQL 语句解析器。。</p>
-<h2 id="三面"><a class="markdownIt-Anchor" href="#三面"></a> 三面</h2>
-<p>树的前中后序遍历，使用迭代实现。<br />
-一个文件打开，修改，再写回磁盘都有哪些系统调用。<br />
-宏定义一个三个数比较。</p>
-<p>C++ 语言细节<br />
-堆内存和栈内存的区别<br />
-野指针是什么<br />
-什么情况下会发生内存泄露</p>
-<p>数据结构问题<br />
-数组与链表的区别<br />
-树的应用，AVL 树，红黑树，B 树，B+ 树<br />
-常见排序算法，哪些是稳定的，哪些是不稳定的？快速排序的原理。</p>
-<p>面试官给的面试总结<br />
-项目管理经验不足，开发时不考虑异常情况，典型的学生思维。二级文件系统做的不够深入，没有在内核上实现。数据库模型的数据存储引擎简陋，主要工作集中在 SQL 语句解析器上。C++ 语言细节不够扎实，在工作中，大多在处理各种异常情况，比如内存泄漏，野指针等。</p>
-<h1 id="三七互娱笔试"><a class="markdownIt-Anchor" href="#三七互娱笔试"></a> 三七互娱笔试</h1>
-<p>RSA、SHA、DES、BASE64 分别是什么。<br />
-IPV6 地址的位数<br />
-操作系统提供的接口有哪几种？<br />
-缺省的 Linux 系统如何启动后台进程？<br />
-Linux 下如何获取文件夹的大小？</p>
-<h1 id="华为业务主管面"><a class="markdownIt-Anchor" href="#华为业务主管面"></a> 华为业务主管面</h1>
-<p>自我介绍<br />
-团队愿景，网络自动驾驶，通信的高速公路，互联网的基础，团队大概有 200 个人<br />
-需要学习的技术</p>
-<ol>
-<li>设计模式</li>
-<li>编程能力，基础的指针，队列，堆栈等知识</li>
-<li>数据库的基本知识</li>
-<li>大数据的基本知识<br />
-3 天左右会收到 HR 的通知</li>
-</ol>
+<p>C++ 语言细节 堆内存和栈内存的区别 野指针是什么 什么情况下会发生内存泄露</p>
+<p>数据结构问题 数组与链表的区别 树的应用，AVL 树，红黑树，B 树，B+ 树 常见排序算法，哪些是稳定的，哪些是不稳定的？快速排序的原理。</p>
+<p>面试官给的面试总结 项目管理经验不足，开发时不考虑异常情况，典型的学生思维。二级文件系统做的不够深入，没有在内核上实现。数据库模型的数据存储引擎简陋，主要工作集中在 SQL 语句解析器上。C++ 语言细节不够扎实，在工作中，大多在处理各种异常情况，比如内存泄漏，野指针等。</p>
+<h1 id="三七互娱笔试">三七互娱笔试</h1>
+<p>RSA、SHA、DES、BASE64 分别是什么。 IPV6 地址的位数 操作系统提供的接口有哪几种？ 缺省的 Linux 系统如何启动后台进程？ Linux 下如何获取文件夹的大小？</p>
+<h1 id="华为业务主管面">华为业务主管面</h1>
+<p>自我介绍 团队愿景，网络自动驾驶，通信的高速公路，互联网的基础，团队大概有 200 个人 需要学习的技术 1. 设计模式 2. 编程能力，基础的指针，队列，堆栈等知识 3. 数据库的基本知识 4. 大数据的基本知识 3 天左右会收到 HR 的通知</p>
 
       
     </div>
@@ -1798,7 +1497,7 @@ Linux 下如何获取文件夹的大小？</p>
 <li>网页开发渲染线程和脚本线程是互斥的，长时间的脚本运行可能会导致页面失去响应。小程序中，渲染线程和脚本线程是相互独立的。</li>
 <li>如何编写小程序的一个页面，以 index 为例</li>
 </ul>
-<ol>
+<ol type="1">
 <li>pages/index 下一般会包含四种文件。分别为 index.json、index.wxml、index.wxss、index.js。</li>
 <li>微信客户端首先根据 index.json 配置生成一个界面，界面顶部的颜色和文字在这里面定义。</li>
 <li>然后，微信客户端装载页面的 wxml 结构和 wxss 样式。</li>
@@ -1808,75 +1507,52 @@ Linux 下如何获取文件夹的大小？</p>
 <li>使用 Page 构造简单页面。使用 Component 构造复杂页面。</li>
 <li>wxml 中的属性是大小写敏感的</li>
 <li>列表渲染
-<ol>
+<ol type="1">
 <li>在组件上使用 wx:for 控制属性绑定一个数组，即可使用数组中各项数据重复渲染该组件。数组的当前项的下标变量名默认为 index，数组当前项的变量名默认为 item。</li>
 <li>使用 wx:for-item 指定数组当前元素的变量名，使用 wx:for-index 指定数组当前项下标的变量名。</li>
 <li>wx:key 如果列表中项目的位置会动态改变挥着有新的项目添加到列表中，并且希望列表中的项目保持自己的特征和状态，如 &lt;input/&gt; 中输入的内容，&lt;switch/&gt; 的选中状态，需要使用 wx:key 来指定列表中项目的唯一的标识符。wx:key 的值以一下两种形式提供：
-<ol>
+<ol type="1">
 <li>字符串。即 for 循环的 array 中 item 的某个 property，该 property 的值需要是列表中唯一的字符串或数字，且不能动态改变。</li>
 <li>保留关键字 this。此时，要求 item 本身在 for 循环的 array 中是一个唯一的字符串或者数字。</li>
-</ol>
-</li>
+</ol></li>
 <li>当数据改变触发渲染层重新渲染是，会校正带有 key 的组件，框架会确保他们被重新排序，而不是重新创建，以确保组件保持自身的状态，并且提高列表渲染时的效率。</li>
-</ol>
-</li>
+</ol></li>
 <li>setData 函数用于将数据从逻辑层发往视图层（异步），同时改变对应的 this.data 的值（同步）。
-<ol>
-<li><mark>直接修改 this.data 而不调用 setData 函数是无法改变页面状态的，还会造成数据不一致。</mark></li>
+<ol type="1">
+<li>==直接修改 this.data 而不调用 setData 函数是无法改变页面状态的，还会造成数据不一致。==</li>
 <li>仅支持设置可 JSON 化的数据。</li>
 <li>单次设置的数据不可超过 1024kB，尽量避免一次设置过多的数据</li>
 <li>不要把 data 中任何一项的 value 设置为 undefined，否则这一项将不被设置并可能会出现玄学 bug。</li>
-</ol>
-</li>
+</ol></li>
 <li>wxml 文件引用
-<ol>
-<li>import<br />
-使用 import 在 A 文件中引用 B 文件时，可以在 A 文件中使用 B 文件定义的 template。import 没有递归的特性。例如：C import B，B import A。在 C 中可以使用 B 中定义的 template，在 B 中可以使用 A 中定义的 template，但是，不能在 C 中使用 A 中定义的 template。</li>
-<li>include<br />
-include 可以将目标文件中除了 &lt;template/&gt; 和 &lt;wxs/&gt; 以外的整个代码引入，相当于是拷贝到 include 的位置。</li>
-</ol>
-</li>
+<ol type="1">
+<li>import 使用 import 在 A 文件中引用 B 文件时，可以在 A 文件中使用 B 文件定义的 template。import 没有递归的特性。例如：C import B，B import A。在 C 中可以使用 B 中定义的 template，在 B 中可以使用 A 中定义的 template，但是，不能在 C 中使用 A 中定义的 template。</li>
+<li>include include 可以将目标文件中除了 &lt;template/&gt; 和 &lt;wxs/&gt; 以外的整个代码引入，相当于是拷贝到 include 的位置。</li>
+</ol></li>
 <li>wxss 分为项目公共样式、页面样式和其他样式三种。
-<ol>
-<li>项目公共样式<br />
-根目录的 app.wxss 为项目公共样式，会被注入到小程序的每个页面。</li>
-<li>页面样式<br />
-与 app.json 注册过的页面同名且位置同级的 wxss 文件。</li>
-<li>其他样式<br />
-其他样式可以被项目公共样式和页面样式引用。</li>
-</ol>
-</li>
+<ol type="1">
+<li>项目公共样式 根目录的 app.wxss 为项目公共样式，会被注入到小程序的每个页面。</li>
+<li>页面样式 与 app.json 注册过的页面同名且位置同级的 wxss 文件。</li>
+<li>其他样式 其他样式可以被项目公共样式和页面样式引用。</li>
+</ol></li>
 <li>wxss 的尺寸单位 rpx（responsive pixel）新的尺寸单位用于适配不同宽度的屏幕。</li>
-<li>wxss 样式引用<br />
-格式 @import ‘./test.wxss’<br />
-wxss 最终会编译打包到目标文件中，用户只需要下载一次，在使用过程中不会因为样式的引用而产生多与的文件请求。</li>
+<li>wxss 样式引用 格式 <span class="citation" data-cites="import">@import</span> './test.wxss' wxss 最终会编译打包到目标文件中，用户只需要下载一次，在使用过程中不会因为样式的引用而产生多与的文件请求。</li>
 <li>小程序中的 JavaScript 是由 ECMAScript 以及小程序框架和小程序 API 组成的。同浏览器中 JavaScript 相比，没有 BOM 和 DOM 对象，所以类似 JQuery、Zepto 这种浏览器类库是无法使用的。与 NodeJS 中的 JavaScrpit 相比，缺少 Native 模块和 NPM 包管理机制，因此，小程序中无法加载原生类库，也无法直接使用大部分 NPM 包。</li>
-<li>JS 脚本模块化<br />
-小程序可以将任何一个 JavaScript 文件作为一个模块，通过 module.exports 或者 exports 对外暴露接口。通过 require(path) 引入模块。</li>
-<li>脚本的执行顺序<br />
-小程序的执行入口文件是 app.js。会根据其中 require 的模块顺序决定文件的运行顺序。当 app.js 执行结束后，小程序会按照开发者在 app.json 中定义的 pages 的顺序逐一执行。</li>
-<li>变量作用域<br />
-小程序脚本的作用域同 NodeJS 更为相似。在文件中声明的变量和函数只在该文件中有效，不同的文件可以声明相同名字的变量和函数，不会互相影响。</li>
-<li>全局变量<br />
-当需要使用全局变量时，通过使用全局函数 getAPP() 获取全局的实例，并设置相关属性值，来达到设置全局变量的目的。当需要保证全局的数据可以在任何文件中安全的被使用时，可以在 App() 中设置该全局变量。</li>
+<li>JS 脚本模块化 小程序可以将任何一个 JavaScript 文件作为一个模块，通过 module.exports 或者 exports 对外暴露接口。通过 require(path) 引入模块。</li>
+<li>脚本的执行顺序 小程序的执行入口文件是 app.js。会根据其中 require 的模块顺序决定文件的运行顺序。当 app.js 执行结束后，小程序会按照开发者在 app.json 中定义的 pages 的顺序逐一执行。</li>
+<li>变量作用域 小程序脚本的作用域同 NodeJS 更为相似。在文件中声明的变量和函数只在该文件中有效，不同的文件可以声明相同名字的变量和函数，不会互相影响。</li>
+<li>全局变量 当需要使用全局变量时，通过使用全局函数 getAPP() 获取全局的实例，并设置相关属性值，来达到设置全局变量的目的。当需要保证全局的数据可以在任何文件中安全的被使用时，可以在 App() 中设置该全局变量。 # 渲染层和逻辑层</li>
 </ul>
-<h1 id="渲染层和逻辑层"><a class="markdownIt-Anchor" href="#渲染层和逻辑层"></a> 渲染层和逻辑层</h1>
-<ol>
+<ol type="1">
 <li>渲染层和数据相关</li>
 <li>逻辑层负责产生和处理数据</li>
 <li>逻辑层通过 Page 实例的 setData 方法传递数据到渲染层</li>
 </ol>
 <ul>
 <li>渲染层使用 WebView 进行渲染，逻辑层采用 JsCore 线程运行 JS 脚本。</li>
-<li>数据驱动<br />
-wxml 先转换为 JS 对象，然后在渲染出真正的 DOM 树。</li>
-<li>双线程下的界面渲染<br />
-小程序的逻辑层和渲染层是分开的两个线程。在渲染层，宿主环境会吧 wxml 转换成对应的 JS 对象，在逻辑层发生数据变更是，我们需要通过宿主环境提供的 setData 方法把数据从逻辑层传递到渲染层，再经过对比前后差异，把差异应用在原来的 DOM 树上，渲染出正确的 UI 界面。</li>
-<li>程序构造器 App()<br />
-宿主环境提供 App() 构造器来注册一个程序 App，App() 构造器必须写在项目根目录的 app.js 中。App 实例是单例对象，在其他 JS 脚本中使用宿主环境提供的 getApp() 方法获取程序实例。App 构造器接受一个 Object 参数。</li>
-</ul>
-<h1 id="程序的生命周期与打开场景"><a class="markdownIt-Anchor" href="#程序的生命周期与打开场景"></a> 程序的生命周期与打开场景</h1>
-<ul>
+<li>数据驱动 wxml 先转换为 JS 对象，然后在渲染出真正的 DOM 树。</li>
+<li>双线程下的界面渲染 小程序的逻辑层和渲染层是分开的两个线程。在渲染层，宿主环境会吧 wxml 转换成对应的 JS 对象，在逻辑层发生数据变更是，我们需要通过宿主环境提供的 setData 方法把数据从逻辑层传递到渲染层，再经过对比前后差异，把差异应用在原来的 DOM 树上，渲染出正确的 UI 界面。</li>
+<li>程序构造器 App() 宿主环境提供 App() 构造器来注册一个程序 App，App() 构造器必须写在项目根目录的 app.js 中。App 实例是单例对象，在其他 JS 脚本中使用宿主环境提供的 getApp() 方法获取程序实例。App 构造器接受一个 Object 参数。 # 程序的生命周期与打开场景</li>
 <li>程序的生命周期是由微信客户端根据用户操作主动触发的。为了避免程序上的混乱，我们不应该从其他代码里主动调用 App 实例的生命周期函数。</li>
 <li>初次进入小程序时，微信客户端初始化好宿主环境，同时从网络下载或者从本地缓存中拿到小程序的代码包，把它注入到宿主环境中。</li>
 <li>初始化完毕后，微信客户端会给 App 实例派发 onLaunch 事件，App 构造器参数所定义的 onLaunch 方法会被调用。</li>
@@ -1884,183 +1560,138 @@ wxml 先转换为 JS 对象，然后在渲染出真正的 DOM 树。</li>
 <li>再次回到微信或者再次打开小程序时，微信客户端会把后台的小程序唤醒，这种状态称为“小程序进入前台状态”，App 构造器参数所定义的 onShow 方法会被调用。</li>
 <li>打开小程序有很多途径，针对不同的打开途径，小程序有时需要做不同的业务处理。微信客户端会把打开方式传递给 onLaunch 和 onShow 的调用参数 options。options 是一个对象。</li>
 <li>不同页面的 JS 脚本运行在同一个 JsCore 中。当一个页面使用 setTimeout 或者 setInterval 的定时器，然后跳转到其他页面时，这些定时器并没有被清除，需要开发者自己在页面离开时进行处理。</li>
-<li>App 实例是单例的，因此可以通过 App 实例下的属性来共享数据。</li>
-</ul>
-<h1 id="页面"><a class="markdownIt-Anchor" href="#页面"></a> 页面</h1>
-<ul>
+<li>App 实例是单例的，因此可以通过 App 实例下的属性来共享数据。 # 页面</li>
 <li>一个页面由三部分组成：界面、配置和逻辑。
 <ul>
 <li>界面由 wxml 和 wxss 文件来负责描述</li>
 <li>配置由 JSON 文件进行描述</li>
 <li>页面逻辑由 JS 脚本负责</li>
-</ul>
-</li>
+</ul></li>
 <li>同一个页面的文件需要放在同一目录下。其中，wxml 和 JS 文件是必须存在的，JSON 和 wxss 文件是可选的。</li>
-<li>页面路径需要在小程序代码根目录的 app.json 的 pages 字段声明，否则这个页面不会被注册到宿主环境中。</li>
-</ul>
-<h1 id="页面构造器-page"><a class="markdownIt-Anchor" href="#页面构造器-page"></a> 页面构造器 Page()</h1>
-<ul>
+<li>页面路径需要在小程序代码根目录的 app.json 的 pages 字段声明，否则这个页面不会被注册到宿主环境中。 # 页面构造器 Page()</li>
 <li>宿主环境提供 Page() 构造器来注册一个小程序页面，Page() 在页面脚本中调用。Page 构造器接受一个 Object 参数。</li>
-<li>页面的生命周期函数中 onLoad 早于 onShow 早于 onReady。</li>
-</ul>
-<h1 id="页面的生命周期"><a class="markdownIt-Anchor" href="#页面的生命周期"></a> 页面的生命周期</h1>
-<ul>
+<li>页面的生命周期函数中 onLoad 早于 onShow 早于 onReady。 # 页面的生命周期</li>
 <li>页面初次加载时，宿主环境会给 Page 实例派发 onLoad 事件，onLoad 方法被调用。onLoad 在页面销毁之前只会触发一次。在 onLoad 的回调中，可以获取当前页面所调用的打开参数。</li>
 <li>页面显示后，调用 onShow 方法。一般从别的页面返回当前页面时，当前页的 onShow 方法会被调用。</li>
 <li>页面初次渲染完成时，onReady 方法会被调用。onReady 方法在页面没被销毁前只会触发一次。onReady 触发时，表示页面已经准备妥当，在逻辑层就可以和视图层进行交互了。</li>
 <li>页面不可见时，onHide 方法被调用。在使用 wx.navigateTo 切换到其他页面或底部 tab 切换时触发。</li>
 <li>当前页面使用 wx.redirectTo 或 wx.navigateBack 返回其他页面时，当前页面会被微信客户端销毁回收，此时触发 onUnload 方法。</li>
-<li>Page 的生命周期是由微信客户端根据用户操作主动触发的，为了避免程序上的混乱，我们不应该在其他代码中主动调用 Page 实例的生命周期函数。</li>
-</ul>
-<h1 id="页面打开参数-query"><a class="markdownIt-Anchor" href="#页面打开参数-query"></a> 页面打开参数 query</h1>
-<ul>
-<li>小程序把页面的打开路径定义为页面 URL，其组成格式和网页 URL 类似，在页面路径后使用英文 ? 分隔 path 和 query部分。query 部分的多个参数使用 &amp; 分隔，参数的名字和值使用 key=value 的形式声明。在 Page 构造器的 onLoad 的 option 中可以拿到当前页面的打开参数，其类型是一个 Object，其键值与页面 URL 上 query 键值一一对应。和网页 URL 相同，页面 URL 的 value 如果涉及特殊字符，需要采用 UrlEncode 后再拼接到页面 URL 上。</li>
-</ul>
-<h1 id="页面的数据"><a class="markdownIt-Anchor" href="#页面的数据"></a> 页面的数据</h1>
-<ul>
+<li>Page 的生命周期是由微信客户端根据用户操作主动触发的，为了避免程序上的混乱，我们不应该在其他代码中主动调用 Page 实例的生命周期函数。 # 页面打开参数 query</li>
+<li>小程序把页面的打开路径定义为页面 URL，其组成格式和网页 URL 类似，在页面路径后使用英文 ? 分隔 path 和 query部分。query 部分的多个参数使用 &amp; 分隔，参数的名字和值使用 key=value 的形式声明。在 Page 构造器的 onLoad 的 option 中可以拿到当前页面的打开参数，其类型是一个 Object，其键值与页面 URL 上 query 键值一一对应。和网页 URL 相同，页面 URL 的 value 如果涉及特殊字符，需要采用 UrlEncode 后再拼接到页面 URL 上。 # 页面的数据</li>
 <li>wxml 通过数据绑定的语法绑定从逻辑层传递过来的数据字段。数据来源于页面 Page 构造器的 data 字段，data 参数是页面第一次渲染时从逻辑层传递到渲染层的数据。</li>
 <li>宿主环境提供的 Page 实例的原型中有 setData 函数，我们可以在 Page 实例下的方法中调用 this.setData 把数据传递给渲染层，从而达到更新界面的目的。</li>
 <li>由于小程序的渲染层和逻辑层分别在两个线程中运行，所以 setData 传递数据是一个异步的过程。因此，setData 的第二个参数是一个 callback 回调，回调在这次 setData 对页面渲染完毕后触发。</li>
 <li>setData 的一般调用格式是 setData(data,callback)。其中，data 是由多个 key:value 构成的 Object 对象。</li>
 <li>每次只设置需要改变的最小单位的数据可以提高小程序的渲染性能。</li>
 </ul>
-<ol>
-<li><mark>直接修改 this.data 而不调用 setData 函数是无法改变页面状态的，还会造成数据不一致。</mark></li>
+<ol type="1">
+<li>==直接修改 this.data 而不调用 setData 函数是无法改变页面状态的，还会造成数据不一致。==</li>
 <li>仅支持设置可 JSON 化的数据。</li>
 <li>单次设置的数据不可超过 1024kB，尽量避免一次设置过多的数据。因为 setData 需要两个进程之间通信。</li>
-<li>不要把 data 中任何一项的 value 设置为 undefined，否则这一项将不被设置并可能会出现玄学 bug。</li>
+<li>不要把 data 中任何一项的 value 设置为 undefined，否则这一项将不被设置并可能会出现玄学 bug。 # 页面的用户行为</li>
+<li>下拉刷新 onPullDownRefresh 监听用户下拉刷新事件，需要在 app.json 的 window 选项中或页面配置 page.json 中设置 enablePullDownRefresh 为 true。当处理完数据刷新后，wx.stopPullDownRefresh 可以停止当前页面的下拉刷新。</li>
+<li>上拉触底 onReachBottom 监听用户上拉触底事件。可以在 app.json 的 window 选项中或页面配置 page.json 中设置触发距离 onReachBottomDistance。在触发距离内滑动期间，本事件只会被触发一次。</li>
+<li>页面滚动 onPageScroll 监听用户滑动页面事件，参数为 Object，包含 scrollTop 字段，表示页面在垂直方向已滚动的距离（单位px）。</li>
+<li>用户转发 onShareAppMessage 只有定义了此事件处理函数，右上角菜单才会显示“转发”按钮，在用户点击转发按钮的时候会调用，此事件需要 return 一个 Object，包含 title 和 path 两个字段，用于自定义转发内容。 # 页面跳转与路由</li>
 </ol>
-<h1 id="页面的用户行为"><a class="markdownIt-Anchor" href="#页面的用户行为"></a> 页面的用户行为</h1>
-<ol>
-<li>下拉刷新 onPullDownRefresh<br />
-监听用户下拉刷新事件，需要在 app.json 的 window 选项中或页面配置 page.json 中设置 enablePullDownRefresh 为 true。当处理完数据刷新后，wx.stopPullDownRefresh 可以停止当前页面的下拉刷新。</li>
-<li>上拉触底 onReachBottom<br />
-监听用户上拉触底事件。可以在 app.json 的 window 选项中或页面配置 page.json 中设置触发距离 onReachBottomDistance。在触发距离内滑动期间，本事件只会被触发一次。</li>
-<li>页面滚动 onPageScroll<br />
-监听用户滑动页面事件，参数为 Object，包含 scrollTop 字段，表示页面在垂直方向已滚动的距离（单位px）。</li>
-<li>用户转发 onShareAppMessage<br />
-只有定义了此事件处理函数，右上角菜单才会显示“转发”按钮，在用户点击转发按钮的时候会调用，此事件需要 return 一个 Object，包含 title 和 path 两个字段，用于自定义转发内容。</li>
-</ol>
-<h1 id="页面跳转与路由"><a class="markdownIt-Anchor" href="#页面跳转与路由"></a> 页面跳转与路由</h1>
 <ul>
 <li>一个小程序拥有多个页面，我们可以通过 wx.navigateTo 推入一个新的页面。多次推入后会形成一个页面栈，当前页面在栈顶。页面栈有最大层级的限制。</li>
 <li>当页面栈到达最大层级没法新增时，使用 wx.redirectTo 进行页面跳转。</li>
 <li>wx.navigateTo 和 wx.redirectTo 只能打开非 TabBar 页面，wx.switchTab 只能打开 TabBar 页面。</li>
 <li>wx.reLaunch 用于重启小程序</li>
-<li>TabBar 页面初始化后在页面路由的过程中不会被销毁。</li>
-</ul>
-<h1 id="组件"><a class="markdownIt-Anchor" href="#组件"></a> 组件</h1>
-<ul>
+<li>TabBar 页面初始化后在页面路由的过程中不会被销毁。 # 组件</li>
 <li>所有组件名和标签名都是小写，多个单词会以英文 - 连接。</li>
 <li>组件有公共属性和自定义属性。</li>
 <li>懒加载也叫延迟加载，指的是在网页中延迟加载图像，是一种很好的优化网页性能的方式。用户滚动到它们之前，可视区域外的图像不会加载。</li>
-<li>预加载。预加载是另一种性能优化技术，可以使用该技术来预先告知浏览器某些资源可能在将来会被使用到。预加载简单来说是将所有需要的资源提前请求加载到本地，在后面用到时就直接从缓存中取资源。</li>
-</ul>
-<h1 id="api"><a class="markdownIt-Anchor" href="#api"></a> API</h1>
-<ul>
+<li>预加载。预加载是另一种性能优化技术，可以使用该技术来预先告知浏览器某些资源可能在将来会被使用到。预加载简单来说是将所有需要的资源提前请求加载到本地，在后面用到时就直接从缓存中取资源。 # API</li>
 <li>API 通常是指 wx 对象下的方法。</li>
 <li>wx.on* 开头的 API 是监听某个事件发生的 API 接口，接受一个 Callback 函数作为参数。当该事件触发时，会调用 Callback 函数。</li>
 <li>如未特殊约定，多数 API 接口为异步接口 ，都接受一个 Object 作为参数。</li>
 <li>API 的 Object 参数一般由 success、fail、complete 三个回调来接收接口调用结果。</li>
 <li>wx.get* 开头的 API 是获取宿主环境数据的接口。</li>
-<li>wx.set* 开头的 API 是写入数据到宿主环境的接口。</li>
-</ul>
-<h1 id="事件"><a class="markdownIt-Anchor" href="#事件"></a> 事件</h1>
-<ul>
+<li>wx.set* 开头的 API 是写入数据到宿主环境的接口。 # 事件</li>
 <li>用户在渲染层的行为反馈以及组件的部分状态反馈抽象为渲染层传递给逻辑层的事件。</li>
-<li>事件冒泡与事件捕获<br />
-事件冒泡与事件捕获分别由微软和网景公司提出，这两个概念都是为了解决页面中事件流的问题。</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"outer"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"inner"</span>&gt;</span>Click me!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
+<li>事件冒泡与事件捕获 事件冒泡与事件捕获分别由微软和网景公司提出，这两个概念都是为了解决页面中事件流的问题。 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"outer"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"inner"</span>&gt;</span>Click me!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
 <li>考虑上述代码，假设 outer div 和 inner p 各自都有一个 click 处理函数，那么我们怎么才能知道哪一个函数会首先触发？</li>
-<li>事件冒泡<br />
-微软提出的事件冒泡的事件流。事件冒泡可以形象的比喻为把一个石头投入水中，泡泡会一直从水底冒出水面。因此，事件会从最内层的元素开始发生，一直向上传播，直到 document 对象。因此，在事件冒泡的概念下，在 p 元素上发生的 click 事件的顺序应该是 p-&gt;div-&gt;body-&gt;html-&gt;document</li>
-<li>事件捕获<br />
-网景提出的另一种事件流名为事件捕获。与事件冒泡相反，事件会从最外层开始发生，直到最具体的元素。因此，在事件捕获的概念下，在 p 元素上发生的 click 事件的顺序应该是 document-&gt;html-&gt;body-&gt;div-&gt;p</li>
+<li>事件冒泡 微软提出的事件冒泡的事件流。事件冒泡可以形象的比喻为把一个石头投入水中，泡泡会一直从水底冒出水面。因此，事件会从最内层的元素开始发生，一直向上传播，直到 document 对象。因此，在事件冒泡的概念下，在 p 元素上发生的 click 事件的顺序应该是 p-&gt;div-&gt;body-&gt;html-&gt;document</li>
+<li>事件捕获 网景提出的另一种事件流名为事件捕获。与事件冒泡相反，事件会从最外层开始发生，直到最具体的元素。因此，在事件捕获的概念下，在 p 元素上发生的 click 事件的顺序应该是 document-&gt;html-&gt;body-&gt;div-&gt;p</li>
 <li>w3c 指定的统一的标准，事件应当先捕获再冒泡。</li>
-<li>注意 currentTarget 和 target 的区别。currentTarget 是当前事件所绑定的组件。target 是触发该事件的源头组件。</li>
-</ul>
-<h1 id="事件绑定"><a class="markdownIt-Anchor" href="#事件绑定"></a> 事件绑定</h1>
-<ul>
-<li>事件绑定的写法与组件属性一致，以 key=“value” 的形式。
+<li>注意 currentTarget 和 target 的区别。currentTarget 是当前事件所绑定的组件。target 是触发该事件的源头组件。 # 事件绑定</li>
+<li>事件绑定的写法与组件属性一致，以 key="value" 的形式。
 <ul>
 <li>key 以 bind 或者 catch 开头，然后跟上事件类型。如 bindtap，catchtouchstart。bind 和 catch 后可以紧跟一个冒号，含义不变。例如，bind:tap，catch:touchstart。可以在 bind 和 catch 前面加上 capture- 来表示捕获阶段。</li>
 <li>value 是一个字符串，对应于 Page 中定义的同名函数。若未定义该函数，则触发事件时会在控制台产生报错信息。</li>
 <li>bind/catch 代表事件的冒泡阶段；capture-bind/capture-catch 表示事件的捕获阶段。</li>
-</ul>
-</li>
+</ul></li>
 <li>bind 事件绑定不会阻止冒泡事件向上冒泡。catch 事件绑定可以阻断事件传递，中断捕获阶段和阻止冒泡事件向上冒泡。</li>
 <li>除下表所列事件类型之外的其他组件自定义事件，如无特殊说明，则都是非冒泡事件。</li>
 </ul>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>事件类型</th>
 <th>触发条件</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>touchstart</td>
 <td>手指触摸动作开始</td>
 </tr>
-<tr>
+<tr class="even">
 <td>touchmove</td>
 <td>手指触摸后移动</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>touchcancel</td>
 <td>手指触摸动作被打断，如来电提醒，弹窗</td>
 </tr>
-<tr>
+<tr class="even">
 <td>touchend</td>
 <td>手指触摸动作结束</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>tap</td>
 <td>手指触摸后马上离开</td>
 </tr>
-<tr>
+<tr class="even">
 <td>longpress</td>
 <td>手指触摸后，超过350ms再离开，如果指定了事件回调函数并触发了这个事件，tap事件将不被触发</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>longtap</td>
 <td>手指触摸后，超过350ms再离开（推荐使用longpress事件代替）</td>
 </tr>
-<tr>
+<tr class="even">
 <td>transitionend</td>
 <td>会在 WXSS transition 或 wx.createAnimation 动画结束后触发</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>animationstart</td>
 <td>会在一个 WXSS animation 动画开始时触发</td>
 </tr>
-<tr>
+<tr class="even">
 <td>animationiteration</td>
 <td>会在一个 WXSS animation 一次迭代结束时触发</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>animationend</td>
 <td>会在一个 WXSS animation 动画完成时触发</td>
 </tr>
 </tbody>
 </table>
-<h1 id="兼容"><a class="markdownIt-Anchor" href="#兼容"></a> 兼容</h1>
+<h1 id="兼容">兼容</h1>
 <ul>
 <li>通过 wx.getSystemInfo 或者 wx.getSystemInfoSync 来获取设备信息。包括手机品牌，操作系统版本，微信版本号以及小程序基础库版本号等。</li>
 <li>通过判断 API 是否存在来做兼容。</li>
 <li>通过 wx.canIUse 来判断接口或者组件在当前宿主环境是否可用。</li>
-<li>通过在小程序管理后台设置基础库最低版本来达到不向前兼容。</li>
+<li>通过在小程序管理后台设置基础库最低版本来达到不向前兼容。 # 开发基本流程</li>
 </ul>
-<h1 id="开发基本流程"><a class="markdownIt-Anchor" href="#开发基本流程"></a> 开发基本流程</h1>
-<ol>
+<ol type="1">
 <li>确定产品体验，使用交互图或者手稿描绘小程序的界面交互和界面之间的跳转。</li>
 <li>完成 wxml 和 wxss 还原设计稿。</li>
-<li>填充 wxml 的模版语法，完成 js 逻辑。</li>
+<li>填充 wxml 的模版语法，完成 js 逻辑。 # Flex 布局</li>
 </ol>
-<h1 id="flex-布局"><a class="markdownIt-Anchor" href="#flex-布局"></a> Flex 布局</h1>
 <ul>
 <li>采用 flex 布局的元素，简称为容器。容器内的元素简称项目。</li>
 <li>flex 使容器能通过改变里面项目的高宽、顺序，来对可用空间实现最佳填充，方便配饰不同大小的内容区域。</li>
@@ -2068,160 +1699,80 @@ wxml 先转换为 JS 对象，然后在渲染出真正的 DOM 树。</li>
 <li>坐标轴。默认情况下，水平方向是主轴（main axis），垂直方向是交叉轴（cross axis）。</li>
 <li>项目在主轴上排列，排满后在交叉轴方向换行。交叉轴垂直于主轴，它的方向取决于主轴方向。</li>
 </ul>
-<ol>
+<ol type="1">
 <li>容器属性。设置容器属性，用于统一管理容器内项目布局，即项目的排列方式与对齐方式。
 <ul>
-<li>display 属性<br />
-使用 flex 布局时，display 属性值为 flex。</li>
-<li>flex-direction 属性<br />
-通过设置坐标轴，来设置项目排列方向。<br />
-默认值为 row。</li>
-<li>flex-wrap 属性<br />
-设置是否允许项目多行排列，以及多行排列时的换行方向。<br />
-默认值为 nowrap</li>
-<li>justify-content 属性<br />
-设置项目在主轴方向上的对齐方式，以及分配项目之间及其周围多余的空间。<br />
-默认值为 flex-start</li>
-<li>align-items 属性<br />
-设置项目在行中的对齐方式。<br />
-默认值为 stretch。</li>
-<li>align-content 属性<br />
-多行排列时，设置行在交叉轴方向上的对齐方式，以及分配行之间及其周围多余的空间。<br />
-默认值为 stretch。</li>
-</ul>
-</li>
+<li>display 属性 使用 flex 布局时，display 属性值为 flex。</li>
+<li>flex-direction 属性 通过设置坐标轴，来设置项目排列方向。 默认值为 row。</li>
+<li>flex-wrap 属性 设置是否允许项目多行排列，以及多行排列时的换行方向。 默认值为 nowrap</li>
+<li>justify-content 属性 设置项目在主轴方向上的对齐方式，以及分配项目之间及其周围多余的空间。 默认值为 flex-start</li>
+<li>align-items 属性 设置项目在行中的对齐方式。 默认值为 stretch。</li>
+<li>align-content 属性 多行排列时，设置行在交叉轴方向上的对齐方式，以及分配行之间及其周围多余的空间。 默认值为 stretch。</li>
+</ul></li>
 <li>项目属性。设置项目的尺寸、位置以及对项目的对齐方式做特殊设置。
 <ul>
-<li>order 属性<br />
-设置项目沿主轴方向上的排列顺序，数值越小，排列越靠前。属性值为整数。<br />
-默认值为 0。</li>
-<li>flex-shrink 属性<br />
-当项目在主轴方向上溢出时，通过设置项目收缩因子来压缩项目，使之适应容器。<br />
-属性值为项目的压缩因子，属性值取非负数，默认值为 1。<br />
-项目溢出=各项目宽度之和-容器宽度<br />
-总权重=∑(各项目的宽度×各自的flex-shrink)<br />
-当各项目的压缩因子之和小于 1 时，溢出空间=项目溢出×压缩因子之和<br />
-当各项目的压缩因子之和大于等于 1 时，溢出空间=项目溢出<br />
-项目最终宽度=原始宽度-溢出空间×原始宽度×压缩因子÷总权重</li>
-<li>flex-grow 属性<br />
-当项目在主轴方向上还有剩余空间时，通过设置项目扩张因子进行剩余空间的分配。<br />
-属性值为项目的扩张因子，属性值取非负数，默认值为 0。<br />
-项目剩余空间=容器宽度-项目宽度之和<br />
-当项目扩张因子之和大于 1 时，剩余空间分配=项目剩余空间÷扩张因子之和<br />
-当项目扩张因子之和小于 1 时，剩余空间分配=项目剩余空间<br />
-项目最终宽度=原始宽度+(剩余空间分配×扩张因子)</li>
-<li>flex-basis 属性<br />
-当容器设置 flex-direction 为 row 或 row-reverse 时，flex-basis 和 width 同时存在，flex-basis 优先级高于 width，也就是此时 flex-basis 代替项目的 width 属性。<br />
-当容器设置 flex-direction 为 column 或 column-reverse 时，flex-bais 与 height 同时存在，flex-basis 的优先级高于 height，也就是此时 flex-basis 代替 项目的 height 属性。<br />
-当 flex-basis 或 width 或 height 其中一个属性值为 auto 时，非 auto 的优先级更高。<br />
-flex-basis 的默认值为 auto。</li>
-<li>flex 属性<br />
-是 flex-grow、flex-shrink 和 flex-basis 的简写方式。<br />
-值为 none 时，等价于 flex-grow:0 flex-shrink:0 flex-basis:auto<br />
-值为 auto 时，等价于 flex-grow:1 flex-shrink:1 flex-basis:auto</li>
-<li>align-self 属性<br />
-设置项目在行中交叉轴方向上的对齐方式，用于覆盖容器的 align-items 属性，这样可以对项目的对齐方式做特殊处理。默认值为 auto，此时继承容器 align-items 的值。当容器没有设置 align-items 时，align-self 的属性值为 stretch。</li>
-</ul>
-</li>
+<li>order 属性 设置项目沿主轴方向上的排列顺序，数值越小，排列越靠前。属性值为整数。 默认值为 0。</li>
+<li>flex-shrink 属性 当项目在主轴方向上溢出时，通过设置项目收缩因子来压缩项目，使之适应容器。 属性值为项目的压缩因子，属性值取非负数，默认值为 1。 项目溢出=各项目宽度之和-容器宽度 总权重=∑(各项目的宽度×各自的flex-shrink) 当各项目的压缩因子之和小于 1 时，溢出空间=项目溢出×压缩因子之和 当各项目的压缩因子之和大于等于 1 时，溢出空间=项目溢出 项目最终宽度=原始宽度-溢出空间×原始宽度×压缩因子÷总权重</li>
+<li>flex-grow 属性 当项目在主轴方向上还有剩余空间时，通过设置项目扩张因子进行剩余空间的分配。 属性值为项目的扩张因子，属性值取非负数，默认值为 0。 项目剩余空间=容器宽度-项目宽度之和 当项目扩张因子之和大于 1 时，剩余空间分配=项目剩余空间÷扩张因子之和 当项目扩张因子之和小于 1 时，剩余空间分配=项目剩余空间 项目最终宽度=原始宽度+(剩余空间分配×扩张因子)</li>
+<li>flex-basis 属性 当容器设置 flex-direction 为 row 或 row-reverse 时，flex-basis 和 width 同时存在，flex-basis 优先级高于 width，也就是此时 flex-basis 代替项目的 width 属性。 当容器设置 flex-direction 为 column 或 column-reverse 时，flex-bais 与 height 同时存在，flex-basis 的优先级高于 height，也就是此时 flex-basis 代替 项目的 height 属性。 当 flex-basis 或 width 或 height 其中一个属性值为 auto 时，非 auto 的优先级更高。 flex-basis 的默认值为 auto。</li>
+<li>flex 属性 是 flex-grow、flex-shrink 和 flex-basis 的简写方式。 值为 none 时，等价于 flex-grow:0 flex-shrink:0 flex-basis:auto 值为 auto 时，等价于 flex-grow:1 flex-shrink:1 flex-basis:auto</li>
+<li>align-self 属性 设置项目在行中交叉轴方向上的对齐方式，用于覆盖容器的 align-items 属性，这样可以对项目的对齐方式做特殊处理。默认值为 auto，此时继承容器 align-items 的值。当容器没有设置 align-items 时，align-self 的属性值为 stretch。 ## flex 的 grow shrink 和 basis</li>
+</ul></li>
 </ol>
-<h2 id="flex-的-grow-shrink-和-basis"><a class="markdownIt-Anchor" href="#flex-的-grow-shrink-和-basis"></a> flex 的 grow shrink 和 basis</h2>
 <ul>
-<li>min-content 和 max-content<br />
-当一个文本段设置了 <code>width:min-content</code> 时，在支持该关键字的浏览器中，该文本会尽可能地抓住机会来自动换行，变得尽可能的小且没有溢出。本质上来讲，文本段中最长的单词决定了该文本短的宽度。<br />
-当一个文本段设置了 <code>width:max-content</code> 时，该文段的表现与 <code>min-content</code> 完全相反，它会变得尽可能的大，不会自动换行。如果承载它的容器太窄，它就会溢出自身的盒子。</li>
-<li>positive and negative free space<br />
-Flex 布局中有 flex 容器和 flex 子元素，子元素包含在容器中，当 flex 子元素在主轴上的尺寸之和小于 flex 容器的主轴方向上的尺寸时，flex 容器中就会有多余的空间没有被填充，这些空间叫做 positive free space。当 flex 子元素在主轴上的尺寸之和大于 flex 容器的尺寸时，flex 容器的空间就不够用，此时，flex 子元素的尺寸之和减去 flex 容器的尺寸就是 negative free space。</li>
-<li>flex-basis<br />
-flex-basis 属性在任何空间分配发生之前，初始化 flex 子元素的尺寸。此属性的初始值为 auto。如果 flex-basis 设置为 auto，浏览器会先检查 flex 子元素的主尺寸是否设置了绝对值，然后再计算出 flex 子元素的初始值。比如：主轴为 row，flex 子元素的宽被设置为 200px，则 200px 就是该 flex 子元素的 flex-basis。<br />
-当 flex-basis 为 auto 且 子元素没有设置宽度时，flexbox 会将 flex 子元素的 max-content 的大小作为 flex-basis。<br />
-flex-basis 还可以用 content 作为 flex-basis 的值，这会导致 flex-basis 根据内容的大小设置，即使 flex 子元素设置了宽度。<br />
-flex-basis 为 0 时，flex 容器完全忽略 flex 子元素的尺寸。初始时，子元素的大小都为零，容器的所有空间都可以用于分配。</li>
-<li>flex-grow<br />
-该属性决定了当 positive free space 分配时，flex 子元素相对于 flex 容器中的其余 flex 子元素的增长程度。<br />
-所有子元素的 flex-grow 只都相同时，positive free space 平均分配给所有子元素。<br />
-flex-grow 为 0 时，表示不允许子元素被拉伸，分配 positive free space 时不分配给它。</li>
-<li>flex-shrink<br />
-该属性决定在分配 negative free space 时，flex 子元素相对于 flex 容器中其他 flex 子元素的收缩程度。<br />
-flex-shrink 为 0 时，表示不允许子元素收缩。<br />
-所有的子元素的 flex-shrink 都为 1 时，每个子元素都收缩同样大小的量。<br />
-在 negative free space 消除期间，flex 容器会阻止小的 flex 子元素缩小到 0。这些 flex 子元素的大小会被设置为 min-content。<br />
-flex 子元素收缩后，其大小绝不会小于 min-content。<br />
-flex-shrink 的值越大，该子元素收缩的越快。</li>
+<li>min-content 和 max-content 当一个文本段设置了 <code>width:min-content</code> 时，在支持该关键字的浏览器中，该文本会尽可能地抓住机会来自动换行，变得尽可能的小且没有溢出。本质上来讲，文本段中最长的单词决定了该文本短的宽度。 当一个文本段设置了 <code>width:max-content</code> 时，该文段的表现与 <code>min-content</code> 完全相反，它会变得尽可能的大，不会自动换行。如果承载它的容器太窄，它就会溢出自身的盒子。</li>
+<li>positive and negative free space Flex 布局中有 flex 容器和 flex 子元素，子元素包含在容器中，当 flex 子元素在主轴上的尺寸之和小于 flex 容器的主轴方向上的尺寸时，flex 容器中就会有多余的空间没有被填充，这些空间叫做 positive free space。当 flex 子元素在主轴上的尺寸之和大于 flex 容器的尺寸时，flex 容器的空间就不够用，此时，flex 子元素的尺寸之和减去 flex 容器的尺寸就是 negative free space。</li>
+<li>flex-basis flex-basis 属性在任何空间分配发生之前，初始化 flex 子元素的尺寸。此属性的初始值为 auto。如果 flex-basis 设置为 auto，浏览器会先检查 flex 子元素的主尺寸是否设置了绝对值，然后再计算出 flex 子元素的初始值。比如：主轴为 row，flex 子元素的宽被设置为 200px，则 200px 就是该 flex 子元素的 flex-basis。 当 flex-basis 为 auto 且 子元素没有设置宽度时，flexbox 会将 flex 子元素的 max-content 的大小作为 flex-basis。 flex-basis 还可以用 content 作为 flex-basis 的值，这会导致 flex-basis 根据内容的大小设置，即使 flex 子元素设置了宽度。 flex-basis 为 0 时，flex 容器完全忽略 flex 子元素的尺寸。初始时，子元素的大小都为零，容器的所有空间都可以用于分配。</li>
+<li>flex-grow 该属性决定了当 positive free space 分配时，flex 子元素相对于 flex 容器中的其余 flex 子元素的增长程度。 所有子元素的 flex-grow 只都相同时，positive free space 平均分配给所有子元素。 flex-grow 为 0 时，表示不允许子元素被拉伸，分配 positive free space 时不分配给它。</li>
+<li>flex-shrink 该属性决定在分配 negative free space 时，flex 子元素相对于 flex 容器中其他 flex 子元素的收缩程度。 flex-shrink 为 0 时，表示不允许子元素收缩。 所有的子元素的 flex-shrink 都为 1 时，每个子元素都收缩同样大小的量。 在 negative free space 消除期间，flex 容器会阻止小的 flex 子元素缩小到 0。这些 flex 子元素的大小会被设置为 min-content。 flex 子元素收缩后，其大小绝不会小于 min-content。 flex-shrink 的值越大，该子元素收缩的越快。</li>
 </ul>
-<h1 id="常见的交互反馈"><a class="markdownIt-Anchor" href="#常见的交互反馈"></a> 常见的交互反馈</h1>
+<h1 id="常见的交互反馈">常见的交互反馈</h1>
 <ul>
-<li>触摸反馈<br />
-view 容器组件和 button 组件提供了 hover-class 属性，触摸时会向该组件加上对应的 class 改变组件的样式。<br />
-当点击 button 按钮处理更耗时的操作时，使用 button 的 loading 属性，在按钮文字前边出现一个 Loading，让用户明确的感觉到该操作很耗时。</li>
-<li>Toast 和模态对话框<br />
-使用弹出式提示 Toast 提醒用户。Toast 提示默认 1.5 秒后自动消失。Toast 不应用于错误提示。<br />
-使用模态对话框提示用户操作结果状态，或者错误等需要用户思考的信息。</li>
-<li>界面滚动<br />
-下拉整个页面触发刷新。<br />
-“enablePullRefresh”:true<br />
-上拉触底<br />
-界面下方距离页面底部距离小于 onReachBottomDistance 像素时触发 onReachBottom 回调。<br />
-使用 scroll-view 组件实现页面中某一小块区域滚动。<br />
-disableScroll 设置为 true 则页面整体不能上下滚动。只在页面配置中有效，无法在 app.json 中设置。</li>
-</ul>
-<h1 id="发起-https-网络通信"><a class="markdownIt-Anchor" href="#发起-https-网络通信"></a> 发起 HTTPS 网络通信</h1>
-<ul>
+<li>触摸反馈 view 容器组件和 button 组件提供了 hover-class 属性，触摸时会向该组件加上对应的 class 改变组件的样式。 当点击 button 按钮处理更耗时的操作时，使用 button 的 loading 属性，在按钮文字前边出现一个 Loading，让用户明确的感觉到该操作很耗时。</li>
+<li>Toast 和模态对话框 使用弹出式提示 Toast 提醒用户。Toast 提示默认 1.5 秒后自动消失。Toast 不应用于错误提示。 使用模态对话框提示用户操作结果状态，或者错误等需要用户思考的信息。</li>
+<li>界面滚动 下拉整个页面触发刷新。 "enablePullRefresh":true 上拉触底 界面下方距离页面底部距离小于 onReachBottomDistance 像素时触发 onReachBottom 回调。 使用 scroll-view 组件实现页面中某一小块区域滚动。 disableScroll 设置为 true 则页面整体不能上下滚动。只在页面配置中有效，无法在 app.json 中设置。 # 发起 HTTPS 网络通信</li>
 <li>使用 wx.request 发起网络通信</li>
 <li>request 发起的请求必须是 https 协议请求。</li>
 <li>请求的域名需要在小程序管理平台进行配置，如果小程序正式版使用 request 请求未配置的域名，在控制台会有报错。</li>
 <li>小程序的开发版，小程序的体验版和开发者工具在某些情况下允许 request 请求任意域名。</li>
 <li>如果接口需要支持新的特性需要修改返回的数据格式，那接口的参数和返回字段至少向前兼容一个版本。</li>
-<li>请求参数<br />
-通过 URL 的 query 传递请求参数或者通过 data 属性传递请求参数。由于 URL 有长度限制，其最大长度为 1024B，同时 URL 上的参数需要拼接到字符串中，参数的值还要做一次 urlEncode。当向服务器发送的请求参数超过 1024B 时，就要采用 HTTPPost 的形式，此时，传递的请求参数就必须要使用 data 属性。因此，一般建议需要传递请求参数时都使用 data 属性。<br />
-当使用 POST 请求时，有时需要传递较复杂的数据结构到后台，此时使用 JSON 格式会更合适。此时，可以在 wx.request 的 header 参数设置 content-type 头部为 application/json，此时，小程序发起请求的包体内容就是 data 参数对应的 JSON 字符串。</li>
-<li>收到回包<br />
-小程序端收到回包后会触发 success 回调，同时回调会带上一个 Object 信息。只要成功收到服务器返回，无论 HTTP 的状态码是多少都会进入 success 回调。因此开发者应当自己判断返回码，然后再执行后续的业务逻辑。<br />
-success 回调参数的 data 字段类型是根据 header[‘content-type’] 决定的。header[‘content-type’] 默认为 application/json。在触发 success 回调前，小程序宿主环境会对 data 字段的值做 JSON 解析，如果解析成功，那么 data 字段的值会被设置成解析后的 Object 对象，其他情况 data 字段都是 String 类型，其值为 HTTP 回包包体。</li>
-<li>设置请求超时<br />
-request 的请求超时默认为 60 秒。可以在 app.json 中通过 networkTimeout 指定 request 请求超时时间。</li>
-<li>请求前后的状态处理<br />
-为了防止用户极快的点击两次按钮，通过添加 hasClick 的锁。hasClick 初始值为 false。在开始请求之前检查 hasClick 的值，如果为 false 则发起请求并将 hasClick 改为 true，然后在 request 的 complete 回调中将 hasClick 改回 false。</li>
+<li>请求参数 通过 URL 的 query 传递请求参数或者通过 data 属性传递请求参数。由于 URL 有长度限制，其最大长度为 1024B，同时 URL 上的参数需要拼接到字符串中，参数的值还要做一次 urlEncode。当向服务器发送的请求参数超过 1024B 时，就要采用 HTTPPost 的形式，此时，传递的请求参数就必须要使用 data 属性。因此，一般建议需要传递请求参数时都使用 data 属性。 当使用 POST 请求时，有时需要传递较复杂的数据结构到后台，此时使用 JSON 格式会更合适。此时，可以在 wx.request 的 header 参数设置 content-type 头部为 application/json，此时，小程序发起请求的包体内容就是 data 参数对应的 JSON 字符串。</li>
+<li>收到回包 小程序端收到回包后会触发 success 回调，同时回调会带上一个 Object 信息。只要成功收到服务器返回，无论 HTTP 的状态码是多少都会进入 success 回调。因此开发者应当自己判断返回码，然后再执行后续的业务逻辑。 success 回调参数的 data 字段类型是根据 header['content-type'] 决定的。header['content-type'] 默认为 application/json。在触发 success 回调前，小程序宿主环境会对 data 字段的值做 JSON 解析，如果解析成功，那么 data 字段的值会被设置成解析后的 Object 对象，其他情况 data 字段都是 String 类型，其值为 HTTP 回包包体。</li>
+<li>设置请求超时 request 的请求超时默认为 60 秒。可以在 app.json 中通过 networkTimeout 指定 request 请求超时时间。</li>
+<li>请求前后的状态处理 为了防止用户极快的点击两次按钮，通过添加 hasClick 的锁。hasClick 初始值为 false。在开始请求之前检查 hasClick 的值，如果为 false 则发起请求并将 hasClick 改为 true，然后在 request 的 complete 回调中将 hasClick 改回 false。</li>
 <li>请求异常排查方法</li>
 </ul>
-<ol>
+<ol type="1">
 <li>检查手机网络状态以及wifi连接点是否工作正常。</li>
 <li>检查小程序是否为开发版或者体验版，因为开发版和体验版的小程序不会校验域名。</li>
 <li>检查对应请求的HTTPS证书是否有效，同时TLS的版本必须支持1.2及以上版本，可以在开发者工具的console面板输入showRequestInfo()查看相关信息。</li>
 <li>域名不要使用IP地址或者localhost，并且不能带端口号，同时域名需要经过ICP备案。</li>
 <li>检查app.json配置的超时时间配置是否太短，超时时间太短会导致还没收到回报就触发fail回调。</li>
-<li>检查发出去的请求是否302到其他域名的接口，这种302的情况会被视为请求别的域名接口导致无法发起请求。</li>
+<li>检查发出去的请求是否302到其他域名的接口，这种302的情况会被视为请求别的域名接口导致无法发起请求。 # 微信登陆</li>
 </ol>
-<h1 id="微信登陆"><a class="markdownIt-Anchor" href="#微信登陆"></a> 微信登陆</h1>
 <ul>
 <li>如何获取微信登录状态，如何把微信帐号和自己的帐号打通，如何把微信登录应用到小程序中。</li>
-<li>获取微信登陆凭证 code<br />
-如果小程序通过 wx.login 直接从微信服务器获得用户 id，那么黑客可以通过遍历所有 id，把整个业务侧，即第三方服务器上的用户个人信息全部拉走。<br />
-为了避免这样的风险，在 wx.login 调用时，微信服务器会生成一个带有时效性的凭证，有效时间为 5 分钟，然后将该凭证返回给小程序方，该凭证成为微信登录凭证 code。然后小程序方将 code 发给自己的服务器，然后通过自己的服务器将该 code 去找微信服务器换取微信用户 id。因为这个临时凭证会在 5 分钟后过期，如果黑客要冒充一个用户的话，那他必须在 5 分钟内穷举所有凭证，然后去开发者服务器换取用户信息。显然，黑客要付出非常大的成本才能获取到一个用户信息。同时，开发者的服务器也可以通过技术手段检测 5 分钟内频繁从某个凭证发来的登陆请求，从而拒绝这些请求。</li>
-<li>发送 code 到开发者的服务器<br />
-在 wx.login 的 success 回调中获得微信登录凭证后，将该凭证通过 wx.request 发往开发者的服务器，以便向微信服务器换取用户微信 id。如果当前微信用户还没有绑定当前小程序业务的用户身份，那在此次请求中应当顺便把用户输入的账号密码一起传到开发者服务器，然后在开发者服务器校验账号密码后再和微信用户 id 绑定。</li>
-<li>到微信服务器换取微信用户 id<br />
-开发者后台拿到微信登陆凭证 code 后，可以向微信服务器换取用户 id。微信服务器为了确保拿 code 换取身份信息的人就是刚刚对应的小程序开发者，开发者后台发向微信服务器的信息应当带上 Appid 和 AppSecret，这两个信息可以在小程序管理平台的开发设置界面找到。<br />
-APPID 是公开信息，泄漏不会产生风险。AppSecret 是开发者的隐私数据不应当泄漏。如果发现 AppSecret 泄漏，开发者需要到小程序管理平台重置 AppSecret。微信登录凭证 code 在成功换取一次信息后会立即失效，即使凭证的生成时间还没过期。<br />
-开发者服务器和微信服务器之间通信使用 HTTPS 协议，微信服务器的接口为 <code>https://api.weixin.qq.com/sns/jscode2session?appid=&lt;AppId&gt;&amp;secret=&lt;AppSecret&gt;&amp;js_code=&lt;code&gt;&amp;grant_type=authorization_code</code><br />
-请求成功后，微信服务器会返回下标信息</li>
+<li>获取微信登陆凭证 code 如果小程序通过 wx.login 直接从微信服务器获得用户 id，那么黑客可以通过遍历所有 id，把整个业务侧，即第三方服务器上的用户个人信息全部拉走。 为了避免这样的风险，在 wx.login 调用时，微信服务器会生成一个带有时效性的凭证，有效时间为 5 分钟，然后将该凭证返回给小程序方，该凭证成为微信登录凭证 code。然后小程序方将 code 发给自己的服务器，然后通过自己的服务器将该 code 去找微信服务器换取微信用户 id。因为这个临时凭证会在 5 分钟后过期，如果黑客要冒充一个用户的话，那他必须在 5 分钟内穷举所有凭证，然后去开发者服务器换取用户信息。显然，黑客要付出非常大的成本才能获取到一个用户信息。同时，开发者的服务器也可以通过技术手段检测 5 分钟内频繁从某个凭证发来的登陆请求，从而拒绝这些请求。</li>
+<li>发送 code 到开发者的服务器 在 wx.login 的 success 回调中获得微信登录凭证后，将该凭证通过 wx.request 发往开发者的服务器，以便向微信服务器换取用户微信 id。如果当前微信用户还没有绑定当前小程序业务的用户身份，那在此次请求中应当顺便把用户输入的账号密码一起传到开发者服务器，然后在开发者服务器校验账号密码后再和微信用户 id 绑定。</li>
+<li>到微信服务器换取微信用户 id 开发者后台拿到微信登陆凭证 code 后，可以向微信服务器换取用户 id。微信服务器为了确保拿 code 换取身份信息的人就是刚刚对应的小程序开发者，开发者后台发向微信服务器的信息应当带上 Appid 和 AppSecret，这两个信息可以在小程序管理平台的开发设置界面找到。 APPID 是公开信息，泄漏不会产生风险。AppSecret 是开发者的隐私数据不应当泄漏。如果发现 AppSecret 泄漏，开发者需要到小程序管理平台重置 AppSecret。微信登录凭证 code 在成功换取一次信息后会立即失效，即使凭证的生成时间还没过期。 开发者服务器和微信服务器之间通信使用 HTTPS 协议，微信服务器的接口为 <code>https://api.weixin.qq.com/sns/jscode2session?appid=&lt;AppId&gt;&amp;secret=&lt;AppSecret&gt;&amp;js_code=&lt;code&gt;&amp;grant_type=authorization_code</code> 请求成功后，微信服务器会返回下标信息</li>
 </ul>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>字段</th>
 <th>描述</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>openid</td>
 <td>微信用户的唯一标识</td>
 </tr>
-<tr>
+<tr class="even">
 <td>session_key</td>
 <td>会话密钥</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>unionid</td>
 <td>用户在微信开放平台的唯一标识符，本字段在满足一定条件时才返回。</td>
 </tr>
@@ -2230,13 +1781,8 @@ APPID 是公开信息，泄漏不会产生风险。AppSecret 是开发者的隐�
 <ul>
 <li>openid 即用户的微信 id，可以用此 id 区分不同的用户。</li>
 <li>session_key 是微信服务器给开发者颁发的身份凭证，开发者可以用 session_key 请求微信服务器的其他接口来获取一些其他信息。session_key 不应该泄漏或下发小程序前端。session_key 与微信登陆凭证 code 相比，是一个较长期的身份凭证。session_key 也存在过期时间。</li>
-<li>绑定微信用户身份 id 和业务用户身份<br />
-当业务侧用户还没绑定微信侧身份时，会让用户填写业务侧用户名与密码，这两个值应当同微信登陆凭证 code 一同发给开发者服务器。开发者后台应当把用户的业务 id 同用户的微信 id 对应关系绑定起来。有了这个绑定信息，小程序在下次需要用户登录时，就可以不需要输入帐号密码，因为通过 wx.login 拿到用户的微信 id 后，通过绑定信息就可以查出业务侧的用户身份 id，这样静默授权的登录方式将非常方便。</li>
-<li>业务登陆凭证 Sessionid<br />
-SessionId 是开发者服务器与开发者的小程序之间的会话密钥。用户登录成功后，开发者服务器会生成会话密钥 SessionId，并在服务端保持 SessionId 对应的用户身份信息，同时把 SessionId 返回给小程序。小程序后续发起的请求中应当携带 SessionId，开发者的服务器可以通过 SessionId 查询到当前登陆用户的身份，这样就不用每次都重新获得 code。还可以利用本地数据缓存的能力把 SessionId 存储在本地，以便在它过期之前重复利用，提高通信的性能。</li>
-</ul>
-<h1 id="本地数据缓存"><a class="markdownIt-Anchor" href="#本地数据缓存"></a> 本地数据缓存</h1>
-<ul>
+<li>绑定微信用户身份 id 和业务用户身份 当业务侧用户还没绑定微信侧身份时，会让用户填写业务侧用户名与密码，这两个值应当同微信登陆凭证 code 一同发给开发者服务器。开发者后台应当把用户的业务 id 同用户的微信 id 对应关系绑定起来。有了这个绑定信息，小程序在下次需要用户登录时，就可以不需要输入帐号密码，因为通过 wx.login 拿到用户的微信 id 后，通过绑定信息就可以查出业务侧的用户身份 id，这样静默授权的登录方式将非常方便。</li>
+<li>业务登陆凭证 Sessionid SessionId 是开发者服务器与开发者的小程序之间的会话密钥。用户登录成功后，开发者服务器会生成会话密钥 SessionId，并在服务端保持 SessionId 对应的用户身份信息，同时把 SessionId 返回给小程序。小程序后续发起的请求中应当携带 SessionId，开发者的服务器可以通过 SessionId 查询到当前登陆用户的身份，这样就不用每次都重新获得 code。还可以利用本地数据缓存的能力把 SessionId 存储在本地，以便在它过期之前重复利用，提高通信的性能。 # 本地数据缓存</li>
 <li>本地数据缓存是小程序存储在当前设备上硬盘上的数据。本地数据缓存有非常多的用途，我们可以利用本地数据缓存来存储用户在小程序上产生的操作，在用户关闭小程序重新打开时可以恢复之前的状态。我们还可以利用本地缓存一些服务端非实时的数据提高小程序获取数据的速度，在特定的场景下可以提高页面的渲染速度，减少用户的等待时间。</li>
 <li>wx.getStorage 是异步接口，用于读取本地缓存，在 success 回调执行时才能取得返回值。</li>
 <li>wx.getStorageSync 是同步接口，用于读取本地缓存，执行完毕后会立即返回。</li>
@@ -2244,27 +1790,14 @@ SessionId 是开发者服务器与开发者的小程序之间的会话密钥。�
 <li>wx.setStorageSync 是同步接口，用于写入本地缓存，可以立即执行写入操作。</li>
 <li>不同小程序的本地缓存空间是分开的，每个小程序的缓存空间上限为 10MB。如果达到上限，在通过 wx.setStorage 写入是会触发 fail 回调。</li>
 <li>同一设备不同用户登陆同一小程序时，不同用户的本地缓存是隔离开的。</li>
-<li>利用本地缓存提前渲染界面<br />
-第一次从服务器拉取信息后可以存放在本地缓存中，当再次使用该信息时，可以直接从本地缓存读取，加快页面渲染。<br />
-渲染页面时，首先判断是否存在本地缓存，若不存在，则再向服务器发送请求。<br />
-一般在对数据实时性或一致性要求不高的页面采用此种预加载方法。</li>
-<li>缓存用户登录态 SessionId<br />
-通常在用户没有主动退出登录之前，用户的登录状态应当一直保持。如果将 SessionId 简单的存放在一个 JS 变量中，当用户关闭小程序再打开时，之前内存中的 SessionId 已经丢失。因此，应当使用本地缓存来存储 SessionId。</li>
-</ul>
-<h1 id="设备能力"><a class="markdownIt-Anchor" href="#设备能力"></a> 设备能力</h1>
-<ul>
-<li>扫码<br />
-wx.scanCode 会调起微信扫一扫，success 回调会收到二维码对应的信息。可以利用扫码代替很多繁琐的输入，让小程序变的更加快捷。</li>
-<li>获取网络状态<br />
-wx.getNetworkType 获取网络状态，success 回调的 networkType 属性存放网络状态。<br />
-wx.onNetworkStatusChange 可以动态监听网络状态的变化。</li>
-</ul>
-<h1 id="小程序项目开发流程"><a class="markdownIt-Anchor" href="#小程序项目开发流程"></a> 小程序项目开发流程</h1>
-<ul>
+<li>利用本地缓存提前渲染界面 第一次从服务器拉取信息后可以存放在本地缓存中，当再次使用该信息时，可以直接从本地缓存读取，加快页面渲染。 渲染页面时，首先判断是否存在本地缓存，若不存在，则再向服务器发送请求。 一般在对数据实时性或一致性要求不高的页面采用此种预加载方法。</li>
+<li>缓存用户登录态 SessionId 通常在用户没有主动退出登录之前，用户的登录状态应当一直保持。如果将 SessionId 简单的存放在一个 JS 变量中，当用户关闭小程序再打开时，之前内存中的 SessionId 已经丢失。因此，应当使用本地缓存来存储 SessionId。 # 设备能力</li>
+<li>扫码 wx.scanCode 会调起微信扫一扫，success 回调会收到二维码对应的信息。可以利用扫码代替很多繁琐的输入，让小程序变的更加快捷。</li>
+<li>获取网络状态 wx.getNetworkType 获取网络状态，success 回调的 networkType 属性存放网络状态。 wx.onNetworkStatusChange 可以动态监听网络状态的变化。 # 小程序项目开发流程</li>
 <li>项目管理成员负责统筹整个项目的进展和风险、把控小程序对外发布的节奏，产品组提出需求，设计组与产品讨论并对需求进行抽象，设计出可视化流程与图形，输出设计方案。开发组依据设计方案，进行程序代码的编写，代码编写完成后，产品组与设计组体验小程序的整体流程，测试组编写测试用例并对小程序进行各种边界测试。</li>
 <li>建议在项目开发阶段特殊分配一个开发角色，用于上传稳定可供体验测试的代码，并把他上传的开发版本设置成体验版。</li>
 <li>优秀的用户体验是产品的目标
-<ol>
+<ol type="1">
 <li>导航清晰</li>
 <li>流程明确</li>
 <li>重点突出</li>
@@ -2274,50 +1807,25 @@ wx.onNetworkStatusChange 可以动态监听网络状态的变化。</li>
 <li>内容和文案准确友好</li>
 <li>和谐统一</li>
 <li>平台适配</li>
-</ol>
-</li>
+</ol></li>
 <li>发布前的最后检查
-<ol>
+<ol type="1">
 <li>如果小程序使用到Flex布局，并且需要兼容iOS8以下系统时，请检查上传小程序包时，开发者工具是否已经开启“上传代码时样式自动补全”。</li>
 <li>小程序使用的服务器接口应该走HTTPS协议，并且对应的网络域名确保已经在小程序管理平台配置好。</li>
 <li>在测试阶段不要打开小程序的调试模式进行测试，因为在调试模式下，微信不会校验域名合法性，容易导致开发者误以为测试通过，导致正式版小程序因为遇到非法域名无法正常工作。</li>
 <li>发布前请检查小程序使用到的网络接口已经在现网部署好，并且评估好服务器的机器负载情况。</li>
-</ol>
-</li>
-<li>发布模式<br />
-全量发布与分阶段发布<br />
-还需要留意一点，并非全量发布之后，用户就会立即使用到最新版的小程序，这是因为微信客户端存有旧版本小程序包缓存。用户在使用小程序时会优先打开本地的小程序包，微信客户端在某些特定的时机异步去更新最新的小程序包。一般我们认为全量发布的24小时后，所有用户才会真正使用到最新版的小程序。</li>
-</ul>
-<h1 id="双线程模型"><a class="markdownIt-Anchor" href="#双线程模型"></a> 双线程模型</h1>
-<ul>
-<li>Hybrid 技术<br />
-界面主要由成熟的 Web 技术渲染，辅之以大量的接口提供丰富的客户端原生能力。每个小程序页面都是用不同的 WebView 渲染，避免了单个 WebView 的任务过于繁重。定义了一套内置组件统一体验。内置组件中有一部分较复杂的组件使用客户端原生渲染的，已提供更好的性能。</li>
-<li>管控与安全<br />
-宿主环境提供一个沙箱环境运行开发者的 JavaScript 代码。该环境没有任何浏览器相关的接口，只提供纯 JavaScript 的解释执行环境，类似于 HTML5 中的 ServiceWorker、WebWorker 特性。得益于客户端系统有 JavaScript 的解释引擎（iOS 下用的是内置的 JavaScriptCore 框架，安卓用的是腾讯 x5 内核提供的 JsCore 环境）。因此可以创建一个单独的线程执行 JavaScript，在这个环境下执行的都是有关小程序业务逻辑的代码，也即小程序的逻辑层。而界面渲染相关的任务都在 WebView 线程里执行，通过逻辑层代码去控制渲染那些界面，也即小程序的渲染层。</li>
-<li>双线程导致的延时<br />
-在小程序的双线程模型中，任何数据传递都是线程间通信，也就会有一定的延时。逻辑层的修改与渲染层的渲染是异步的。<br />
-异步会使各部分的运行时序变得复杂。比如在渲染首层时，逻辑层与渲染层会同时开始初始化工作，但渲染层需要逻辑层的数据才能把界面渲染出来，如果渲染层初始化工作较快完成，就要等逻辑层的指令才能进行下一步工作。因此，逻辑层与渲染层需要有一定的机制保证时序正确，这些工作由小程序框架完成。<br />
-除逻辑层与渲染层之间通信有延时，各层与客户端原生交互同样有延时。以逻辑层为例，开发者的代码是跑在逻辑层这个线程上，而客户端原生跑在微信主线程上（安卓机），所以注册给逻辑层有关客户端能力的接口，实际上也是在跟微信主线程之间的通信，同样意味着有延时。这也是大部分 API 是异步的原因。</li>
-</ul>
-<h1 id="组件系统"><a class="markdownIt-Anchor" href="#组件系统"></a> 组件系统</h1>
-<ul>
-<li>Exparser 框架<br />
-Exparser是微信小程序的组件组织框架，内置在小程序基础库中，为小程序的各种组件提供基础的支持。小程序内的所有组件，包括内置组件和自定义组件，都由Exparser组织管理。</li>
-<li>内置组件<br />
-小程序基于 Exparser 框架，内置了一套组件，提供了视图容器类、表单类、导航类、媒体类、开放类等几十种组件。</li>
-<li>自定义组件<br />
-自定义组件是开发者可以自行扩充的组件。开发者可以将常用的节点树结构提取成自定义组件，实现代码复用。
-<ol>
-<li>
-<p>Shadow Tree<br />
-在 Exparser 的组件模型中，组件节点树和调用组件的节点树可以拼凑出页面节点树。其中，组件节点树称为 Shadow Tree，即组件的内部实现。最终拼凑成的页面节点树称为 Composed Tree，即将页面上所有组件节点树合成之后的树。因此，进行组件分离后，整个页面节点树实质上被拆分为若干 Shadow Tree。<br />
-各个组件具有自己独立的逻辑空间。每个组件都分别拥有自己独立的数据、setData 调用，createSelectorQuery 运行在 Shadow Tree层面上。</p>
-</li>
-<li>
-<p>组件运行<br />
-Exparser 接管所有自定义组件注册与实例化。从外部接口上看，小程序基础库提供有 Page 和 Component 两个构造器。以Component为例，在小程序启动时，构造器会将开发者设置的properties、data、methods等定义段，写入Exparser的组件注册表中。这个组件在被其它组件引用时，就可以根据这些注册信息来创建自定义组件的实例。Page构造器的大体运行流程与之相仿，只是参数形式不一样。这样每个页面就有一个与之对应的组件，称为“页面根组件”。<br />
-在初始化页面时，Exparser 会创建出页面根组件的一个实例，用到的其他组件也会响应创建组件实例（这是一个递归的过程）。组件创建的过程大致有以下几个要点：</p>
-<ol>
+</ol></li>
+<li>发布模式 全量发布与分阶段发布 还需要留意一点，并非全量发布之后，用户就会立即使用到最新版的小程序，这是因为微信客户端存有旧版本小程序包缓存。用户在使用小程序时会优先打开本地的小程序包，微信客户端在某些特定的时机异步去更新最新的小程序包。一般我们认为全量发布的24小时后，所有用户才会真正使用到最新版的小程序。 # 双线程模型</li>
+<li>Hybrid 技术 界面主要由成熟的 Web 技术渲染，辅之以大量的接口提供丰富的客户端原生能力。每个小程序页面都是用不同的 WebView 渲染，避免了单个 WebView 的任务过于繁重。定义了一套内置组件统一体验。内置组件中有一部分较复杂的组件使用客户端原生渲染的，已提供更好的性能。</li>
+<li>管控与安全 宿主环境提供一个沙箱环境运行开发者的 JavaScript 代码。该环境没有任何浏览器相关的接口，只提供纯 JavaScript 的解释执行环境，类似于 HTML5 中的 ServiceWorker、WebWorker 特性。得益于客户端系统有 JavaScript 的解释引擎（iOS 下用的是内置的 JavaScriptCore 框架，安卓用的是腾讯 x5 内核提供的 JsCore 环境）。因此可以创建一个单独的线程执行 JavaScript，在这个环境下执行的都是有关小程序业务逻辑的代码，也即小程序的逻辑层。而界面渲染相关的任务都在 WebView 线程里执行，通过逻辑层代码去控制渲染那些界面，也即小程序的渲染层。</li>
+<li>双线程导致的延时 在小程序的双线程模型中，任何数据传递都是线程间通信，也就会有一定的延时。逻辑层的修改与渲染层的渲染是异步的。 异步会使各部分的运行时序变得复杂。比如在渲染首层时，逻辑层与渲染层会同时开始初始化工作，但渲染层需要逻辑层的数据才能把界面渲染出来，如果渲染层初始化工作较快完成，就要等逻辑层的指令才能进行下一步工作。因此，逻辑层与渲染层需要有一定的机制保证时序正确，这些工作由小程序框架完成。 除逻辑层与渲染层之间通信有延时，各层与客户端原生交互同样有延时。以逻辑层为例，开发者的代码是跑在逻辑层这个线程上，而客户端原生跑在微信主线程上（安卓机），所以注册给逻辑层有关客户端能力的接口，实际上也是在跟微信主线程之间的通信，同样意味着有延时。这也是大部分 API 是异步的原因。 # 组件系统</li>
+<li>Exparser 框架 Exparser是微信小程序的组件组织框架，内置在小程序基础库中，为小程序的各种组件提供基础的支持。小程序内的所有组件，包括内置组件和自定义组件，都由Exparser组织管理。</li>
+<li>内置组件 小程序基于 Exparser 框架，内置了一套组件，提供了视图容器类、表单类、导航类、媒体类、开放类等几十种组件。</li>
+<li>自定义组件 自定义组件是开发者可以自行扩充的组件。开发者可以将常用的节点树结构提取成自定义组件，实现代码复用。
+<ol type="1">
+<li><p>Shadow Tree 在 Exparser 的组件模型中，组件节点树和调用组件的节点树可以拼凑出页面节点树。其中，组件节点树称为 Shadow Tree，即组件的内部实现。最终拼凑成的页面节点树称为 Composed Tree，即将页面上所有组件节点树合成之后的树。因此，进行组件分离后，整个页面节点树实质上被拆分为若干 Shadow Tree。 各个组件具有自己独立的逻辑空间。每个组件都分别拥有自己独立的数据、setData 调用，createSelectorQuery 运行在 Shadow Tree层面上。</p></li>
+<li><p>组件运行 Exparser 接管所有自定义组件注册与实例化。从外部接口上看，小程序基础库提供有 Page 和 Component 两个构造器。以Component为例，在小程序启动时，构造器会将开发者设置的properties、data、methods等定义段，写入Exparser的组件注册表中。这个组件在被其它组件引用时，就可以根据这些注册信息来创建自定义组件的实例。Page构造器的大体运行流程与之相仿，只是参数形式不一样。这样每个页面就有一个与之对应的组件，称为“页面根组件”。 在初始化页面时，Exparser 会创建出页面根组件的一个实例，用到的其他组件也会响应创建组件实例（这是一个递归的过程）。组件创建的过程大致有以下几个要点：</p>
+<ol type="1">
 <li>根据组件注册信息，从组件原型上创建出组件节点的 JS 对象，即组件的 this；</li>
 <li>将组件注册信息中的 data 复制一份，作为组件数据，即 this.data；</li>
 <li>将这份数据结合组件 WXML，据此创建出 Shadow Tree，由于 Shadow Tree 中可能引用有其他组件，因而这会递归触发其他组件创建过程；</li>
@@ -2325,39 +1833,15 @@ Exparser 接管所有自定义组件注册与实例化。从外部接口上看�
 <li>触发组件的 created 生命周期函数；</li>
 <li>如果不是页面根组件，需要根据组件节点上的属性定义，来设置组件的属性值；</li>
 <li>当组件实例被展示在页面上时，触发组件的 attached 生命周期函数，如果 Shadw Tree 中有其他组件，也逐个触发它们的生命周期函数。</li>
-</ol>
-</li>
-<li>
-<p>组件间通信<br />
-不同组件实例间的通信有 WXML 属性值传递、事件系统、selectComponent 和 relations 等方式。其中，WXML 属性值传递是从父组件向子组件的基本通信方式，而事件系统是从子组件向父组件的基本通信方式。<br />
-Exparser 的事件系统完全模仿 Shadow DOM 的事件系统。在通常的理解中，事件可以分为冒泡事件和非冒泡事件，但在 Shadow DOM 体系中，冒泡事件还可以划分为在 Shadow Tree 上冒泡的事件和在 Composed Tree 上冒泡的事件。如果在 Shadow Tree 上冒泡，则冒泡只会经过这个组件 Shadow Tree 上的节点，这样可以有效控制事件冒泡经过的范围。<br />
-在自定义组件中使用 triggerEvent 触发事件时，可以指定事件的 bubbles、composed 和 capturePhase 属性，用于标注事件的冒泡性质。</p>
-</li>
-</ol>
-</li>
-<li>原生组件<br />
-在内置组件中，有一些组件较为特殊，它们并不完全在 Exparser 的渲染体系下，而是由客户端原生参与组件的渲染，这类组件我们称为“原生组件”,这也是小程序 Hybrid 技术的一个应用。<br />
-原生组件的层级比所有在 WebView 层渲染的普通组件的层级要高。<br />
-交互比较复杂的原生组件都会提供“context”，用于直接操作组件。以 canvas 为例，小程序提供了 wx.createCanvasContext 方法来创建 canvas 的 context。这是一个可以用于操作 canvas 的对象，对象下提供了很多绘图的方法，如“setFillStyle”方法可以设置填充样式，“fillRect”方法用于绘制矩形（这些方法与 HTML DOM Canvas 兼容）。</li>
-<li>原生组件渲染限制<br />
-原生组件脱离在 WebView 渲染流程外，这带来了一些限制。最主要的限制是一些 CSS 样式无法应用于原生组件，例如，不能在父级节点使用 overflow:hidden 来裁剪原生组件的显示区域；不能使用 transformrotate 让原生组件产生旋转等。</li>
+</ol></li>
+<li><p>组件间通信 不同组件实例间的通信有 WXML 属性值传递、事件系统、selectComponent 和 relations 等方式。其中，WXML 属性值传递是从父组件向子组件的基本通信方式，而事件系统是从子组件向父组件的基本通信方式。 Exparser 的事件系统完全模仿 Shadow DOM 的事件系统。在通常的理解中，事件可以分为冒泡事件和非冒泡事件，但在 Shadow DOM 体系中，冒泡事件还可以划分为在 Shadow Tree 上冒泡的事件和在 Composed Tree 上冒泡的事件。如果在 Shadow Tree 上冒泡，则冒泡只会经过这个组件 Shadow Tree 上的节点，这样可以有效控制事件冒泡经过的范围。 在自定义组件中使用 triggerEvent 触发事件时，可以指定事件的 bubbles、composed 和 capturePhase 属性，用于标注事件的冒泡性质。</p></li>
+</ol></li>
+<li>原生组件 在内置组件中，有一些组件较为特殊，它们并不完全在 Exparser 的渲染体系下，而是由客户端原生参与组件的渲染，这类组件我们称为“原生组件”,这也是小程序 Hybrid 技术的一个应用。 原生组件的层级比所有在 WebView 层渲染的普通组件的层级要高。 交互比较复杂的原生组件都会提供“context”，用于直接操作组件。以 canvas 为例，小程序提供了 wx.createCanvasContext 方法来创建 canvas 的 context。这是一个可以用于操作 canvas 的对象，对象下提供了很多绘图的方法，如“setFillStyle”方法可以设置填充样式，“fillRect”方法用于绘制矩形（这些方法与 HTML DOM Canvas 兼容）。</li>
+<li>原生组件渲染限制 原生组件脱离在 WebView 渲染流程外，这带来了一些限制。最主要的限制是一些 CSS 样式无法应用于原生组件，例如，不能在父级节点使用 overflow:hidden 来裁剪原生组件的显示区域；不能使用 transformrotate 让原生组件产生旋转等。</li>
 </ul>
-<p>开发者最为常见的问题是，原生组件会浮于页面其他组件之上（相当于拥有正无穷大的 z-index 值）使其它组件不能覆盖在原生组件上展示。想要解决这个问题，可以考虑使用 cover-view 和 cover-image 组件。这两个组件也是原生组件，同样是脱离 WebView 的渲染流程外，而原生组件之间的层级就可以按照一定的规则控制。</p>
-<h1 id="组件的-behaviors"><a class="markdownIt-Anchor" href="#组件的-behaviors"></a> 组件的 behaviors</h1>
-<ul>
-<li>behaviors 是用于组件间代码共享的特性。每个 behavior 可以包含一组属性、数据、生命周期函数和方法。组件引用它时，它的属性、数据和方法会被合并到组件中，生命周期函数也会在对应时机被调用。 每个组件可以引用多个 behavior ，behavior 也可以引用其他 behavior 。</li>
-</ul>
-<h1 id="组件的纯数据字段"><a class="markdownIt-Anchor" href="#组件的纯数据字段"></a> 组件的纯数据字段</h1>
-<ul>
-<li>有些情况下，某些 data 中的字段既不会展示在界面上，也不会传递给其他组件，仅仅在当前组件内部使用。此时，可以指定这样的数据字段为“纯数据字段”，它们仅仅被记录在 this.data 中，不参与任何界面渲染过程，这样有助于提升页面更新性能。</li>
-<li>使用组件时，要在 wxml 对应的 json 文件中添加 usingComponents 字段</li>
-</ul>
-<h1 id="云开发的数据库"><a class="markdownIt-Anchor" href="#云开发的数据库"></a> 云开发的数据库</h1>
-<ul>
-<li>云开发提供了一个 JSON 数据库。</li>
-</ul>
-<h1 id="小工具"><a class="markdownIt-Anchor" href="#小工具"></a> 小工具</h1>
-<h2 id="水平分割线"><a class="markdownIt-Anchor" href="#水平分割线"></a> 水平分割线</h2>
+<p>开发者最为常见的问题是，原生组件会浮于页面其他组件之上（相当于拥有正无穷大的 z-index 值）使其它组件不能覆盖在原生组件上展示。想要解决这个问题，可以考虑使用 cover-view 和 cover-image 组件。这两个组件也是原生组件，同样是脱离 WebView 的渲染流程外，而原生组件之间的层级就可以按照一定的规则控制。 # 组件的 behaviors * behaviors 是用于组件间代码共享的特性。每个 behavior 可以包含一组属性、数据、生命周期函数和方法。组件引用它时，它的属性、数据和方法会被合并到组件中，生命周期函数也会在对应时机被调用。 每个组件可以引用多个 behavior ，behavior 也可以引用其他 behavior 。 # 组件的纯数据字段 * 有些情况下，某些 data 中的字段既不会展示在界面上，也不会传递给其他组件，仅仅在当前组件内部使用。此时，可以指定这样的数据字段为“纯数据字段”，它们仅仅被记录在 this.data 中，不参与任何界面渲染过程，这样有助于提升页面更新性能。 * 使用组件时，要在 wxml 对应的 json 文件中添加 usingComponents 字段 # 云开发的数据库 * 云开发提供了一个 JSON 数据库。</p>
+<h1 id="小工具">小工具</h1>
+<h2 id="水平分割线">水平分割线</h2>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.line-between</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#E0E3DA</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">90%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">3</span>rpx;</span><br><span class="line">  margin: auto; // 水平居中</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
@@ -2417,26 +1901,7 @@ Exparser 的事件系统完全模仿 Shadow DOM 的事件系统。在通常的�
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Linux 中打开文件表分两种，两者之间个有分工，合力对文件操作提供必要的数据支持。</p>
-<ul>
-<li>系统打开文件表<br />
-系统打开文件表记录系统已打开的文件，主要用于文件的读写操作。整个系统运行期间只维护一张系统打开文件表。系统打开文件表中的每一个条目对应一个已经打开的文件。该条目称为打开文件句柄。一个打开文件句柄存储了与被打开文件有关的全部信息。内容包含了此文件的 inode、操作函数、打开模式、引用计数等，以及其所在的 vfsmnt 结构和 dentry 结构的指针。</li>
-<li>进程打开文件表<br />
-对于每个进程而言，其 PCB 中包含一个 files_struct 结构，称为进程打开文件表。进程打开文件表结构是和单个进程所打开的文件一一对应的。进程打开文件表的表项包含两部分，分别是1. 控制文件描述符操作的一组标志</li>
-</ul>
-<ol start="2">
-<li>指向系统打开文件表中打开文件句柄的指针<br />
-相同的文件可以被不同的进程打开也可以在同一个进程中被打开多次。</li>
-</ol>
-<ul>
-<li>总结
-<ol>
-<li>由于进程级打开文件表的存在，不同的进程中会出现相同的文件描述符，它们可能指向同一个文件，也可能指向不同的文件。</li>
-<li>两个不同的文件描述符，若指向同一个打开文件句柄，将共享同一文件偏移量。因此，如果通过其中一个文件描述符来修改文件偏移量，那么从另一个描述符中也会观察到变化。无论这两个文件描述符是否属于不同进程，还是同一个进程，情况都是如此。</li>
-<li>文件描述符标志为进程和文件描述符所私有。对这一标志的修改将不会影响统一进程或不同进程中的其他文件描述符。</li>
-</ol>
-</li>
-</ul>
+          <p>Linux 中打开文件表分两种，两者之间个有分工，合力对文件操作提供必要的数据支持。 * 系统打开文件表 系统打开文件表记录系统已打开的文件，主要用于文件的读写操作。整个系统运行期间只维护一张系统打开文件表。系统打开文件表中的每一个条目对应一个已经打开的文件。该条目称为打开文件句柄。一个打开文件句柄存储了与被打开文件有关的全部信息。内容包含了此文件的 inode、操作函数、打开模式、引用计数等，以及其所在的 vfsmnt 结构和 dentry 结构的指针。 * 进程打开文件表 对于每个进程而言，其 PCB 中包含一个 files_struct 结构，称为进程打开文件表。进程打开文件表结构是和单个进程所打开的文件一一对应的。进程打开文件表的表项包含两部分，分别是1. 控制文件描述符操作的一组标志 2. 指向系统打开文件表中打开文件句柄的指针 相同的文件可以被不同的进程打开也可以在同一个进程中被打开多次。 * 总结 1. 由于进程级打开文件表的存在，不同的进程中会出现相同的文件描述符，它们可能指向同一个文件，也可能指向不同的文件。 2. 两个不同的文件描述符，若指向同一个打开文件句柄，将共享同一文件偏移量。因此，如果通过其中一个文件描述符来修改文件偏移量，那么从另一个描述符中也会观察到变化。无论这两个文件描述符是否属于不同进程，还是同一个进程，情况都是如此。 3. 文件描述符标志为进程和文件描述符所私有。对这一标志的修改将不会影响统一进程或不同进程中的其他文件描述符。</p>
 
       
     </div>
@@ -2506,130 +1971,22 @@ Exparser 的事件系统完全模仿 Shadow DOM 的事件系统。在通常的�
 <li>前缀子串：字符串 s 的前缀子串，是指起始字符跟 s 对齐的子串，不包含 s 本身。比如 abc 的前缀子串包括 a，ab，不包括 abc 本身。</li>
 <li>最长相等前后缀：字符串 s 的最长相等前后缀是指，s 的相等的前缀子串和后缀子串中长度最长的那一个。</li>
 <li>最长可匹配后缀子串（最长可匹配后缀）：最长相等前后缀对应的那个后缀子串。</li>
-<li>最长可匹配前缀子串（最长可匹配前缀）：最长相等前后缀对应的那个前缀子串。</li>
+<li>最长可匹配前缀子串（最长可匹配前缀）：最长相等前后缀对应的那个前缀子串。 &gt; 以字符串 ababa 为例 其前缀子串为：a、ab、aba、abab 其后缀子串为：a、ba、aba、baba 最长相等前后缀为 aba ，长度为 3。 最长可匹配前缀子串为 aba。 最长可匹配后缀子串为 aba。 明显最长可匹配前缀子串和最长可匹配后缀子串两者是相同的，前者是前缀，后者是后缀。 字符串 s 的最长相等前后缀即，字符串 s 的后缀子串中，与 s 的某个前缀子串相同且长度最长的那个。同理，s 的最长相等前后缀也即，字符串 s 的前缀子串中，与 s 的某个后缀子串相同且长度最长的那个。</li>
 </ul>
-<blockquote>
-<p>以字符串 ababa 为例<br />
-其前缀子串为：a、ab、aba、abab<br />
-其后缀子串为：a、ba、aba、baba<br />
-最长相等前后缀为 aba ，长度为 3。<br />
-最长可匹配前缀子串为 aba。<br />
-最长可匹配后缀子串为 aba。<br />
-明显最长可匹配前缀子串和最长可匹配后缀子串两者是相同的，前者是前缀，后者是后缀。<br />
-字符串 s 的最长相等前后缀即，字符串 s 的后缀子串中，与 s 的某个前缀子串相同且长度最长的那个。同理，s 的最长相等前后缀也即，字符串 s 的前缀子串中，与 s 的某个后缀子串相同且长度最长的那个。</p>
-</blockquote>
-<ol>
+<ol type="1">
 <li>KMP 算法中，模式串从左向右与文本串进行匹配。类比于 BM 算法的说法，模式串从前向后与文本串进行匹配。</li>
 <li>KMP 算法就是在试图寻找一种规律：在模式串和主串的匹配过程中，当遇到不匹配的字符后，如何利用模式串中已经与文本串匹配的那部分字符串（即模式串中位于不匹配字符的左边的字符串），将模式串一次性滑动很多位？</li>
-<li>坏字符：在模式串与文本串匹配的过程中，把不能匹配的那个字符称为坏字符，坏字符是文本串中的字符。<br />
-好前缀：在模式串与文本串匹配的过程中，将失配字符左边的模式串中已经匹配的那段字符串称为好前缀。</li>
-<li>当模式串与文本串失配时，假设坏字符对应的模式串字符在模式串中的下标为 j。在好前缀中，查找好前缀的最长相等前后缀，设为{v}，长度为 k，此时将模式串向后滑动 j-k 位。<br />
-即 j=j-(j-k) → j=k，将 j 更新为 k</li>
+<li>坏字符：在模式串与文本串匹配的过程中，把不能匹配的那个字符称为坏字符，坏字符是文本串中的字符。 好前缀：在模式串与文本串匹配的过程中，将失配字符左边的模式串中已经匹配的那段字符串称为好前缀。</li>
+<li>当模式串与文本串失配时，假设坏字符对应的模式串字符在模式串中的下标为 j。在好前缀中，查找好前缀的最长相等前后缀，设为{v}，长度为 k，此时将模式串向后滑动 j-k 位。 即 j=j-(j-k) → j=k，将 j 更新为 k</li>
 <li>如何求解好前缀的最长相等前后缀？我们发现这个问题不涉及文本串，只与模式串有关，因为好前缀一定是模式串的前缀。因此可以事先预处理模式串，在模式串与文本串的匹配过程中，直接使用预处理的结果。通过5可知，我们希望得到好前缀的最长相等前后缀。并且，模式串的每个前缀都可能是好前缀。当模式串本身就是好前缀时，表示模式串与文本串匹配成功。因此，我们希望通过预处理得到模式串的每个前缀的最长相等前后缀的长度，设为 len（对应 7 中的定义一）。或者得到模式串的每个前缀子串的最长可匹配前缀子串的结尾字符的下标，设为 index（对应 7 中的定义二）。明显，len=index+1。</li>
-<li>定义 next 数组。设模式串为 m。<br />
-next 数组定义一：next 数组的下标 i 表示模式串的前缀 m[0,i]。下标对应的数组值 next[i] 表示前缀 m[0,i] 的最长可匹配前后缀的长度。</li>
-</ol>
-<blockquote>
-<p>以 m=ababacd 为例。<br />
-next[0]=0;<br />
-next[1]=0;<br />
-next[2]=1;<br />
-next[3]=2;<br />
-next[4]=3;<br />
-next[5]=0;<br />
-next 数组定义二：next 数组的下标 i 表示模式串的前缀 m[0,i]。下标对应的数组值 next[i]   表示前缀 m[0,i] 的最长可匹配前缀的结尾字符的下标。<br />
-以 m=ababacd 为例。<br />
-next[0]=-1;<br />
-next[1]=-1;<br />
-next[2]=0;<br />
-next[3]=1;<br />
-next[4]=2;<br />
-next[5]=-1;<br />
-明显，正如 5 中所说，定义一的 next 数组的值比定义二的 next 数组中对应的值大一。并且，next[5] 是没有用的，因为这时文本串与模式串已经完全匹配。</p>
-</blockquote>
-<ol start="7">
-<li>求解 next 数组<br />
-由于定义一的 next 数组与定义二的 next 数组没有本质区别，下文只求解定义二的 next 数组<br />
-首先，next 数组的长度与模式串的长度相同。计算时按照下标从小到大依次计算 next 数组的值。利用动态规划的思想，当计算 next[i] 时，要利用前面计算出的 next[0]，next[1]，… next[i-1]。next[0]=-1 是明显成立的。计算 next 数组时下标从 1 开始。<br />
-计算 next[i] 时分为两种情况。假设 next[i-1]=k，即子串 m[0,i-1] 的最长可匹配前缀为 m[0,k]
-<ol>
+<li>定义 next 数组。设模式串为 m。 next 数组定义一：next 数组的下标 i 表示模式串的前缀 m[0,i]。下标对应的数组值 next[i] 表示前缀 m[0,i] 的最长可匹配前后缀的长度。 &gt; 以 m=ababacd 为例。 next[0]=0; next[1]=0; next[2]=1; next[3]=2; next[4]=3; next[5]=0; next 数组定义二：next 数组的下标 i 表示模式串的前缀 m[0,i]。下标对应的数组值 next[i] 表示前缀 m[0,i] 的最长可匹配前缀的结尾字符的下标。 以 m=ababacd 为例。 next[0]=-1; next[1]=-1; next[2]=0; next[3]=1; next[4]=2; next[5]=-1; 明显，正如 5 中所说，定义一的 next 数组的值比定义二的 next 数组中对应的值大一。并且，next[5] 是没有用的，因为这时文本串与模式串已经完全匹配。</li>
+<li>求解 next 数组 由于定义一的 next 数组与定义二的 next 数组没有本质区别，下文只求解定义二的 next 数组 首先，next 数组的长度与模式串的长度相同。计算时按照下标从小到大依次计算 next 数组的值。利用动态规划的思想，当计算 next[i] 时，要利用前面计算出的 next[0]，next[1]，... next[i-1]。next[0]=-1 是明显成立的。计算 next 数组时下标从 1 开始。 计算 next[i] 时分为两种情况。假设 next[i-1]=k，即子串 m[0,i-1] 的最长可匹配前缀为 m[0,k]
+<ol type="1">
 <li>如果 m[i]==m[k+1]，说明子串 m[0,i] 的最长可匹配前缀为 m[0,k+1]。此时，令 next[i]=k+1 即可。</li>
-<li>如果 m[i]!=m[k+1]，说明子串 m[0,i] 的最长可匹配前缀不是 m[0,k+1]。此时，应寻找前缀 m[0,i-1] 的次长可匹配前缀，即令 k=next[k]，直到 k=-1 或 m[i]=m[k+1] 为止。<br />
-2.1. 若 k=-1，则令 next[i]=-1<br />
-2.2. 若 m[i]=m[k+1]，则令 next[i]=k+1</li>
-</ol>
-</li>
-<li>上述计算 next 数组的过程中，最令人费解的步骤莫过于 <code>k=next[k]</code>。下面重点解释该步骤的原理，最好自己画个图。<br />
-触发该步骤的条件为 m[i]!=m[k+1]，表示 m[0,i-1] 的最长可匹配前缀子串的下一个字符不等于 m[i]。现在，我们考察 m[0,i-1] 的次长可匹配前缀子串 m[0,x]（x 为未知量） 的下一个字符是否等于 m[i]。如果等于，则 m[0,x+1] 就是 m[0,i] 的最长可匹配后缀子串。<br />
-问题转换为如何求得 m[0,i-1] 的次长可匹配前缀子串。现已知 m[0,i-1] 的最长可匹配前缀子串为 m[0,k]，而次长可匹配前缀子串一定包含在最长可匹配前缀子串中。所以 m[0,i-1] 的次长可匹配前缀子串就是前缀 m[0,k] 的最长可匹配前缀子串！而 m[0,k] 的最长可匹配前缀子串是 m[0,next[k]]，即令 k=next[k]!</li>
-<li>KMP 算法结束，代码如下</li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">求解定义二的 Next 数组</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">// 简化版</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getNext</span><span class="params">(<span class="keyword">int</span> *Next, <span class="built_in">string</span> P)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  Next[<span class="number">0</span>] = <span class="number">-1</span>;                        <span class="comment">// 明显恒成立</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; P.length(); i++) <span class="comment">// 求解 Next[1]~Next[P.length-1]</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">int</span> k = Next[i - <span class="number">1</span>];  <span class="comment">// P[0,k] 是 P[0,i-1] 的最长可匹配前缀</span></span><br><span class="line">    <span class="keyword">if</span> (P[k + <span class="number">1</span>] == P[i]) <span class="comment">// P[k+1]=P[i]，这种情况下最简单，说明 P[0,i] 的最长可匹配前缀为 P[0,k+1]</span></span><br><span class="line">    &#123;</span><br><span class="line">      Next[i] = k + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="comment">// P[k+1]!=P[i]，说明 P[0,i] 的最长可匹配前缀不是 P[0,k+1]，此时寻找 P[0,i-1] 的次长可匹配前缀</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">while</span> (k != <span class="number">-1</span> &amp;&amp; P[i] != P[k + <span class="number">1</span>])</span><br><span class="line">      &#123;</span><br><span class="line">        k = Next[k]; <span class="comment">// 不断寻找 P[0,i-1] 的次长可匹配前缀</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (P[i] == P[k + <span class="number">1</span>])</span><br><span class="line">      &#123;</span><br><span class="line">        Next[i] = k + <span class="number">1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span> <span class="keyword">if</span> (k == <span class="number">-1</span>)</span><br><span class="line">      &#123;</span><br><span class="line">        Next[i] = <span class="number">-1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 精华版</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getNext2_2</span><span class="params">(<span class="keyword">int</span> *Next, <span class="built_in">string</span> P)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> j = <span class="number">-1</span>;</span><br><span class="line">  Next[<span class="number">0</span>] = <span class="number">-1</span>; <span class="comment">// 初始化 Next 数组</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; P.length(); i++)</span><br><span class="line">  &#123; <span class="comment">// 求解 Next[1]~Next[P.length()-1]</span></span><br><span class="line">    <span class="keyword">while</span> (j != <span class="number">-1</span> &amp;&amp; P[i] != P[j + <span class="number">1</span>])</span><br><span class="line">    &#123;              <span class="comment">// 试图用 P[j+1] 匹配 P[i]</span></span><br><span class="line">      j = Next[j]; <span class="comment">// 不断后退，直到 j==-1 或 P[i]==P[j+1]</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (P[i] == P[j + <span class="number">1</span>])</span><br><span class="line">    &#123;</span><br><span class="line">      j++; <span class="comment">// 先令 j 指向这个新匹配的位置</span></span><br><span class="line">    &#125;</span><br><span class="line">    Next[i] = j;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// KMP 算法，使用定义二的 next 数组，判断 P 是否是 T 的子串</span></span><br><span class="line"><span class="comment">// 若是，则返回 P 首次在 T 中出现的位置；否则，返回-1</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">KMP</span><span class="params">(<span class="built_in">string</span> T, <span class="built_in">string</span> P)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> tLen = T.length(); <span class="comment">// 文本串的长度</span></span><br><span class="line">  <span class="keyword">int</span> pLen = P.length(); <span class="comment">// 模式串的长度</span></span><br><span class="line">  <span class="keyword">int</span> *Next = <span class="keyword">new</span> <span class="keyword">int</span>[pLen];</span><br><span class="line">  getNext(Next, P); <span class="comment">// 计算模式串的 Next 数组</span></span><br><span class="line">  <span class="keyword">int</span> j = <span class="number">0</span>;        <span class="comment">// 初始化 j=0 表示从模式串的左边第一个字符开始匹配</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; tLen; i++)</span><br><span class="line">  &#123; <span class="comment">// 试图用 P[j] 匹配 T[i]</span></span><br><span class="line">    <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; T[i] != P[j])</span><br><span class="line">    &#123;</span><br><span class="line">      j = Next[j] + <span class="number">1</span>; <span class="comment">// 不断回退，直到 j==0 或者 T[i]==P[j]</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (T[i] == P[j])</span><br><span class="line">    &#123;</span><br><span class="line">      j++; <span class="comment">// T[i] 与 P[j] 匹配成功，令 j+1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (j == pLen)</span><br><span class="line">    &#123;                      <span class="comment">// P 完全匹配，说明 P 是 T 的子串</span></span><br><span class="line">      <span class="keyword">return</span> i + <span class="number">1</span> - pLen; <span class="comment">// 返回首次出现时的位置</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>; <span class="comment">// 执行完 T 都没匹配成功，匹配失败，返回 -1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://hespoon.github.io/2019/12/08/C-vector-%E7%94%A8%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="hespoon">
-      <meta itemprop="description" content="全心全意的投入生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Spirit">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/08/C-vector-%E7%94%A8%E6%B3%95/" class="post-title-link" itemprop="url">C++ vector 用法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-12-08 16:11:14 / Modified: 16:35:46" itemprop="dateCreated datePublished" datetime="2019-12-08T16:11:14+08:00">2019-12-08</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li>声明以及初始化</li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; a; <span class="comment">// 声明一个int型的向量a</span></span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">a</span><span class="params">(<span class="number">10</span>)</span></span>; <span class="comment">// 声明一个初始大小为10的向量</span></span><br><span class="line"><span class="keyword">int</span> n=<span class="number">10</span>;</span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">a</span><span class="params">(n)</span></span>; <span class="comment">// 声明一个初始大小为n的向量</span></span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">a</span><span class="params">(n,<span class="number">1</span>)</span></span>; <span class="comment">// 声明一个初始大小为n且初值都为1的向量</span></span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">b</span><span class="params">(a)</span></span>; <span class="comment">// 声明并用向量a初始化向量b</span></span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">b</span><span class="params">(a.<span class="built_in">begin</span>(),a.<span class="built_in">begin</span>()+<span class="number">3</span>)</span></span>; <span class="comment">// 将向量a中的第0个到第2个作为向量b的初始值</span></span><br><span class="line"><span class="keyword">int</span> m[]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">a</span><span class="params">(n,n+<span class="number">5</span>)</span></span>; <span class="comment">// 将数组n的前5个元素作为向量a的初始值</span></span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">a</span><span class="params">(&amp;n[<span class="number">1</span>],&amp;n[<span class="number">4</span>])</span></span>; <span class="comment">// 将n[1]~n[4]范围内的元素作为向量a的初始值</span></span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; <span class="title">b</span><span class="params">(<span class="number">10</span>,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(<span class="number">5</span>))</span></span>; <span class="comment">// 创建一个10*5的int型二维向量</span></span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>size 与 capacity 的区别<br />
-size 是指当前向量中所包含的元素的个数，取决于你向向量中添加了多少元素。resize() 函数可以改变 size 的大小。<br />
-capacity 是指向量当前使用的空间量，表示当前分配给了该向量多少空间，它总是大于或等于 size。reserve() 函数可以改变 capacity 的大小。</li>
+<li>如果 m[i]!=m[k+1]，说明子串 m[0,i] 的最长可匹配前缀不是 m[0,k+1]。此时，应寻找前缀 m[0,i-1] 的次长可匹配前缀，即令 k=next[k]，直到 k=-1 或 m[i]=m[k+1] 为止。 2.1. 若 k=-1，则令 next[i]=-1 2.2. 若 m[i]=m[k+1]，则令 next[i]=k+1</li>
+</ol></li>
+<li>上述计算 next 数组的过程中，最令人费解的步骤莫过于 <code>k=next[k]</code>。下面重点解释该步骤的原理，最好自己画个图。 触发该步骤的条件为 m[i]!=m[k+1]，表示 m[0,i-1] 的最长可匹配前缀子串的下一个字符不等于 m[i]。现在，我们考察 m[0,i-1] 的次长可匹配前缀子串 m[0,x]（x 为未知量） 的下一个字符是否等于 m[i]。如果等于，则 m[0,x+1] 就是 m[0,i] 的最长可匹配后缀子串。 问题转换为如何求得 m[0,i-1] 的次长可匹配前缀子串。现已知 m[0,i-1] 的最长可匹配前缀子串为 m[0,k]，而次长可匹配前缀子串一定包含在最长可匹配前缀子串中。所以 m[0,i-1] 的次长可匹配前缀子串就是前缀 m[0,k] 的最长可匹配前缀子串！而 m[0,k] 的最长可匹配前缀子串是 m[0,next[k]]，即令 k=next[k]!</li>
+<li>KMP 算法结束，代码如下 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">求解定义二的 Next 数组</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">// 简化版</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getNext</span><span class="params">(<span class="keyword">int</span> *Next, <span class="built_in">string</span> P)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  Next[<span class="number">0</span>] = <span class="number">-1</span>;                        <span class="comment">// 明显恒成立</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; P.length(); i++) <span class="comment">// 求解 Next[1]~Next[P.length-1]</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">int</span> k = Next[i - <span class="number">1</span>];  <span class="comment">// P[0,k] 是 P[0,i-1] 的最长可匹配前缀</span></span><br><span class="line">    <span class="keyword">if</span> (P[k + <span class="number">1</span>] == P[i]) <span class="comment">// P[k+1]=P[i]，这种情况下最简单，说明 P[0,i] 的最长可匹配前缀为 P[0,k+1]</span></span><br><span class="line">    &#123;</span><br><span class="line">      Next[i] = k + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="comment">// P[k+1]!=P[i]，说明 P[0,i] 的最长可匹配前缀不是 P[0,k+1]，此时寻找 P[0,i-1] 的次长可匹配前缀</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">while</span> (k != <span class="number">-1</span> &amp;&amp; P[i] != P[k + <span class="number">1</span>])</span><br><span class="line">      &#123;</span><br><span class="line">        k = Next[k]; <span class="comment">// 不断寻找 P[0,i-1] 的次长可匹配前缀</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (P[i] == P[k + <span class="number">1</span>])</span><br><span class="line">      &#123;</span><br><span class="line">        Next[i] = k + <span class="number">1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span> <span class="keyword">if</span> (k == <span class="number">-1</span>)</span><br><span class="line">      &#123;</span><br><span class="line">        Next[i] = <span class="number">-1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 精华版</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getNext2_2</span><span class="params">(<span class="keyword">int</span> *Next, <span class="built_in">string</span> P)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> j = <span class="number">-1</span>;</span><br><span class="line">  Next[<span class="number">0</span>] = <span class="number">-1</span>; <span class="comment">// 初始化 Next 数组</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; P.length(); i++)</span><br><span class="line">  &#123; <span class="comment">// 求解 Next[1]~Next[P.length()-1]</span></span><br><span class="line">    <span class="keyword">while</span> (j != <span class="number">-1</span> &amp;&amp; P[i] != P[j + <span class="number">1</span>])</span><br><span class="line">    &#123;              <span class="comment">// 试图用 P[j+1] 匹配 P[i]</span></span><br><span class="line">      j = Next[j]; <span class="comment">// 不断后退，直到 j==-1 或 P[i]==P[j+1]</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (P[i] == P[j + <span class="number">1</span>])</span><br><span class="line">    &#123;</span><br><span class="line">      j++; <span class="comment">// 先令 j 指向这个新匹配的位置</span></span><br><span class="line">    &#125;</span><br><span class="line">    Next[i] = j;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// KMP 算法，使用定义二的 next 数组，判断 P 是否是 T 的子串</span></span><br><span class="line"><span class="comment">// 若是，则返回 P 首次在 T 中出现的位置；否则，返回-1</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">KMP</span><span class="params">(<span class="built_in">string</span> T, <span class="built_in">string</span> P)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> tLen = T.length(); <span class="comment">// 文本串的长度</span></span><br><span class="line">  <span class="keyword">int</span> pLen = P.length(); <span class="comment">// 模式串的长度</span></span><br><span class="line">  <span class="keyword">int</span> *Next = <span class="keyword">new</span> <span class="keyword">int</span>[pLen];</span><br><span class="line">  getNext(Next, P); <span class="comment">// 计算模式串的 Next 数组</span></span><br><span class="line">  <span class="keyword">int</span> j = <span class="number">0</span>;        <span class="comment">// 初始化 j=0 表示从模式串的左边第一个字符开始匹配</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; tLen; i++)</span><br><span class="line">  &#123; <span class="comment">// 试图用 P[j] 匹配 T[i]</span></span><br><span class="line">    <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; T[i] != P[j])</span><br><span class="line">    &#123;</span><br><span class="line">      j = Next[j] + <span class="number">1</span>; <span class="comment">// 不断回退，直到 j==0 或者 T[i]==P[j]</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (T[i] == P[j])</span><br><span class="line">    &#123;</span><br><span class="line">      j++; <span class="comment">// T[i] 与 P[j] 匹配成功，令 j+1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (j == pLen)</span><br><span class="line">    &#123;                      <span class="comment">// P 完全匹配，说明 P 是 T 的子串</span></span><br><span class="line">      <span class="keyword">return</span> i + <span class="number">1</span> - pLen; <span class="comment">// 返回首次出现时的位置</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>; <span class="comment">// 执行完 T 都没匹配成功，匹配失败，返回 -1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
 
       
@@ -2649,7 +2006,7 @@ capacity 是指向量当前使用的空间量，表示当前分配给了该向�
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -2717,7 +2074,7 @@ capacity 是指向量当前使用的空间量，表示当前分配给了该向�
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -2774,6 +2131,9 @@ capacity 是指向量当前使用的空间量，表示当前分配给了该向�
         
 
 
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1279024191&web_id=1279024191"></script>
+  </div>
 
 
 
