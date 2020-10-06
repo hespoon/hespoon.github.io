@@ -155,6 +155,109 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://hespoon.github.io/2020/10/04/C-%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hespoon">
+      <meta itemprop="description" content="全心全意的投入生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Spirit">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/04/C-%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" class="post-title-link" itemprop="url">C++ 风格的强制类型转换</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-10-04 18:25:10" itemprop="dateCreated datePublished" datetime="2020-10-04T18:25:10+08:00">2020-10-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-10-05 20:24:25" itemprop="dateModified" datetime="2020-10-05T20:24:25+08:00">2020-10-05</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="c-风格的强制类型转换">C++ 风格的强制类型转换</h1>
+<p>强制类型转换运算符是一种特殊的运算符，它把一种数据类型转换为另一种数据类型。</p>
+<p>强制类型转换运算符是一元运算符，它的优先级与其他一元运算符相同。</p>
+<p><strong>static_cast&lt;type&gt;(expression) </strong></p>
+<p>static_cast 可用于各种隐式转换，比如 double 转 int，int 转 unsigned int 等，效果与隐式转换一样，可能有各种奇怪的错误，需要用户保证转换是正确的。</p>
+<p>static_cast 可用于基类指针（引用）与派生类指针（引用）之间的相互转换。与 dynamic_cast 不同，在将基类指针转换为派生类指针时，编译器不会检查该基类指针是否指向了一个派生类对象，会强行将基类指针转换为派生类指针，即使这种转换是错误的。因此，使用 static_cast 将基类指针转换为派生类指针时，要保证转换是可行的。</p>
+<p>static_cast 可用于将具有显示构造函数（explicit 修饰的构造函数）或者显示函数的类转换为隐式构造函数的类。</p>
+<p><strong>const_cast&lt;type&gt;(expression)</strong></p>
+<p>用于 const 与非 const、volatile 与非 volatile 之间的转换。</p>
+<p>可以将一个非常指针（引用）转换为常指针（引用），也可以将一个常指针（引用）转换为非常指针（引用）。</p>
+<p><strong><em>const_cast is evil!</em></strong></p>
+<p>const_cast 可以破坏 const 关键字对参数的限定，使得函数可以修改 const 关键字修饰的参数。</p>
+<p>例 1：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> *a)</span> <span class="comment">// 接收常指针，不能通过指针修改指针指向的值</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    * int *b = a; 将常指针赋给普通指针是不合法的，会报错无法编译</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">int</span> *b = <span class="keyword">const_cast</span>&lt;<span class="keyword">int</span> *&gt;(a); <span class="comment">// 将常指针转换为非常指针</span></span><br><span class="line">    *b = <span class="number">100</span>; <span class="comment">// 修改常指针 a 指向的值</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> *a = <span class="keyword">new</span> <span class="keyword">int</span>(<span class="number">10</span>);</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"before: "</span> &lt;&lt; *a &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    fun(a);</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"after: "</span> &lt;&lt; *a &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">before: 10</span><br><span class="line">after: 100</span><br></pre></td></tr></table></figure>
+<p>常指针 a 指向的值被函数 fun 修改了。</p>
+<p>例 2：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> &amp;a)</span> <span class="comment">// 一般情况下 const 关键字表明 fun 不会修改 a 的值</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    * int *b = &amp;a; 将常引用赋给普通指针是不合法的，会报错无法编译</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">int</span> *b = <span class="keyword">const_cast</span>&lt;<span class="keyword">int</span> *&gt;(&amp;a); <span class="comment">// 将常引用转换为普通指针</span></span><br><span class="line">    *b = <span class="number">100</span>; <span class="comment">// 通过指针修改 a 的值</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"before: "</span> &lt;&lt; a &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    fun(a);</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"after: "</span> &lt;&lt; a &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">before: 10</span><br><span class="line">after: 100</span><br></pre></td></tr></table></figure>
+<p>a 的值被函数 fun 修改了。</p>
+<p>如果没有 const_cast，则函数 fun 的参数用 const 修饰后，表明函数 fun 不会也无法修改参数的值，而现在可以通过 const_cast 将常量转换为非常量，导致 const 关键字修饰的参数可以被修改了，使 const 关键字失去了应有的约束力。</p>
+<p><strong>reinterpret_cast&lt;type&gt;(expression)</strong></p>
+<p>reinterpret_cast 用于将一种类型的指针强行转换为另一种类型的指针，不管这两个类型是否有关系。</p>
+<p>比如 reinterpret_cast 可以将一个指向苹果类的指针转换为指向潜水艇类的指针。明显苹果与潜水艇之间没有一点关系，转换后的指针根本不能用。</p>
+<p>reinterpret_cast 也可以实现指针和整形之间相互转换。可以将一个整数转换为指针，也可以将指针转换为整数。指针本质就是一个无符号整数，是指针指向变量的地址。将指针转换为整数仅仅是想表达指针转换后的值是可以存储为 int 类型的数据。</p>
+<p>它可以把一个指针转换为一个整数，也可以把一个整数转换为一个指针。</p>
+<p>高度危险的转换，这种转换仅仅是对二进制位的重新解释，不会借助已有的转换规则对数据进行调整。</p>
+<p><strong>dynamic_cast&lt;type&gt;(expression)</strong></p>
+<p>只能用于转换不同类型的指针或者转换不同类型的引用。</p>
+<p>转换指针失败时返回空指针。转换引用失败时抛出 bad_cast 异常。</p>
+<p>借助 RTTI Run-Time Type Information，用于类型安全的向下转型（Downcasting），有些编译器的 RTTI 默认是关闭的，在使用 dynamic_cast 是要保证编译器的 RTTI 是开启的。</p>
+<p>将派生类指针或引用转换为基类指针或饮用时，dynamic_cast 保证转换总是成功的。</p>
+<p>一般情况下，用 dynamic_cast 将基类指针（引用）转换为派生类指针（引用）是会报编译错误的，除非基类指针指向了一个派生类对象。</p>
+<p>dynamic_cast 在运行时执行转换，转换时会验证有效性。</p>
+<p>如果转换未执行，则转换失败，表达式 expression 被判定为 null。</p>
+<p>dynamic_cast 执行动态转换时，type 必须是类的指针、类的引用或者 void*。</p>
+<p>如果 type 是类指针，则 expression 也必须是类指针；如果 type 是一个引用，则 expression 也必须是一个引用。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://hespoon.github.io/2020/06/26/%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E6%B5%8B%E8%AF%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1525,114 +1628,6 @@ a &amp;= b + c \\
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://hespoon.github.io/2020/02/14/Manacher-%E7%AE%97%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="hespoon">
-      <meta itemprop="description" content="全心全意的投入生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Spirit">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/14/Manacher-%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">Manacher 算法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-02-14 17:21:49" itemprop="dateCreated datePublished" datetime="2020-02-14T17:21:49+08:00">2020-02-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-02-17 15:50:50" itemprop="dateModified" datetime="2020-02-17T15:50:50+08:00">2020-02-17</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>[TOC]</p>
-<h1 id="功能">功能</h1>
-<p>查找一个字符串的最长回文子串的线性算法</p>
-<h1 id="算法原理与实现">算法原理与实现</h1>
-<ol type="1">
-<li><p>将长度为奇数和偶数的回文串一起处理</p>
-<p>Manacher 使用一种巧妙地办法，将长度为奇数的回文串和长度为偶数的回文串一起考虑。具体做法是，在原字符串的每个相邻字符中间插入一个分隔符，同时在首尾也要各添加一个分隔符。要求分隔符不在原字符串中出现。如下图所示，其中，原始字符串为 S，转换后的字符串为 T：</p>
-<p><img src="http://ww1.sinaimg.cn/large/006XJF4Oly1gbxczgeenuj34a10x3jvu.jpg" /></p></li>
-<li><p>使用额外空间存储必要信息 Len 数组</p>
-<p>辅助数组 Len 是算法的核心。</p>
-<p>Len[i] 表示以字符 T[i] 为中心的最长回文子串的最右端字符到字符 T[i] 的字符个数。</p>
-<p>比如，以 T[i] 为中心的最长回文子串是 T[l,r]，则 Len[i] = r - i + 1。</p>
-<p>对于上面的例子，可以得出如下的 Len 数组：</p>
-<p><img src="http://ww1.sinaimg.cn/large/006XJF4Oly1gbxdeb6mxqj33uo0shjvo.jpg" /></p>
-<p>Len 数组的性质：Len[i] - 1 等于该回文子串在原字符 S 中的长度。</p>
-<p>证明如下：首先，在转换得到的字符串 T 中，所有的回文串的长度都为奇数。那么，对于以字符 T[i] 为中心的最长回文子串，其长度就是 2 × Len[i] -1。经过观察可知，T 中的所有回文子串，其中分隔符的数量一定比其他字符的数量多一。所以， 2 × Len[i] -1 的长度中，有 Len[i] 个分隔符，剩下 Len[i] - 1 个字符来自原字符串。综上所述，该回文串在原字符串中的长度为 Len[i] - 1。</p></li>
-<li><p>Len 数组的计算</p>
-<p>从左向右依次计算 Len 数组。当计算 Len[i] 时，Len[0] ~ Len[i-1] 已经计算完毕。</p>
-<p>设 P 为之前计算中最长回文子串的右端点的最大值。并且，设取得这个最大值的位置为 Po。</p>
-<p>分为两种情况计算：</p>
-<ol type="1">
-<li><p>i &lt; P</p>
-<p>找到 i 相对于 Po 的对称位置，设为 j。再分为三种情况。</p>
-<ul>
-<li><p>Len[j] &lt; P - i + 1 如下图所示：</p>
-<p><img src="http://ww1.sinaimg.cn/large/006XJF4Oly1gbxdx60uxbj34r827w0ys.jpg" /></p>
-<p>此时说明，以 j 为中心的回文串一定在以 Po 为中心的回文串的内部。j 和 i 关于位置 Po 对称，并且，由回文串的定义可知，一个回文串反过来还是一个回文串。所以，以 i 为中心的回文串的长度至少和以 j 为中心的回文串的长度一样长，即 Len[i] ≥ Len[j]。由对称性可知，Len[i] = Len[j]。</p></li>
-<li><p>Len[j] &gt; P - i + 1 如下图所示：</p>
-<p><img src="http://ww1.sinaimg.cn/large/006XJF4Oly1gbxe6lr6amj34r827wwki.jpg" /></p>
-<p>此时，Len[i] = P - i + 1</p>
-<p>证明如下：由图可知，Len[i] ≥ P - i + 1。</p>
-<p>假设 Len[i] &gt; P - i + 1，则 Len[Po] &gt; P - Po +1，即以 Po 为中心的回文子串是可以更长的，这与 Len[Po] 的原值不符，所以假设错误。</p>
-<p>综上所述，Len[i] = P - i + 1</p></li>
-<li><p>Len[j] = P - i + 1 如下图所示：</p>
-<p><img src="http://ww1.sinaimg.cn/large/006XJF4Oly1gbxgfvlv0pj30h2083wed.jpg" /></p>
-<p>此时，以 i 为中心的回文串可能会延伸到 P 之外，对于大于 P 的部分，我们还未匹配。因此，要从 P + 1 开始一个一个的匹配，直到发生失配，得出 Len[i] 的值。</p></li>
-</ul></li>
-<li><p>i &gt;= P 如下图所示： <img src="http://ww1.sinaimg.cn/large/006XJF4Oly1gbzf37mcc7j348t1g1wgo.jpg" /> <img src="http://ww1.sinaimg.cn/large/006XJF4Oly1gbzfxdznfuj30hl07mglf.jpg" /> 这两种情况下，对于中点为 i 的回文串还一点都没有匹配。因此，只能一个一个的匹配得出 Len[i] 的值。</p></li>
-</ol></li>
-<li><p>时间复杂度分析</p>
-<p>该算法只有在遇到没有匹配的位置时才进行匹配，已经匹配过的位置不再匹配。因此，对于字符串 T 中的每一个位置，只进行一次匹配，算法整体复杂度为 O(n)，其中 n 为字符串 T 的长度。由于 T 的长度实际上是原字符串 S 的长度的两倍，所以时间复杂度依旧是线性的。</p></li>
-<li><p>算法实现</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 返回字符串 s 中的任意一个最长回文子串 </span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">longestPalindrome</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">     <span class="keyword">if</span>(s.length()&lt;=<span class="number">1</span>) <span class="keyword">return</span> s;</span><br><span class="line">     <span class="comment">// 初始化辅助字符串</span></span><br><span class="line">     <span class="built_in">string</span> T=<span class="string">"#"</span>;</span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;s.length();i++)&#123;</span><br><span class="line">         T+=s.substr(i,<span class="number">1</span>)+<span class="string">"#"</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="comment">// 初始化辅助数组</span></span><br><span class="line">     <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">Len</span><span class="params">(T.length())</span></span>;</span><br><span class="line">     Len[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">     <span class="keyword">int</span> aimIndex=<span class="number">0</span>,Po=<span class="number">0</span>,P=<span class="number">0</span>; <span class="comment">// aimIndex 存放最长回文子串的中心字符在 T 中的下标</span></span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;T.length();i++)&#123;</span><br><span class="line">         <span class="keyword">if</span>(i&lt;P)&#123;</span><br><span class="line">             <span class="keyword">int</span> j=Po-i+Po;</span><br><span class="line">             <span class="keyword">int</span> threshold=P-i+<span class="number">1</span>;</span><br><span class="line">             <span class="keyword">if</span>(Len[j]&lt;threshold)&#123;</span><br><span class="line">                 Len[i]=Len[j];</span><br><span class="line">             &#125;<span class="keyword">else</span> <span class="keyword">if</span>(Len[j]&gt;threshold)&#123;</span><br><span class="line">                 Len[i]=P-i+<span class="number">1</span>;</span><br><span class="line">             &#125;<span class="keyword">else</span> <span class="keyword">if</span>(Len[j]==threshold)&#123;</span><br><span class="line">                 <span class="keyword">int</span> left=i-P+i<span class="number">-1</span>;</span><br><span class="line">                 <span class="keyword">int</span> right=P+<span class="number">1</span>;</span><br><span class="line">                 <span class="keyword">while</span>(left&gt;=<span class="number">0</span>&amp;&amp;right&lt;T.length()&amp;&amp;T[left]==T[right])&#123;</span><br><span class="line">                     right++;</span><br><span class="line">                     left--;</span><br><span class="line">                 &#125;</span><br><span class="line">                 Len[i]=right-i;</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">             <span class="keyword">int</span> left=i<span class="number">-1</span>;</span><br><span class="line">             <span class="keyword">int</span> right=i+<span class="number">1</span>;</span><br><span class="line">             <span class="keyword">while</span>(left&gt;=<span class="number">0</span>&amp;&amp;right&lt;T.length()&amp;&amp;T[left]==T[right])&#123;</span><br><span class="line">                 right++;</span><br><span class="line">                 left--;</span><br><span class="line">             &#125;</span><br><span class="line">             Len[i]=right-i;</span><br><span class="line">         &#125;</span><br><span class="line">         aimIndex=Len[i]&gt;=Len[aimIndex]?i:aimIndex;</span><br><span class="line">         <span class="keyword">if</span>(i+Len[i]<span class="number">-1</span>&gt;P)&#123;</span><br><span class="line">             P=i+Len[i]<span class="number">-1</span>;</span><br><span class="line">             Po=i;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="comment">// 从 T 中提取最长回文子串</span></span><br><span class="line">     <span class="built_in">string</span> ans=<span class="string">""</span>;</span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">int</span> i=aimIndex-Len[aimIndex]+<span class="number">1</span>;i&lt;=aimIndex+Len[aimIndex]<span class="number">-1</span>;i++)&#123;</span><br><span class="line">         <span class="keyword">if</span>(T[i]!=<span class="string">'#'</span>)&#123;</span><br><span class="line">             ans+=T.substr(i,<span class="number">1</span>);</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> ans;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1704,7 +1699,7 @@ a &amp;= b + c \\
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1753,7 +1748,7 @@ a &amp;= b + c \\
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">113k</span>
+    <span title="Symbols count total">116k</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
   </div>

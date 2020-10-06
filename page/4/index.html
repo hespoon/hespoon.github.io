@@ -155,6 +155,86 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://hespoon.github.io/2019/09/23/%E8%BF%9E%E9%80%9A%E6%97%A0%E5%90%91%E5%9B%BE%E4%B8%8E%E5%89%B2%E7%82%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hespoon">
+      <meta itemprop="description" content="全心全意的投入生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Spirit">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/23/%E8%BF%9E%E9%80%9A%E6%97%A0%E5%90%91%E5%9B%BE%E4%B8%8E%E5%89%B2%E7%82%B9/" class="post-title-link" itemprop="url">连通无向图与割点</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-09-23 21:49:26" itemprop="dateCreated datePublished" datetime="2019-09-23T21:49:26+08:00">2019-09-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-09-25 23:52:29" itemprop="dateModified" datetime="2019-09-25T23:52:29+08:00">2019-09-25</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>无向图中，非树边只会以返祖边的形式存在。</li>
+<li>割点分为两种情况
+<ol type="1">
+<li>DFS 树的根节点有多于一个的子节点，那么根节点就是割点</li>
+<li>对于非根节点 u，它至少有一颗子树没有返祖边可以到达 u 的祖先，则 u 是割点</li>
+</ol></li>
+<li>对于第二种情况，可以这样理解。假设非根节点 u 的某棵子树中有一个结点 x 具有返祖边可以到达 u 的祖先结点。由于图是连通的，那么节点 x 便可以到达 u 上方的所有节点。同时，由于 x 在 u 的子树中，所以 x 可以到达该子树中的所有节点，所以删除节点 u 后，u 上方的所有节点仍可以通过节点 x 与包含 x 的 u 的子树相连。如果 u 的所有子树中都有这样的 x 节点，那么删除 u 节点后，整张图还是连通的，u 不是割点。如果 u 有一颗或多棵子树，这些子树中没有这样的 x 节点，那么删除 u 后，这些子树就不在与图中剩余的部分连通，那么 u 是一个割点。</li>
+<li>求解割点时，每个节点需要维护下面几个信息
+<ol type="1">
+<li>NUM(x) 表示节点 x 是在 DFS 中第几个被遍历到的点。维护这一信息十分有用，因为如果点 a 是点 b 的祖先，那么 NUM(a)&lt;NUM(b)。</li>
+<li>low(x) 表示节点 x 能通过返祖边到达的 NUM 值最小的祖先的 NUM 的值。初始值为 NUM(x)。</li>
+<li>fa(x) 表示 x 的父节点。在求割边时，fa(x) 记录 x 与其祖先之间的边的编号。</li>
+</ol></li>
+<li>在 DFS 遍历时维护上面提到的那几个信息，回溯时进行判断。如果 low(v)&gt;NUM(x)（v 是 x 的儿子）说明 x 是割点</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://hespoon.github.io/2019/04/16/%E4%BD%BF%E7%94%A8-Hexo-%E5%92%8C-Git-Page-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -186,7 +266,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-02-17 08:14:43" itemprop="dateModified" datetime="2020-02-17T08:14:43+08:00">2020-02-17</time>
+                <time title="Modified: 2020-06-28 11:23:18" itemprop="dateModified" datetime="2020-06-28T11:23:18+08:00">2020-06-28</time>
               </span>
 
           
@@ -202,15 +282,16 @@
       
           <h1 id="搭建过程">搭建过程</h1>
 <ul>
-<li>Hexo 的教程在官方文档中写的很详细，这里不再赘述。（实际上是内容太多了，官方文档写的详细，去看官方文档比较好）</li>
-<li>利用 GitHub 提供的 Git Page 搭建自己的博客，免费的 .github.io 域名，不用购买服务器。</li>
-<li>遇到的最大问题是 Hexo 主题在本地成功显示但是部署以后无法获取 .css 文件，浏览器报错 404。问题的原因是 Hexo 项目的 <code>_config.yml</code> 文件中的 <code>url</code> 和 <code>root</code> 配置出错。
+<li><p>Hexo 的教程在官方文档中写的很详细，这里不再赘述。（实际上是内容太多了，官方文档写的详细，去看官方文档比较好）</p></li>
+<li><p>利用 GitHub 提供的 Git Page 搭建自己的博客，免费的 .github.io 域名，不用购买服务器。</p></li>
+<li><p>遇到的最大问题是 Hexo 主题在本地成功显示但是部署以后无法获取 .css 文件，浏览器报错 404。问题的原因是 Hexo 项目的 <code>_config.yml</code> 文件中的 <code>url</code> 和 <code>root</code> 配置出错。</p>
 <ol type="1">
 <li>如果博客的链接是 <code>https://yoursite.com/child</code>，则 <code>url</code> 设置为 <code>https://yoursite.com</code>，<code>root</code> 设置为 <code>/child</code>。</li>
-<li>如果博客的的链接是 <code>https://yoursite.com</code>，则 <code>url</code> 设置为 <code>https://yoursite.com</code>，<code>root</code> 设置为 <code>/</code>。 # 使用问题</li>
+<li>如果博客的的链接是 <code>https://yoursite.com</code>，则 <code>url</code> 设置为 <code>https://yoursite.com</code>，<code>root</code> 设置为 <code>/</code>。</li>
 </ol></li>
-<li>无法正确渲染 markdown 表格</li>
-<li>_config.yml 文件配置总是不起作用</li>
+<li><p>使用 cnzz 站长工具时，如果访问者访问网站时浏览器中开启了广告屏蔽插件（如 AdGuard），则一般会导致 cnzz 脚本添加失败，无法统计该次访问。 # 使用问题</p></li>
+<li><p>无法正确渲染 markdown 表格</p></li>
+<li><p>_config.yml 文件配置总是不起作用</p></li>
 </ul>
 
       
@@ -298,7 +379,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -347,7 +428,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">113k</span>
+    <span title="Symbols count total">116k</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
   </div>
