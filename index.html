@@ -155,6 +155,166 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://hespoon.github.io/2020/10/08/C-%E5%AE%89%E5%85%A8%E7%BC%96%E7%A0%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="hespoon">
+      <meta itemprop="description" content="全心全意的投入生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Spirit">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/08/C-%E5%AE%89%E5%85%A8%E7%BC%96%E7%A0%81/" class="post-title-link" itemprop="url">C++ 安全编码</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-10-08 21:49:39 / Modified: 21:53:16" itemprop="dateCreated datePublished" datetime="2020-10-08T21:49:39+08:00">2020-10-08</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="整数">整数</h1>
+<p>以函数封装的形式调用安全函数，降低了代码的可读性，会引发误用风险</p>
+<p>不能用立即数充当 destMax，这会导致代码不明确</p>
+<p>destMax 一定要正确填写为目的缓冲区的长度</p>
+<p>安全函数的返回值是保证安全性的一部分，一般情况下不能忽略对返回值的检查</p>
+<p>有符号整数的溢出可能会导致符号变化，无符号整数的溢出会导致大数变小数。</p>
+<p>C++ 和 C 中的溢出是未定义的行为，是不能基于溢出结果做假设的。</p>
+<p>整数溢出可以被利用做 DoS 和 执行任意代码</p>
+<p>大整数强制转换类型时，如果该大整数超出了新的类型可表示的最大值，会发生截断，导致失真</p>
+<p>当有符号数强制转换为无符号数时，必须考虑范围问题。比如一个负的有符号数强制转换为一个无符号数时，会得到一个超大的无符号数，引发意想不到的结果。</p>
+<p>将整形表达式赋值给较大类型前，没有显示转换为较大类型，会造成数据溢出。</p>
+<p>对有符号整数进行位操作可能会出现数据反转。</p>
+<p>C 语言标准中制定了 uintptr_t 来表示指针的整数类型。</p>
+<h1 id="内存">内存</h1>
+<p>危险操作</p>
+<p>内存拷贝时未判断目标内存长度的有效性</p>
+<p>内存申请后未判断返回值</p>
+<p>使用已经释放的内存</p>
+<p>调用不匹配的内存管理操作，new、delete 和 malloc、free 混用</p>
+<p>重复释放内存</p>
+<p>windows 使用一个双向链表管理管理正在使用的堆内存</p>
+<p>当程序中申请 10 字节的堆内存时，实际耗费了 20 字节的物理内存，其中各部分组成如下：</p>
+<ol type="1">
+<li>分配内存头，包含一个前向指针和一个后向指针，共占用 8 字节</li>
+<li>分配内存体，按照 4 字节对齐原则，分配给申请者 12 字节的内存</li>
+</ol>
+<p>指针在定义时要初始化，内存在分配后要立即初始化。分配内存后不初始化，可能导致内存中原有的信息泄露。</p>
+<p>访问以释放的内存的危险主要分为两种的情况：</p>
+<ol type="1">
+<li>堆内存：一块内存释放后，就归还给了内存池，就不应该再访问了。这块内存可能被其他代码申请使用，通过原来的指针访问这块内存可能导致其他使用该内存的函数功能不正常。因此，内存释放后要及时将指针置为 nullptr 或指向其他有效内存。</li>
+<li>栈内存：函数执行时的临时变量存储在栈上，如果函数将临时变量的地址返回了，则可能导致程序崩溃或者执行恶意代码。</li>
+</ol>
+<p>重复释放内存可能会导致管理堆内存的双向链表发生混乱，产生不可预计的错误。</p>
+<p>申请内存之前要检验表示被申请内存大小的整数值，否则会出现下列三种可能的错误：</p>
+<ol type="1">
+<li>使用 0 字节长度申请内存的行为是没有意义的</li>
+<li>若申请的内存长度大于最大值，则可能导致内存申请失败，造成 DoS</li>
+<li>若使用负数长度申请内存，负数会被隐式转换为一个很大的无符号整数，同样可能导致内存分配失败。</li>
+</ol>
+<p>申请内存后要检查是否申请成功</p>
+<p>不应当使用 alloca 函数申请内存。</p>
+<p>因为 alloca 函数是在栈上申请内存的，而栈一般很小，很容易耗尽，而且分配的内存很容易越过栈的边界而无法预知。</p>
+<p>POSIX 和 C99 中均未定义 alloca 的行为。</p>
+<p>应当与 malloc 申请内存，然后用 memset_s 函数初始化内存。</p>
+<p>应当尽量少的使用 realloc 函数调整内存大小。</p>
+<p>realloc 函数实现非常复杂，功能不单一，不是一个好的函数实现。</p>
+<p>realloc 函数原型如下：</p>
+<p>void* realloc(void* ptr, size_t size)</p>
+<p>参数不同，realloc 函数的行行为也不同：</p>
+<ul>
+<li>当 ptr != nullptr &amp;&amp; size != 0 时，realloc 会重新调整内存大小，并返回指向新内存的指针。调整后内存中的内容与新旧两块内存大小较小者保持一致。如果是将原内存调大，而申请新的内存失败了，则返回 nullptr，并且保持原内存有效，依旧可以通过 ptr 访问原内存。</li>
+<li>当 ptr == nullptr &amp;&amp; size !=0 时，realloc 相当于 malloc(size)。</li>
+<li>当 size == 0 时，C++98 中相当于 free(ptr)，C++11 中则是一种未定义的行为。</li>
+</ul>
+<h1 id="不安全函数">不安全函数</h1>
+<p>不安全函数包括未指定目的缓冲区大小的内存操作函数和各种容易用错的函数。</p>
+<p>可能导致命令注入的函数</p>
+<p>#include &lt;cstdlib&gt;</p>
+<p>int system(const char* command);</p>
+<p>system 函数可以调起命令解析器执行命令。</p>
+<p>command 为 nullptr 时，该函数用于检查是否可以成功调起命令解释器，如果调起成功，则返回一个非零值，失败则返回零。</p>
+<p>command 不为 nullptr 时，该函数用于执行命令，返回值与 system 函数的实现有关。</p>
+<p>#include &lt;cstdio&gt;</p>
+<p>FILE* popen(const char* command, const char* type);</p>
+<p>popen() 会调用 fork() 产生子进程，然后从子进程中调用 /bin/sh -c 来执行参数 command 的指令。参数 type 的可取值为 "r" 和 "w"。"r" 代表读取，"w" 代表写入。依据 type 的值，popen() 会建立管道连到子进程的标准输出设备或标准输入设备，然后返回一个文件指针。随后进程便可以利用此文件指针来读取子进程的输出设备或是写入到子进程的标准输出设备中。</p>
+<p>不应当使用外部输入的参数作为命令直接执行或者直接拼接到命令中执行。如果必须要使用，则要对外部输入做白名单校验或者做硬编码。</p>
+<p>使用 Win32 API 中的 CreateProcess() 函数或者 POSIX 的 exec 系列函数代替 system 函数。</p>
+<p>如果使用 system 函数，则应使用硬编码的函数入参或对外部输入中的命令分隔符进行过滤或转义。</p>
+<p>多线程下的线程不安全函数</p>
+<p>这些函数中可能有静态变量或者全局变量，导致函数不可重入。</p>
+<p>执行的时序不同，函数的执行结果也可能不同。</p>
+<ol type="1">
+<li>函数 strtok 使用了一个静态局部变量标记当前位置，导致不可重入。printf 和 cout 混用，printf 和 cout 在 C++ 标准下是同步的，但是有的编译器可能没有按照标准来处理，所以混用 printf 和 cout 可能发生因时序导致的错误。</li>
+<li>信号处理程序中使用异步不安全函数，比如 I/O 函数，自定义的异步不安全函数等。这会造成信号阻塞，使程序执行结果不可预测。</li>
+</ol>
+<p>使用 strtok_r 代替 strtok，或者华为的 strtok_s 代替 strtok</p>
+<p>异步信号安全</p>
+<p>异步信号安全操作可以保证不会干扰正被中断的操作。</p>
+<p>当信号处理程序干扰正被中断的操作时，就会引发异步信号安全问题。</p>
+<p>在信号处理程序与正被同步的操作之间执行的任何同步尝试都将立即产生死锁。</p>
+<p>获取安全随机数</p>
+<p>Unix/Linux 下可以读取 /dev/random 文件获取安全随机数</p>
+<p>Windows 使用随机数生成函数 CryptGenRandom() 生成安全随机数</p>
+<p>使用开源组件 openssl 获取安全随机数</p>
+<p>使用华为的 iPSI 组件</p>
+<h1 id="文件操作">文件操作</h1>
+<p>常见问题</p>
+<ul>
+<li>文件操作返回值判断有误</li>
+<li>文件创建时没有指定合适的文件权限</li>
+<li>对文件的路径校验不够完全</li>
+</ul>
+<p>尽量使用文件句柄作为文件的操作对象。</p>
+<p>std::string 是不适合用来保存敏感信息的。</p>
+<p>C 中的 realpath 函数</p>
+<p>#include &lt;limits.h&gt;</p>
+<p>#include &lt;stdlib.h&gt;</p>
+<p>char* realpath(const char <em>path,char </em>resolved_path)</p>
+<p>realpath()函数用来将参数 path 所指的相对路径转换为绝对路径后存与参数 resolved_path 所指的字符串数组或指针中</p>
+<p>成功则返回指向 resolved_path 的指针，失败则返回 NULL，错误代码存于 errno 中</p>
+<p>该函数可能存在缓冲区溢出的风险。</p>
+<p>malloc 是线程安全的。malloc 在访问内存链表时会加锁。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://hespoon.github.io/2020/10/04/C-%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1360,274 +1520,6 @@ a &amp;= b + c \\
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://hespoon.github.io/2020/02/16/%E3%80%8A%E9%AB%98%E6%80%A7%E8%83%BD-MySQL%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E3%80%8A%E9%AB%98%E6%80%A7%E8%83%BD-MySQL%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%AC%AC%E5%9B%9B%E7%AB%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="hespoon">
-      <meta itemprop="description" content="全心全意的投入生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Spirit">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/16/%E3%80%8A%E9%AB%98%E6%80%A7%E8%83%BD-MySQL%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E3%80%8A%E9%AB%98%E6%80%A7%E8%83%BD-MySQL%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%AC%AC%E5%9B%9B%E7%AB%A0/" class="post-title-link" itemprop="url">《高性能 MySQL》学习笔记 第四章</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-02-16 17:34:36 / Modified: 20:50:17" itemprop="dateCreated datePublished" datetime="2020-02-16T17:34:36+08:00">2020-02-16</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="第四章-schema-与数据类型优化">第四章 Schema 与数据类型优化</h1>
-<h2 id="临时表">临时表</h2>
-<p>MySQL 临时表用于保存一些临时数据。临时表只在当前连接可见，当关闭连接时，MySQL 会自动删除表并释放所有空间。</p>
-<ul>
-<li><p>外部临时表</p>
-<p>通过 <code>CREATE TEMORPARY TABLE</code> 创建的临时表称为外部临时表。这种临时表的命名可与非临时表相同。同名后，非临时表对当前回话不可见，直到临时表被删除。</p></li>
-<li><p>内部临时表</p>
-<p>内部临时表是一种特殊的轻量级临时表，由 MySQL 自动创建，用来存储某些操作的中间结果，达到性能优化的目的。该表一般是 Memory 表。如果中间结果太大超出了 Memory 的限制，或者含有 BLOB 或 TEXT 字段，则临时表会转换为 MyISAM 表。</p></li>
-</ul>
-<h2 id="对象关系映射-object-relation-mapping-简称-omp">对象关系映射 Object Relation Mapping 简称 OMP</h2>
-<p>面向对象的开发方法是当今企业级应用开发环境中的主流方法，关系数据库是企业级应用环境中永久存放数据的主流数据存储系统。对象和关系数据是业务实体的两种表现方式。业务实体在内存中表现为对象，在数据库中表现为关系数据。内存中的对象之间存在关联和继承关系，而在数据库中，关系数据无法直接表达多对多的关联和继承关系。因此，对象-关系映射系统一般以中间件的形式存在，主要实现程序对象到关系数据库数据的映射。</p>
-<h2 id="实体-属性-值模型-entity-attribute-value-model-eav">实体-属性-值模型 Entity-attribute-value model EAV</h2>
-<blockquote>
-<p><a href="%5Bhttps://en.wikipedia.org/wiki/Entity%E2%80%93attribute%E2%80%93value_model%5D(https://en.wikipedia.org/wiki/Entity–attribute–value_model)">Entity-attribute-value mode-wiki</a></p>
-</blockquote>
-<p>EAV 模型是一种数据模型。主要用于以较高的空间利用率编码一种特殊实体，该实体在整体上包含很多属性，但是具体到某一个个体时，只有有限个的属性有值，其他的属性都为空。这种实体与数学上的稀疏矩阵很相似。</p>
-<p>EAV 表通常是瘦长的。瘦表示表的列很少，长表示表的行很多。</p>
-<p>EAV 表通常有三列</p>
-<ul>
-<li>entity 表示被描述的实体，该列一般是关联到实体定义表的外键。</li>
-<li>attribute 该列一般是关联到一个属性定义表的外键。该属性定义表用来定义该属性，表格可能包含如下几种列：属性ID、属性名、属性描述、数据类型和用于辅助输入验证的列，比如，最大字符串长度、正则表达式或这一个包含有效数据的集合。</li>
-<li>value 该列存放属性的值</li>
-</ul>
-<p>使用 EAV 模型的两个例子：医院的病历记录，超市的销售数据。</p>
-<p>EAV 使用了行模型。行模型表示一个实体被记录在很多行而不是很多列中，每行通常有三列：entity、attribute 和 value。</p>
-<h2 id="范式">范式</h2>
-<blockquote>
-<p><a href="https://www.zhihu.com/question/24696366" target="_blank" rel="noopener">常见范式设计</a></p>
-</blockquote>
-<ul>
-<li>依赖：若在一张表中，在属性（或属性组）X 的值确定的情况下，必定能确定属性 Y 的值，那么就可以说 Y 函数依赖于 X，记作 <span class="math inline">\(X \to Y\)</span>。</li>
-<li>完全函数依赖：在一张表中，若 <span class="math inline">\(X \to Y\)</span>，且对于 X 的任何真子集 <span class="math inline">\(X&#39;\)</span>，<span class="math inline">\(X&#39; \to Y\)</span> 不成立，那么我们称 Y 完全依赖于 X，记作 <span class="math inline">\(X\stackrel{F}{\to}Y\)</span>。</li>
-<li>部分函数依赖：Y 函数依赖于 X，同时 Y 不完全依赖于 X，则称 Y 部分依赖于 X，记作 <span class="math inline">\(X\stackrel{P}{\to}Y\)</span>。</li>
-<li>传递函数依赖：Z 函数依赖于 Y，且 Y 函数依赖于 X，且 Y 不包含于 X，且 X 不函数依赖于 Y，则称 Z 传递依赖于 X，记作 <span class="math inline">\(X\stackrel{T}{\to}Z\)</span>。</li>
-<li>码：设 K 为某表中的一个属性或属性组，若除 K 之外的所有属性都有完全函数依赖于 K，那么我们称 K 为候选码，简称为码。通常可以这样理解：假如 K 确定的情况下，该表除 K 之外的所有属性的值也就确定，那么 K 就是码。一张表中可以有超过一个码，通常选择其中的一个码作为主码。</li>
-<li>主属性：包含在任何一个码中的属性为主属性</li>
-<li>判断表格符合那一个范式步骤
-<ol type="1">
-<li>找出表中的所有码</li>
-<li>根据第一步的码，找出所有主属性</li>
-<li>除去所有的主属性，剩下的都是非主属性</li>
-<li>查看函数依赖</li>
-</ol></li>
-</ul>
-<ol type="1">
-<li><p>第一范式</p>
-<p>所有属性都是不可分割的原子值。</p>
-<p>数据库表的每一列都是不可分割的原子数据项，不能是集合，数组，记录等非原子数据项。</p></li>
-<li><p>第二范式</p>
-<p>在第一范式的基础上，要求非主属性都要==完全==依赖于码。</p></li>
-<li><p>第三范式</p>
-<p>任何非主属性不依赖于其他非主键属性。</p>
-<p>第三范式是在第二范式的基础上建立起来的，消除了非主属性对于码的传递函数依赖。</p></li>
-<li><p>BC 范式</p>
-<p>在 3NF 的基础上消除主属性对于码的部分与传递函数依赖。</p></li>
-</ol>
-<h2 id="选择数据类型的原则">选择数据类型的原则</h2>
-<ol type="1">
-<li><p>更小的通常更好</p>
-<p>更小的数据类型通常占用更少的存储空间，处理时需要的 CPU 周期更少。</p>
-<p>同时要确保没有低估需要存储的值的范围。在 schema 中的多个地方增加数据类型是一个代价很高的操作。</p></li>
-<li><p>简单就好</p>
-<p>简单的数据类型操作通常需要更少的 CPU 周期。</p>
-<p>使用 MySQL 内建的数据类型存储日期和时间，而不是使用字符串。</p>
-<p>使用整形存储 IP 地址。</p></li>
-<li><p>尽量避免 NULL</p>
-<p>可为 NULL 是列的默认属性。</p>
-<p>通常情况下最好指定 NOT NULL，除非真的需要存储 NULL 值。</p>
-<p>包含 NULL 的列，对 MySQL 来说更难优化。</p>
-<p>可为 NULL 的列使得索引、索引统计和值比较都更加复杂。</p>
-<p>但是，通常把可为 NULL 的列改为 NOT NULL 带来的性能提升比较小。所以，在调优时，没有必要首先修改这种情况。但是，在设计表格时要尽量避免 NULL。</p></li>
-<li><p>第一步，确定适合的大类型：数字、字符串、时间等。然后确定具体类型。MySQL 为了兼容性支持很多基本数据类型的别名，例如 INTEGER、BOOL 以及 NUMERIC。这些别名不会影响性能。</p></li>
-</ol>
-<h2 id="整数类型">整数类型</h2>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: center;">类型</th>
-<th style="text-align: center;">位数</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">TINYINT</td>
-<td style="text-align: center;">8 位</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">SMALLINT</td>
-<td style="text-align: center;">16 位</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">MEDIUMINT</td>
-<td style="text-align: center;">24 位</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">INT</td>
-<td style="text-align: center;">32 位</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">BIGINT</td>
-<td style="text-align: center;">64 位</td>
-</tr>
-</tbody>
-</table>
-<p>可存储的值的范围：<span class="math inline">\(-2^{(N-1)}\thicksim2^{(N-1)}-1\)</span>，N 为位数。</p>
-<p>有可选的 UNSIGNED 属性，表示无符号整数。可存储的值的范围：<span class="math inline">\(0 \thicksim 2^N-1\)</span>，N 为位数。</p>
-<p>数据类型决定整数是如何存储的。而整数计算一般使用 64 位的 BIGINT 整数，即使在 32 位环境中也是如此。一些聚合函数是例外，它们使用 DECIMAL 或 DOUBLE 进行计算。</p>
-<p>可以为整数类型指定宽度，例如 INT(11)。这对大多数应用没有意义，这不会改变值的合法范围，只是规定了 MySQL 的一些交互工具用来显示字符的个数。对于存储和计算来讲 INT(1) 与 INT(20) 没有区别。</p>
-<h2 id="实数类型">实数类型</h2>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: center;">类型</th>
-<th style="text-align: center;">位数</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">FLOAT</td>
-<td style="text-align: center;">32 位</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">DOUBLE</td>
-<td style="text-align: center;">64 位</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">DECIMAL</td>
-<td style="text-align: center;">128 位</td>
-</tr>
-</tbody>
-</table>
-<p>DECIMAL(a,b)</p>
-<p>参数说明：a 指定小数点左边和右边可以存储的十进制数字的最大个数。b 指定小数点右边可以存储的十进制数字的最大个数。</p>
-<p>DECIMAL 只是一种存储格式，在实际计算中，DECIMAL 会转换为 DOUBLE。</p>
-<p>CUP 不支持 DECIMAL 的直接运算，DECIMAL 的运算要在服务器层实现。相对而言，CUP 原生支持的浮点数运算更快。</p>
-<p>MySQL 使用 DOUBLE 作为内部浮点计算的类型。</p>
-<p>推荐只指定数据类型，不指定精度。</p>
-<p>尽量只在对小数进行精确计算时才使用 DECIMAL，例如财务数据。</p>
-<p>在数据量比较大时，可以使用 BIGINT 代替 DECIMAL，只需要将 DECIMAL 乘以合适的倍数将其转换为整数即可。这样可以避免浮点数计算精度问题和 DECIMAL 计算代价大的问题。</p>
-<h2 id="字符串类型">字符串类型</h2>
-<p>MySQL 4.1 开始，每个字符串列可以自定义自己的字符集和排序规则，这些东西会很大程度上影响性能。</p>
-<h3 id="varchar-和-char-类型">VARCHAR 和 CHAR 类型</h3>
-<p>这两个数据类型在磁盘和内存中的存储方式与存储引擎的具体实现有关。以下以 InnoDB 和 MyISAM 在磁盘上的存储为例。</p>
-<ul>
-<li><p>VARCHAR</p>
-<p>用于存储可变长的字符串。</p>
-<p>比定长类型节省空间，因为它仅使用必要的空间。</p>
-<p>例外：如果表使用 ROW_FORMAT = FIXED 创建，每一行都会使用定长储存，这会很浪费存储空间。</p>
-<p>VARCHAR 需要使用额外的字节记录字符串的长度，如果列的最大长度小于等于 255 字节，则使用 1 个字节记录，否则使用 2 字节。</p>
-<p>由于行是变长的，在 UPDATE 时可能使行变得比原来长，这会导致额外的工作。如果一个行占用的空间增长，并且在页内没有更多的空间存储，在这种情况下，不同的存储引擎的处理方式不同。InnoDB 会分裂页来使行可以放入页内，MyISAM 会将行拆分成不同的片段存储。</p>
-<p>适用 VARCHAR 的情况：</p>
-<ol type="1">
-<li>字符串列的最大长度比平均长度大很多</li>
-<li>列的更新很少</li>
-<li>使用了像 UTF-8 这样的复杂字符集，每个字符都使用不同的字节进行存储。</li>
-</ol>
-<p>MySQL 5.0 及以上在存储和检索时会保留末尾空格。</p>
-<p>InnoDB 会把过长的 VARCHAR 存储为 BLOB。</p></li>
-<li><p>CHAR</p>
-<p>CHAR 是定长的。MySQL 总是根据定义的字符串长度为 CHAR 分配足够的空间。</p>
-<p>存储时，MySQL 会删除所有的末尾空格。</p>
-<p>CHAR 值会根据需要使用空格进行填充以便进行比较。</p>
-<p>适用 CHAR 的情况：</p>
-<ol type="1">
-<li>很短的字符串。</li>
-<li>所有值都接近同一长度的字符串。比如 MD5 值。</li>
-<li>对于经常变更的数据，CHAR 比 VARCHAR 更有效率，因为不容易产生碎片。</li>
-</ol></li>
-</ul>
-<p>填充和截取空格的行为在不同的存储引擎中都是一样的，因为这是在服务器层处理的。</p>
-<h3 id="binary-和-varbinary">BINARY 和 VARBINARY</h3>
-<p>与 CHAR 和 VARCHAR 很像。</p>
-<p>这两个数据类型存储的是二进制的字符串，即存储的是字节码而不是字符。</p>
-<p>填充时使用 \0 而不是空格。</p>
-<p>二进制比较比字符比较简单很多，也就快很多。</p>
-<h3 id="慷慨是不明智的-最好的策略是只分配真正需要的空间">慷慨是不明智的 最好的策略是只分配真正需要的空间</h3>
-<h3 id="blob-和-text-类型">BLOB 和 TEXT 类型</h3>
-<p>用于存储很大的数据。</p>
-<p>BLOB 存储二进制数据，没有字符集和排序规则。</p>
-<p>TEXT 存储字符数据，有字符集和排序规则。</p>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: center;">字符类型</th>
-<th style="text-align: center;">二进制类型</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">TINYTEXT</td>
-<td style="text-align: center;">TINYBLOB</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">SMALLTEXT(TEXT)</td>
-<td style="text-align: center;">SMALLBLOB(BLOB)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">MEDIUMTEXT</td>
-<td style="text-align: center;">MEDIUMBLOB</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">LONGTEXT</td>
-<td style="text-align: center;">LONGBLOB</td>
-</tr>
-</tbody>
-</table>
-<p>InnoDB 在 BLOB 或 TEXT 太大时，使用专用的外部存储区域存储，在行内只存储一个指向外部存储区域的指针。</p>
-<p>只对每列最前的 max_sort_lenght 字节做排序而不是对整个字符串。</p>
-<p>不能将 BLOB 和 TEXT 全部长度的字符串进行索引，也不能使用这些索引消除排序。</p>
-<h3 id="使用枚举类型代替字符串类型">使用枚举类型代替字符串类型</h3>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1699,7 +1591,7 @@ a &amp;= b + c \\
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">33</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1748,7 +1640,7 @@ a &amp;= b + c \\
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">116k</span>
+    <span title="Symbols count total">119k</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
   </div>
