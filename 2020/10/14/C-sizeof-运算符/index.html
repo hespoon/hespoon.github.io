@@ -20,17 +20,19 @@
     var CONFIG = {"hostname":"hespoon.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":"//cdn.jsdelivr.net/gh/user/repo@version/file","lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="article">
-<meta property="og:title" content="2-3查找树">
-<meta property="og:url" content="http://hespoon.github.io/2019/10/19/2-3%E6%9F%A5%E6%89%BE%E6%A0%91/index.html">
+  <meta name="description" content="功能 计算对象或类型的大小，单位为字节 byte。 被计算大小的对象或类型的大小必须是明确的，不能是不可知的。 语法 12sizeof(type);sizeof expression; 在不同的计算机体系结构下，一个字节占用的 bit 数是不确定的，可能是 8bit 或者更多，具体数值由宏 CHAR_BIT 定义。但是，无论一个 byte 占用多少个 bit，下列表达式的值都是 1。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ sizeof 运算符">
+<meta property="og:url" content="http://hespoon.github.io/2020/10/14/C-sizeof-%E8%BF%90%E7%AE%97%E7%AC%A6/index.html">
 <meta property="og:site_name" content="Spirit">
+<meta property="og:description" content="功能 计算对象或类型的大小，单位为字节 byte。 被计算大小的对象或类型的大小必须是明确的，不能是不可知的。 语法 12sizeof(type);sizeof expression; 在不同的计算机体系结构下，一个字节占用的 bit 数是不确定的，可能是 8bit 或者更多，具体数值由宏 CHAR_BIT 定义。但是，无论一个 byte 占用多少个 bit，下列表达式的值都是 1。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2019-10-19T14:44:21.000Z">
-<meta property="article:modified_time" content="2019-10-19T23:45:10.692Z">
+<meta property="article:published_time" content="2020-10-14T15:14:39.000Z">
+<meta property="article:modified_time" content="2020-10-14T15:39:02.237Z">
 <meta property="article:author" content="hespoon">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://hespoon.github.io/2019/10/19/2-3%E6%9F%A5%E6%89%BE%E6%A0%91/">
+<link rel="canonical" href="http://hespoon.github.io/2020/10/14/C-sizeof-%E8%BF%90%E7%AE%97%E7%AC%A6/">
 
 
 <script id="page-configurations">
@@ -43,7 +45,7 @@
   };
 </script>
 
-  <title>2-3查找树 | Spirit</title>
+  <title>C++ sizeof 运算符 | Spirit</title>
   
 
 
@@ -156,7 +158,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://hespoon.github.io/2019/10/19/2-3%E6%9F%A5%E6%89%BE%E6%A0%91/">
+    <link itemprop="mainEntityOfPage" href="http://hespoon.github.io/2020/10/14/C-sizeof-%E8%BF%90%E7%AE%97%E7%AC%A6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -169,7 +171,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          2-3查找树<a href="https://github.com/hespoon/my-blog/tree/master/source/_posts/2-3%E6%9F%A5%E6%89%BE%E6%A0%91.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pencil-alt"></i></a>
+          C++ sizeof 运算符<a href="https://github.com/hespoon/my-blog/tree/master/source/_posts/C-sizeof-%E8%BF%90%E7%AE%97%E7%AC%A6.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pencil-alt"></i></a>
         </h1>
 
         <div class="post-meta">
@@ -178,16 +180,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2019-10-19 22:44:21" itemprop="dateCreated datePublished" datetime="2019-10-19T22:44:21+08:00">2019-10-19</time>
+              <time title="Created: 2020-10-14 23:14:39 / Modified: 23:39:02" itemprop="dateCreated datePublished" datetime="2020-10-14T23:14:39+08:00">2020-10-14</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-20 07:45:10" itemprop="dateModified" datetime="2019-10-20T07:45:10+08:00">2019-10-20</time>
-              </span>
 
           
 
@@ -200,7 +196,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        
+        <h1 id="功能">功能</h1>
+<p>计算对象或类型的大小，单位为字节 byte。</p>
+<p>被计算大小的对象或类型的大小必须是明确的，不能是不可知的。</p>
+<h1 id="语法">语法</h1>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">sizeof</span>(type);</span><br><span class="line"><span class="keyword">sizeof</span> expression;</span><br></pre></td></tr></table></figure>
+<p>在不同的计算机体系结构下，一个字节占用的 bit 数是不确定的，可能是 8bit 或者更多，具体数值由宏 CHAR_BIT 定义。但是，无论一个 byte 占用多少个 bit，下列表达式的值都是 1。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">sizeof</span>(<span class="keyword">char</span>)==<span class="keyword">sizeof</span>(<span class="keyword">char8_t</span>)==<span class="keyword">sizeof</span>(<span class="keyword">signed</span> <span class="keyword">char</span>)==<span class="keyword">sizeof</span>(<span class="keyword">unsigned</span> <span class="keyword">char</span>)==<span class="keyword">sizeof</span>(<span class="built_in">std</span>::byte)==<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>sizeof 不能计算函数类型，不完整类型和 glvalues 的大小，强行计算会报错。</p>
+<p>当用 sizeof 计算引用的大小时，实际上计算的是被引用的类型的大小。</p>
+<p>当用 sizeof 计算一个类的大小时，返回值是一个该类的对象的大小加上将一个该类的对象放入数组中时所要填充的空间的大小。也就是会返回该类的对象在按照字节对齐后的大小。</p>
+<p>sizeof 的结果永远不会是 0，即使计算一个空类的大小也不是 0。</p>
+<p>当使用 <code>sizeof expression</code> 时，sizeof 不会判断 expression 是否是有效的。</p>
 
     </div>
 
@@ -236,13 +243,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/10/10/%E7%AE%80%E5%8D%95%E8%AE%A1%E7%AE%97%E5%99%A8/" rel="prev" title="简单计算器">
-      <i class="fa fa-chevron-left"></i> 简单计算器
+    <a href="/2020/10/08/C-%E5%AE%89%E5%85%A8%E7%BC%96%E7%A0%81/" rel="prev" title="C++ 安全编码">
+      <i class="fa fa-chevron-left"></i> C++ 安全编码
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2019/11/02/sizeof-%E5%87%BD%E6%95%B0/" rel="next" title="sizeof() 函数">
-      sizeof() 函数 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -301,6 +305,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#功能"><span class="nav-number">1.</span> <span class="nav-text">功能</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#语法"><span class="nav-number">2.</span> <span class="nav-text">语法</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
