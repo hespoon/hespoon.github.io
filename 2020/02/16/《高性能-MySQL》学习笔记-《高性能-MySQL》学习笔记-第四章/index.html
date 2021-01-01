@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
+<meta name="generator" content="Hexo 5.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-hespoon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-hespoon.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-hespoon.png">
@@ -172,7 +172,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          《高性能 MySQL》学习笔记 第四章<a href="https://github.com/hespoon/my-blog/tree/master/source/_posts/%E3%80%8A%E9%AB%98%E6%80%A7%E8%83%BD-MySQL%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E3%80%8A%E9%AB%98%E6%80%A7%E8%83%BD-MySQL%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%AC%AC%E5%9B%9B%E7%AB%A0.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pencil-alt"></i></a>
+          《高性能 MySQL》学习笔记 第四章<a href="https://github.com/hespoon/my-blog/tree/master/source/_posts/《高性能-MySQL》学习笔记/《高性能-MySQL》学习笔记-第四章.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pencil-alt"></i></a>
         </h1>
 
         <div class="post-meta">
@@ -224,7 +224,7 @@
 <p>EAV 使用了行模型。行模型表示一个实体被记录在很多行而不是很多列中，每行通常有三列：entity、attribute 和 value。</p>
 <h2 id="范式">范式</h2>
 <blockquote>
-<p><a href="https://www.zhihu.com/question/24696366" target="_blank" rel="noopener">常见范式设计</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/24696366">常见范式设计</a></p>
 </blockquote>
 <ul>
 <li>依赖：若在一张表中，在属性（或属性组）X 的值确定的情况下，必定能确定属性 Y 的值，那么就可以说 Y 函数依赖于 X，记作 <span class="math inline">\(X \to Y\)</span>。</li>
@@ -510,7 +510,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第四章-schema-与数据类型优化"><span class="nav-number">1.</span> <span class="nav-text">第四章 Schema 与数据类型优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#临时表"><span class="nav-number">1.1.</span> <span class="nav-text">临时表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象关系映射-object-relation-mapping-简称-omp"><span class="nav-number">1.2.</span> <span class="nav-text">对象关系映射 Object Relation Mapping 简称 OMP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实体-属性-值模型-entity-attribute-value-model-eav"><span class="nav-number">1.3.</span> <span class="nav-text">实体-属性-值模型 Entity-attribute-value model EAV</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#范式"><span class="nav-number">1.4.</span> <span class="nav-text">范式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择数据类型的原则"><span class="nav-number">1.5.</span> <span class="nav-text">选择数据类型的原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整数类型"><span class="nav-number">1.6.</span> <span class="nav-text">整数类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实数类型"><span class="nav-number">1.7.</span> <span class="nav-text">实数类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串类型"><span class="nav-number">1.8.</span> <span class="nav-text">字符串类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#varchar-和-char-类型"><span class="nav-number">1.8.1.</span> <span class="nav-text">VARCHAR 和 CHAR 类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#binary-和-varbinary"><span class="nav-number">1.8.2.</span> <span class="nav-text">BINARY 和 VARBINARY</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#慷慨是不明智的-最好的策略是只分配真正需要的空间"><span class="nav-number">1.8.3.</span> <span class="nav-text">慷慨是不明智的 最好的策略是只分配真正需要的空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#blob-和-text-类型"><span class="nav-number">1.8.4.</span> <span class="nav-text">BLOB 和 TEXT 类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用枚举类型代替字符串类型"><span class="nav-number">1.8.5.</span> <span class="nav-text">使用枚举类型代替字符串类型</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-schema-%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%BC%98%E5%8C%96"><span class="nav-number">1.</span> <span class="nav-text">第四章 Schema 与数据类型优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%B4%E6%97%B6%E8%A1%A8"><span class="nav-number">1.1.</span> <span class="nav-text">临时表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E5%85%B3%E7%B3%BB%E6%98%A0%E5%B0%84-object-relation-mapping-%E7%AE%80%E7%A7%B0-omp"><span class="nav-number">1.2.</span> <span class="nav-text">对象关系映射 Object Relation Mapping 简称 OMP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E4%BD%93-%E5%B1%9E%E6%80%A7-%E5%80%BC%E6%A8%A1%E5%9E%8B-entity-attribute-value-model-eav"><span class="nav-number">1.3.</span> <span class="nav-text">实体-属性-值模型 Entity-attribute-value model EAV</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8C%83%E5%BC%8F"><span class="nav-number">1.4.</span> <span class="nav-text">范式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8E%9F%E5%88%99"><span class="nav-number">1.5.</span> <span class="nav-text">选择数据类型的原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E6%95%B0%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.6.</span> <span class="nav-text">整数类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E6%95%B0%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.7.</span> <span class="nav-text">实数类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.8.</span> <span class="nav-text">字符串类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#varchar-%E5%92%8C-char-%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.8.1.</span> <span class="nav-text">VARCHAR 和 CHAR 类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#binary-%E5%92%8C-varbinary"><span class="nav-number">1.8.2.</span> <span class="nav-text">BINARY 和 VARBINARY</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%85%B7%E6%85%A8%E6%98%AF%E4%B8%8D%E6%98%8E%E6%99%BA%E7%9A%84-%E6%9C%80%E5%A5%BD%E7%9A%84%E7%AD%96%E7%95%A5%E6%98%AF%E5%8F%AA%E5%88%86%E9%85%8D%E7%9C%9F%E6%AD%A3%E9%9C%80%E8%A6%81%E7%9A%84%E7%A9%BA%E9%97%B4"><span class="nav-number">1.8.3.</span> <span class="nav-text">慷慨是不明智的 最好的策略是只分配真正需要的空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#blob-%E5%92%8C-text-%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.8.4.</span> <span class="nav-text">BLOB 和 TEXT 类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B%E4%BB%A3%E6%9B%BF%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.8.5.</span> <span class="nav-text">使用枚举类型代替字符串类型</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -538,7 +538,7 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/hespoon" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hespoon" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+        <a href="https://github.com/hespoon" title="GitHub → https://github.com/hespoon" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
         <a href="mailto:hezaojian@gmail.com" title="E-Mail → mailto:hezaojian@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
@@ -575,9 +575,9 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">141k</span>
+    <span title="Symbols count total">142k</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
   </div>
 
         

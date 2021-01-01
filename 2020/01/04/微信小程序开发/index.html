@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
+<meta name="generator" content="Hexo 5.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-hespoon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-hespoon.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-hespoon.png">
@@ -171,7 +171,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          微信小程序开发<a href="https://github.com/hespoon/my-blog/tree/master/source/_posts/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pencil-alt"></i></a>
+          微信小程序开发<a href="https://github.com/hespoon/my-blog/tree/master/source/_posts/微信小程序开发.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pencil-alt"></i></a>
         </h1>
 
         <div class="post-meta">
@@ -321,7 +321,7 @@
 <li>wx.get* 开头的 API 是获取宿主环境数据的接口。</li>
 <li>wx.set* 开头的 API 是写入数据到宿主环境的接口。 # 事件</li>
 <li>用户在渲染层的行为反馈以及组件的部分状态反馈抽象为渲染层传递给逻辑层的事件。</li>
-<li>事件冒泡与事件捕获 事件冒泡与事件捕获分别由微软和网景公司提出，这两个概念都是为了解决页面中事件流的问题。 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"outer"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"inner"</span>&gt;</span>Click me!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>事件冒泡与事件捕获 事件冒泡与事件捕获分别由微软和网景公司提出，这两个概念都是为了解决页面中事件流的问题。 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;outer&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">&quot;inner&quot;</span>&gt;</span>Click me!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
 <li>考虑上述代码，假设 outer div 和 inner p 各自都有一个 click 处理函数，那么我们怎么才能知道哪一个函数会首先触发？</li>
 <li>事件冒泡 微软提出的事件冒泡的事件流。事件冒泡可以形象的比喻为把一个石头投入水中，泡泡会一直从水底冒出水面。因此，事件会从最内层的元素开始发生，一直向上传播，直到 document 对象。因此，在事件冒泡的概念下，在 p 元素上发生的 click 事件的顺序应该是 p-&gt;div-&gt;body-&gt;html-&gt;document</li>
 <li>事件捕获 网景提出的另一种事件流名为事件捕获。与事件冒泡相反，事件会从最外层开始发生，直到最具体的元素。因此，在事件捕获的概念下，在 p 元素上发生的 click 事件的顺序应该是 document-&gt;html-&gt;body-&gt;div-&gt;p</li>
@@ -653,7 +653,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#兼容"><span class="nav-number">1.</span> <span class="nav-text">兼容</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见的交互反馈"><span class="nav-number">2.</span> <span class="nav-text">常见的交互反馈</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小工具"><span class="nav-number">3.</span> <span class="nav-text">小工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#水平分割线"><span class="nav-number">3.1.</span> <span class="nav-text">水平分割线</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%BC%E5%AE%B9"><span class="nav-number">1.</span> <span class="nav-text">兼容</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E4%BA%A4%E4%BA%92%E5%8F%8D%E9%A6%88"><span class="nav-number">2.</span> <span class="nav-text">常见的交互反馈</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%8F%E5%B7%A5%E5%85%B7"><span class="nav-number">3.</span> <span class="nav-text">小工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B0%B4%E5%B9%B3%E5%88%86%E5%89%B2%E7%BA%BF"><span class="nav-number">3.1.</span> <span class="nav-text">水平分割线</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -681,7 +681,7 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/hespoon" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hespoon" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+        <a href="https://github.com/hespoon" title="GitHub → https://github.com/hespoon" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
         <a href="mailto:hezaojian@gmail.com" title="E-Mail → mailto:hezaojian@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
@@ -718,9 +718,9 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">141k</span>
+    <span title="Symbols count total">142k</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
   </div>
 
         
