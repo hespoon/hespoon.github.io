@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hespoon.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":"//cdn.jsdelivr.net/gh/user/repo@version/file","lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="整数 以函数封装的形式调用安全函数，降低了代码的可读性，会引发误用风险 不能用立即数充当 destMax，这会导致代码不明确 destMax 一定要正确填写为目的缓冲区的长度 安全函数的返回值是保证安全性的一部分，一般情况下不能忽略对返回值的检查 有符号整数的溢出可能会导致符号变化，无符号整数的溢出会导致大数变小数。 C++ 和 C 中的溢出是未定义的行为，是不能基于溢出结果做假设的。">
+  <meta name="description" content="整数 以函数封装的形式调用安全函数，降低了代码的可读性，会引发误用风险 不能用立即数充当 destMax，这会导致代码不明确 destMax 一定要正确填写为目的缓冲区的长度 安全函数的返回值是保证安全性的一部分，一般情况下不能忽略对返回值的检查 有符号整数的溢出可能会导致符号变化，无符号整数的溢出会导致大数变小数。 C++ 和 C 中的溢出是未定义的行为，是不能基于溢出结果做假设的。 整数溢出">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++ 安全编码">
 <meta property="og:url" content="http://hespoon.github.io/2020/10/08/C-%E5%AE%89%E5%85%A8%E7%BC%96%E7%A0%81/index.html">
 <meta property="og:site_name" content="Spirit">
-<meta property="og:description" content="整数 以函数封装的形式调用安全函数，降低了代码的可读性，会引发误用风险 不能用立即数充当 destMax，这会导致代码不明确 destMax 一定要正确填写为目的缓冲区的长度 安全函数的返回值是保证安全性的一部分，一般情况下不能忽略对返回值的检查 有符号整数的溢出可能会导致符号变化，无符号整数的溢出会导致大数变小数。 C++ 和 C 中的溢出是未定义的行为，是不能基于溢出结果做假设的。">
+<meta property="og:description" content="整数 以函数封装的形式调用安全函数，降低了代码的可读性，会引发误用风险 不能用立即数充当 destMax，这会导致代码不明确 destMax 一定要正确填写为目的缓冲区的长度 安全函数的返回值是保证安全性的一部分，一般情况下不能忽略对返回值的检查 有符号整数的溢出可能会导致符号变化，无符号整数的溢出会导致大数变小数。 C++ 和 C 中的溢出是未定义的行为，是不能基于溢出结果做假设的。 整数溢出">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-10-08T13:49:39.000Z">
 <meta property="article:modified_time" content="2020-10-08T13:53:16.316Z">
@@ -196,7 +196,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="整数">整数</h1>
+        <h1 id="整数"><a class="markdownIt-Anchor" href="#整数"></a> 整数</h1>
 <p>以函数封装的形式调用安全函数，降低了代码的可读性，会引发误用风险</p>
 <p>不能用立即数充当 destMax，这会导致代码不明确</p>
 <p>destMax 一定要正确填写为目的缓冲区的长度</p>
@@ -209,7 +209,7 @@
 <p>将整形表达式赋值给较大类型前，没有显示转换为较大类型，会造成数据溢出。</p>
 <p>对有符号整数进行位操作可能会出现数据反转。</p>
 <p>C 语言标准中制定了 uintptr_t 来表示指针的整数类型。</p>
-<h1 id="内存">内存</h1>
+<h1 id="内存"><a class="markdownIt-Anchor" href="#内存"></a> 内存</h1>
 <p>危险操作</p>
 <p>内存拷贝时未判断目标内存长度的有效性</p>
 <p>内存申请后未判断返回值</p>
@@ -218,19 +218,19 @@
 <p>重复释放内存</p>
 <p>windows 使用一个双向链表管理管理正在使用的堆内存</p>
 <p>当程序中申请 10 字节的堆内存时，实际耗费了 20 字节的物理内存，其中各部分组成如下：</p>
-<ol type="1">
+<ol>
 <li>分配内存头，包含一个前向指针和一个后向指针，共占用 8 字节</li>
 <li>分配内存体，按照 4 字节对齐原则，分配给申请者 12 字节的内存</li>
 </ol>
 <p>指针在定义时要初始化，内存在分配后要立即初始化。分配内存后不初始化，可能导致内存中原有的信息泄露。</p>
 <p>访问以释放的内存的危险主要分为两种的情况：</p>
-<ol type="1">
+<ol>
 <li>堆内存：一块内存释放后，就归还给了内存池，就不应该再访问了。这块内存可能被其他代码申请使用，通过原来的指针访问这块内存可能导致其他使用该内存的函数功能不正常。因此，内存释放后要及时将指针置为 nullptr 或指向其他有效内存。</li>
 <li>栈内存：函数执行时的临时变量存储在栈上，如果函数将临时变量的地址返回了，则可能导致程序崩溃或者执行恶意代码。</li>
 </ol>
 <p>重复释放内存可能会导致管理堆内存的双向链表发生混乱，产生不可预计的错误。</p>
 <p>申请内存之前要检验表示被申请内存大小的整数值，否则会出现下列三种可能的错误：</p>
-<ol type="1">
+<ol>
 <li>使用 0 字节长度申请内存的行为是没有意义的</li>
 <li>若申请的内存长度大于最大值，则可能导致内存申请失败，造成 DoS</li>
 <li>若使用负数长度申请内存，负数会被隐式转换为一个很大的无符号整数，同样可能导致内存分配失败。</li>
@@ -246,11 +246,11 @@
 <p>void* realloc(void* ptr, size_t size)</p>
 <p>参数不同，realloc 函数的行行为也不同：</p>
 <ul>
-<li>当 ptr != nullptr &amp;&amp; size != 0 时，realloc 会重新调整内存大小，并返回指向新内存的指针。调整后内存中的内容与新旧两块内存大小较小者保持一致。如果是将原内存调大，而申请新的内存失败了，则返回 nullptr，并且保持原内存有效，依旧可以通过 ptr 访问原内存。</li>
-<li>当 ptr == nullptr &amp;&amp; size !=0 时，realloc 相当于 malloc(size)。</li>
-<li>当 size == 0 时，C++98 中相当于 free(ptr)，C++11 中则是一种未定义的行为。</li>
+<li>当 ptr !=     nullptr &amp;&amp; size != 0 时，realloc 会重新调整内存大小，并返回指向新内存的指针。调整后内存中的内容与新旧两块内存大小较小者保持一致。如果是将原内存调大，而申请新的内存失败了，则返回 nullptr，并且保持原内存有效，依旧可以通过 ptr 访问原内存。</li>
+<li>当 ptr ==     nullptr &amp;&amp; size !=0 时，realloc 相当于 malloc(size)。</li>
+<li>当 size ==     0 时，C<ins>98 中相当于 free(ptr)，C</ins>11 中则是一种未定义的行为。</li>
 </ul>
-<h1 id="不安全函数">不安全函数</h1>
+<h1 id="不安全函数"><a class="markdownIt-Anchor" href="#不安全函数"></a> 不安全函数</h1>
 <p>不安全函数包括未指定目的缓冲区大小的内存操作函数和各种容易用错的函数。</p>
 <p>可能导致命令注入的函数</p>
 <p>#include &lt;cstdlib&gt;</p>
@@ -260,14 +260,14 @@
 <p>command 不为 nullptr 时，该函数用于执行命令，返回值与 system 函数的实现有关。</p>
 <p>#include &lt;cstdio&gt;</p>
 <p>FILE* popen(const char* command, const char* type);</p>
-<p>popen() 会调用 fork() 产生子进程，然后从子进程中调用 /bin/sh -c 来执行参数 command 的指令。参数 type 的可取值为 "r" 和 "w"。"r" 代表读取，"w" 代表写入。依据 type 的值，popen() 会建立管道连到子进程的标准输出设备或标准输入设备，然后返回一个文件指针。随后进程便可以利用此文件指针来读取子进程的输出设备或是写入到子进程的标准输出设备中。</p>
+<p>popen() 会调用 fork() 产生子进程，然后从子进程中调用 /bin/sh -c 来执行参数 command 的指令。参数 type 的可取值为 “r” 和 “w”。“r” 代表读取，“w” 代表写入。依据 type 的值，popen() 会建立管道连到子进程的标准输出设备或标准输入设备，然后返回一个文件指针。随后进程便可以利用此文件指针来读取子进程的输出设备或是写入到子进程的标准输出设备中。</p>
 <p>不应当使用外部输入的参数作为命令直接执行或者直接拼接到命令中执行。如果必须要使用，则要对外部输入做白名单校验或者做硬编码。</p>
 <p>使用 Win32 API 中的 CreateProcess() 函数或者 POSIX 的 exec 系列函数代替 system 函数。</p>
 <p>如果使用 system 函数，则应使用硬编码的函数入参或对外部输入中的命令分隔符进行过滤或转义。</p>
 <p>多线程下的线程不安全函数</p>
 <p>这些函数中可能有静态变量或者全局变量，导致函数不可重入。</p>
 <p>执行的时序不同，函数的执行结果也可能不同。</p>
-<ol type="1">
+<ol>
 <li>函数 strtok 使用了一个静态局部变量标记当前位置，导致不可重入。printf 和 cout 混用，printf 和 cout 在 C++ 标准下是同步的，但是有的编译器可能没有按照标准来处理，所以混用 printf 和 cout 可能发生因时序导致的错误。</li>
 <li>信号处理程序中使用异步不安全函数，比如 I/O 函数，自定义的异步不安全函数等。这会造成信号阻塞，使程序执行结果不可预测。</li>
 </ol>
@@ -281,7 +281,7 @@
 <p>Windows 使用随机数生成函数 CryptGenRandom() 生成安全随机数</p>
 <p>使用开源组件 openssl 获取安全随机数</p>
 <p>使用华为的 iPSI 组件</p>
-<h1 id="文件操作">文件操作</h1>
+<h1 id="文件操作"><a class="markdownIt-Anchor" href="#文件操作"></a> 文件操作</h1>
 <p>常见问题</p>
 <ul>
 <li>文件操作返回值判断有误</li>
@@ -293,7 +293,7 @@
 <p>C 中的 realpath 函数</p>
 <p>#include &lt;limits.h&gt;</p>
 <p>#include &lt;stdlib.h&gt;</p>
-<p>char* realpath(const char <em>path,char </em>resolved_path)</p>
+<p>char* realpath(const char *path,char *resolved_path)</p>
 <p>realpath()函数用来将参数 path 所指的相对路径转换为绝对路径后存与参数 resolved_path 所指的字符串数组或指针中</p>
 <p>成功则返回指向 resolved_path 的指针，失败则返回 NULL，错误代码存于 errno 中</p>
 <p>该函数可能存在缓冲区溢出的风险。</p>
@@ -398,7 +398,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B4%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">整数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%85%E5%AD%98"><span class="nav-number">2.</span> <span class="nav-text">内存</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8D%E5%AE%89%E5%85%A8%E5%87%BD%E6%95%B0"><span class="nav-number">3.</span> <span class="nav-text">不安全函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="nav-number">4.</span> <span class="nav-text">文件操作</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B4%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text"> 整数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%85%E5%AD%98"><span class="nav-number">2.</span> <span class="nav-text"> 内存</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8D%E5%AE%89%E5%85%A8%E5%87%BD%E6%95%B0"><span class="nav-number">3.</span> <span class="nav-text"> 不安全函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="nav-number">4.</span> <span class="nav-text"> 文件操作</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
